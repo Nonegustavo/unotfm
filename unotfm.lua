@@ -30,6 +30,7 @@ LANG = {
 BOT = {}
 
 CONFIG = {
+	UNO = "UNO!",
 	discord = "https://discord.gg/xu5GVuj",
 	rule = {},
 	banned = {},
@@ -2175,7 +2176,7 @@ RULE = {
 		type = "PASSIVE",
 	},
 	drekkemaus = {
-		lname = "Von Drekkemaus",
+		name = "HOUSE_DREKKEMAUS",
 		desc = "HOUSE_DREKKEMAUS_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -2184,7 +2185,7 @@ RULE = {
 		type = "BOSS",
 	},
 	jingle = {
-		lname = "Jingle",
+		name = "HOUSE_JINGLE",
 		desc = "HOUSE_JINGLE_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -2193,7 +2194,7 @@ RULE = {
 		type = "BOSS",
 	},
 	papaille = {
-		lname = "Papaille",
+		name = "HOUSE_PAPAILLE",
 		desc = "HOUSE_PAPAILLE_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -2202,7 +2203,7 @@ RULE = {
 		type = "BOSS",
 	},
 	icemice = {
-		lname = "Icemice",
+		name = "HOUSE_ICEMICE",
 		desc = "HOUSE_ICEMICE_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -2211,7 +2212,7 @@ RULE = {
 		type = "BOSS",
 	},
 	snowy = {
-		lname = "Snowy",
+		name = "HOUSE_SNOWY",
 		desc = "HOUSE_SNOWY_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -2220,7 +2221,7 @@ RULE = {
 		type = "BOSS",
 	},
 	ninguem_v2 = {
-		lname = "Ninguem_v2",
+		name = "HOUSE_NINGUEM",
 		desc = "HOUSE_NINGUEM_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -2370,7 +2371,7 @@ RULE = {
 		type = "EXTRA",
 	},
 	charlotte = {
-		lname = "Charlotte",
+		name = "HOUSE_CHARLOTTE",
 		desc = "HOUSE_CHARLOTTE_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -2379,7 +2380,7 @@ RULE = {
 		type = "BOSS",
 	},
 	buffy = {
-		lname = "Buffy",
+		name = "HOUSE_BUFFY",
 		desc = "HOUSE_BUFFY_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -2388,7 +2389,7 @@ RULE = {
 		type = "BOSS",
 	},
 	elise = {
-		lname = "Elise",
+		name = "HOUSE_ELISE",
 		desc = "HOUSE_ELISE_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -2853,7 +2854,6 @@ POWERUP = {
 FLAG = {
 	default = {
 		name = "FLAG_DEFAULT",
-		desc = "FLAG_DEFAULT_DESC",
 		mission = "SKIN_DEFAULT_MISSION",
 		author = "???",
 		img = {},
@@ -3099,7 +3099,6 @@ ITEM_RESERVE_DESC ={"Reserve your seat for the next match.","Reserve seu lugar p
 ITEM_TIME ={"Time Hammer","Marreta do Tempo","","","","","","","Zaman Çekiç"},
 ITEM_TIME_DESC ={"Stay immune to the hourglass for 1 hour.","Fique livre da ampulheta durante 1 hora.","","","","","","","Kum saatine karşı 1 saat boyunca bağışık kalın."},
 FLAG_DEFAULT ={"None","Nenhum","Aucun","Ninguna","Никто","什麼都沒有~","Nic","Nincs","Yok"},
-FLAG_DEFAULT_DESC ={"Do not use a panel.","Não utilizar painel","Aucun panneau utilisé.","No usando el panel.","Не использует панель.","不使用名稱版面。","Nie używaj panelu.","Nem használsz panelt.","Panel kullanmayın."},
 FLAG_PICNIC ={"Pic-nic","Piquenique","Pique-nique","","Пикник","野-餐","Piknik","Piknik","Piknik"},
 FLAG_PICNIC_DESC ={"When playing a red 0, donate a duplicate card to a player.","Ao jogar um 0 vermelho, doe uma carta repetida para um jogador.","En jouant un 0 rouge, vous donnez une carte en double à un joueur.","Cuando juegues una roja 0, dónale una carta duplicada a algún jugador.","Играя красной 0, подарите игроку дубликат карты.","當你發出紅色 0 號牌, 可以把一張複製卡給予一個玩家。","Kiedy zagrasz czerwonym 0, podaruj graczowi duplikat karty.","Amikor piros 0-t játszol, egy másolat kártyát adományoz egy játékosnak.","Kırmızı bir 0 oynatırken, bir oyuncuya çift kart bağışlayın."},
 FLAG_CLOUD ={"Metal","","Métal","","Метал","重金屬","","Fém",""},
@@ -3164,7 +3163,8 @@ MAP27 ={"Spooky 2","Assustador 2","","","","","","","Ürkütücü 2"},
 MAP28 ={"Bells","Sinos","","","","","","",""},
 MAP29 ={"Blueprint","Rascunho","","","","","","","Taslak"},
 MAP30 ={"Futuristic City","Cidade Futurista","","","","","","","Fütüristik şehir"},
-MAP31 ={"MyCity","","","","","","","","Benim şehrim"},
+MAP31 ={"Rocket","Foguete","","","","","","",""},
+MAP32 ={"MyCity","","","","","","","","Benim şehrim"},
 SKIN_DEFAULT ={"Gray Armchair","Poltrona Cinza","Fauteuil gris","Sillón Gris","Серое Кресло","灰色扶手椅子","Szary Fotel","Szükre Fotel","Gri Koltuk"},
 SKIN_DEFAULT_MISSION ={"Unlocked by default.","Desbloqueado por padrão","Débloqué par défaut","Desbloquueado por defecto","Разблокирован по умолчанию.","自動解鎖。","Odblokowany domyślnie. ","Alapértelmezés szerint feloldva.","Varsayılan olarak kilidi açıktır."},
 SKIN_WOOD ={"Wooden Chair","Banco de Madeira","Chaise en bois","Silla de madera","Деревянное Кресло","木製椅子","Drewniane krzesło","Fa szék","Tahta sandalye"},
@@ -3438,6 +3438,7 @@ SKIN_JUNKY_CLASSIC ={"Junky Throne Classic","Trono de Sucata Clássico","","",""
 SKIN_RAINBOW_CLASSIC ={"Rainbow Throne Classic","Trono Arco-Íris Clássico","","","","","","",""},
 SKIN_JOKER ={"Joker","Coringa","","","","小丑","","",""},
 SKIN_BATMAN ={"Batman","","","","","蝙蝠俠","","",""},
+SKIN_BUBBLES ={"Bubbles","Bolhas","","","","","","",""},
 SKIN_FAVORITES ={"Not So Mysterious Throne","Trono Não Tão Misterioso","","","","","","",""},
 SKIN_FAVORITES_DESC ={"This becomes one of your favorite thrones.","Isto se transforma num dos seus tronos favoritos.","","","","","","",""},
 SKIN_TEST ={"Test Throne","Trono de Teste","Trône de test","Trono de Prueba","Тестовый Трон","測試寶座","Test Tron","Teszt Trón",""},
@@ -3642,16 +3643,27 @@ CARD_SHIELD ={"This card can protect you against +2 and +4 cards.","Esta carta p
 CARD_MIX1 ={"When you play this card, you reverse the game and the next player misses their turn.","Ao jogar esta carta, inverta o jogo e então o próximo jogador perde a vez.","","Cuando juegas esta carta, el juego se reversa y el siguiente jugador pierde su turno.","Когда вы ложите эту карту, вы переворачиваете игру, и следующий игрок пропускает свой ход.","當你發出這卡牌, 你改變遊戲方向以及下一個玩家會失去他的回合。","Kiedy zagrasz tą kartą, odwracasz kierunek gry, a następny gracz traci swoją kolej.","Ha kijátszod ezt a kártyát, a kör iránya megfordul, és a következő játékos kimarad a körből.","Bu kartı oynadığınızda, oyunu tersine çevirirsiniz ve bir sonraki oyuncu sıralarını kaçırır."},
 CARD_MIX2 ={"When you play this card, you reverse the game and the next player draws 2 cards and misses their turn.","Ao jogar esta carta, inverta o jogo e então o próximo jogador compra 2 cartas e perde a vez.","","Cuando juegas esta carta, el juego se reversa y el siguiente jugador sortea dos cartas y pierde su turno.","Когда вы ложите эту карту, вы переворачиваете игру, а следующий игрок берет 2 карты и пропускает свой ход.","當你發出這卡牌, 你改變遊戲方向以及下一個玩家需要罰抽 2 張卡並且會失去他的回合。","Kiedy zagrasz tą kartą, odwracasz kierunek gry, a następny gracz dobiera 2 karty i traci swoją kolej.","Ha kijátszod ezt a kártyát, a kör iránya megfordul, a következő játékos húz 2 kártyát, és kimarad a körből.","Bu kartı oynadığınızda, oyunu tersine çevirirsiniz ve bir sonraki oyuncu 2 kart çeker ve sıralarını kaçırır."},
 CARD_MIX3 ={"When you play this card, the next player misses their turn and the subsequent player draws 2 cards and misses their turn.","Ao jogar esta carta, o próximo jogador perde a vez e então o jogador subsequente compra 2 cartas e perde a vez.","","Cuando juegas esta carta, el siguiente jugador pierde su turno y el siguiente a él consecuentemente sortea dos cartas y pierde su turno.","Когда вы ложите эту карту, следующий игрок пропускает свой ход, а последующий игрок берет 2 карты и пропускает свой ход.","當你發出這卡牌, 下一個玩家會失去他的回合而再下一個玩家會被罰抽 2 張卡並且失去他的回合。","Kiedy zagrasz tą kartą, następny gracz traci swoją kolejkę, a kolejny gracz dobiera 2 karty i traci swoją kolej.","Ha kijátszod ezt a kártyát, a következő játékos kimarad a körből, és az utána következő játékos húz 2 kártyát, majd szintén kimarad a körből.","Bu kartı oynadığınızda, bir sonraki oyuncu sırasını ve sonraki oyuncu 2 kart çeker ve sırasını kaçırır."},
+HOUSE_DREKKEMAUS ={"Von Drekkemaus","","","","","","","",""},
 HOUSE_DREKKEMAUS_DESC ={"He is immune to Thunder cards and he draws cards using the Tracking rule.","Ele é imune a Trovões e compra cartas usando a regra Rastrear.","","Él es inmune a las cartas relámpago y el sortea cartas usando la regla de rastreo.","Он невосприимчив к Картам Грома и берёт карты, используя правило Отслеживания.","他對雷電暴擊卡牌的效果免疫以及他使用\"追蹤\"規矩來抽取卡牌。 ","Jest odporny na Kartę Grzmotu i dobiera karty zgodnie z zasadą Śledzenie.","Nem hat rá a Mennydörgés Kártya, és a Nyomkövetés szabállyal húz kártyát.","Thunder kartlarından muaftır ve İzleme kuralını kullanarak kart çeker."},
+HOUSE_JINGLE ={"Jingle","","","","","","","",""},
 HOUSE_JINGLE_DESC ={"He donates two cards instead of one and he draws cards using the Tracking rule.","Ele doa 2 cartas ao invés de uma e compra cartas usando a regra Rastrear.","","Él dona dos cartas en vez de una y sortea cartas usando la regla de rastreo.","Он жертвует две карты вместо одной и берёт карты, используя правило Отслеживания.","他會在\"捐獻卡\"規矩下送出兩張卡牌以及使用\"追蹤\"規矩來抽取卡牌。","Przekazuje dwie karty zamiast jednej i dobiera je zgodnie z zasadą Śledzenie. ","Adományozáskor egy kártya helyett kettőt adományoz, és a Nyomkövetés szabállyal húz kártyát.","Bir yerine iki kart bağışlar ve İzleme kuralını kullanarak kart çeker."},
+HOUSE_PAPAILLE ={"Papaille","","","","","","","",""},
 HOUSE_PAPAILLE_DESC ={"He starts with 9 cards, draws cards using the Fast Drawing rule and cannot receive card donations.","Ele começa com 9 cartas, compra cartas usando Compra Rápida e não pode receber doações.","","Él empieza con nueve cartas, surtea cartas usando la regla de Sorteo rápdio y no puede recibir donaciones.","Он начинает с 9 карт, берёт карты, используя правило Быстрой Взятки, и не может получать пожертвования карт.","他起初手中的卡牌會是 9 張, 使用\"快速抽取\"規矩抽卡牌而且不會接收捐獻的卡牌。","Rozpoczyna z 9 kartami, dobiera karty zgodnie z zasadą Szybkie Dobieranie i nie otrzymuje darowanych kart.","9 kártyával kezdi a játékot, a Gyors Húzás szabállyal húz kártyát, és nem fogad el adományt.","9 kartla başlar, Fast Draw kuralını kullanarak kart çeker ve kart bağışları alamaz."},
+HOUSE_CHARLOTTE ={"Charlotte","","","","","","","",""},
 HOUSE_CHARLOTTE_DESC ={"She draws cards using the Tracking rule and she cannot be eliminated.","Ela compra cartas usando a regra Rastrear e ela não pode ser eliminada.","","Ella sortea cartas usando la regla de rastreo y no puede ser eliminada.","Она берёт карты, используя правило Отслеживания, и её нельзя исключить.","她使用\"追蹤\"規矩抽取卡牌而且不會被淘汰。","Dobiera karty zgodnie z zasadą Śledzenie i nie może zostać wyeliminowana.","A Nyomkövetés szabállyal húz kártyát, és nem lehet kiejteni a játékból.","İzleme kuralını kullanarak kart çeker ve elenemez."},
+HOUSE_ELISAH ={"Elisah","","","","","","","",""},
 HOUSE_ELISAH_DESC ={"She starts with 3 Curse Cards and she is immune to Curses.","Ela começa com 3 Cartas da Maldição e ela é imune a Maldições.","","Ella empieza con tres cartas de maldición y es inmune a las maldiciones.","Она начинает с 3 Проклятых Карт и неуязвима для Проклятий.","她起初手中會有3張詛咒卡牌而她是對詛咒免疫。","Rozpoczyna z 3 Kartami Przekleństwa i jest na nie odporna.","3 Átok Kártyával kezdi a játékot, és nem hatnak rá az átkok.","3 Lanet Kartı ile başlar ve Lanetlerden etkilenmez."},
+HOUSE_BUFFY ={"Buffy","","","","","","","",""},
 HOUSE_BUFFY_DESC ={"She's still learning to play, so she starts with 5 cards.","Ela está aprendendo a jogar, por isso começa com 5 cartas.","","Ella está aprendiendo a jugar, por lo que empieza con cinco cartas.","Она все ещё учится играть, поэтому начинает с 5 карт.","她還在學習要怎麼玩, 所以她起初只有 5 張卡牌。","Ona uczy się gry, więc zaczyna z 5 kartami.","Még tanulja a játékot, ezért 5 kártyával kezd.","Hala oynamayı öğreniyor, bu yüzden 5 kartla başlıyor."},
+HOUSE_SNOWY ={"Snowy","","","","","","","",""},
 HOUSE_SNOWY_DESC ={"If eliminated, he distributes his cards to the other players.","Se ele for eliminado, ele distribuirá as cartas dele para os outros jogadores.","","Si él es eliminado, distribuirá sus cartas a los demás jugadores.","В случае исключения он раздает свои карты другим игрокам.","如果被淘汰了, 他會把他剩下的卡牌分發給所有玩家。","Jeśli zostanie wyeliminowany, rozdaje swoje wszystkie karty innym graczom.","Ha kiesik a játékból, szétosztja a kártyáit a többi játékosnak.","Elendiğinde kartlarını diğer oyunculara dağıtır."},
+HOUSE_ICEMICE ={"Icemice","","","","","","","",""},
 HOUSE_ICEMICE_DESC ={"Whenever he draws cards, another random player will draw 1 card.","Sempre que ele comprar cartas, outro jogador aleatório compra 1 carta.","","Siempre que sortee cartas, un jugador aleatorio sorteará una carta.","Всякий раз, когда он берёт карты, другой случайный игрок берёт одну карту.","每當他抽卡, 另一個隨機的玩家也會被罰抽 1 張卡。","Za każdym razem, gdy dobierze karty, inny losowy gracz dobierze 1 kartę.","Valahányszor kártyát húz, egy véletlenszerű játékos is húz egy kártyát.","Ne zaman kart çekse, başka bir rastgele oyuncu 1 kart çeker."},
+HOUSE_ELISE ={"Elise","","","","","","","",""},
 HOUSE_ELISE_DESC ={"She plays fair.","Ela joga de forma justa.","","Ella juega limpiamente.","Она играет честно.","她會公平的玩。","Ona gra fair.","Rendesen játszik.","Adil oynuyor."},
+HOUSE_NINGUEM ={"Ninguem_v2","","","","","","","",""},
 HOUSE_NINGUEM_DESC ={"I don't know how I got here...","Não sei como isto veio parar aqui...","","","","我不知道它怎麼會在這...","","Nem tudom hogy került ez ide...","Buraya nasıl geldiğimi bilmiyorum ..."},
+HOUSE_DERP ={"Derp","","","","","","","",""},
 HOUSE_DERP_DESC ={"He won't let you win!","Ele não deixará você vencer!","","","","他不會讓你贏!","","Nem fog nyerni hagyni!","Kazanmana izin vermiyor!"},
 HOUSE_RED ={"Love?","Amor?","Amour?","¿Amor?","Любовь?","愛?","Miłość?","Szeretet?","Aşk?"},
 HOUSE_RED_DESC ={"When Charlotte plays a red numerical card, she donates a numerical card to a random player.","Quando Charlotte joga um número vermelho, ela doa uma carta numérica para alguém.","Lorsque Charlotte joue une carte numérique rouge, elle donne une carte numérique à un joueur aléatoire.","Cuando Charlotte juega una carta numérica roja, le dona una carta a un jugador aleatorio.","Когда Charlotte ложит красную цифровую карту, она жертвует цифровую карту случайному игроку.","當 Charlotte 發出紅色的數字卡牌, 她會向隨機一個玩家捐獻一張數字卡牌。","Kiedy Charlotte zagra czerwoną kartą z liczbą, przekazuje kartę z liczbą losowemu graczowi.","Ha Charlotte piros számkártyát játszik, eladományoz egy számkártyát egy véletlenszerű játékosnak.","Charlotte kırmızı bir sayısal kart oynadığında, rastgele bir oyuncuya sayısal bir kart bağışlar."},
@@ -10013,7 +10025,7 @@ end
 LANGT = {en=1, br=2, fr=3, es=4, ru=5, cn=6, pl=7, hu=8, tr=9}
 function translate(p, k, a, b, c, d, e)
 	if not LANG[k] then 
-		return k and "$"..k or "#ERROR"
+		return "$"..k
 	end
 	local cmm = PLAYER[p] and PLAYER[p].community or "auto"
 	cmm = cmm == "auto" and tfm.get.room.playerList[p] and tfm.get.room.playerList[p].community or cmm
