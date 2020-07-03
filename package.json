@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "watch": "latest",
+    "http": "latest",
+    "jsdom": "latest",
+    "sync-request": "latest",
+    "luamin": "latest"
+  },
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node build.js watch",
+    "minify": "node build.js minify",
+    "staff": "node staff.js"
+  }
+}
