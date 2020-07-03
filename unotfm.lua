@@ -23,10 +23,6 @@ CONST = {
 	maxHand = 31,
 }
 
-LANG = {
-	xx = {UNO = "UNO!"}
-}
-
 BOT = {}
 
 CONFIG = {
