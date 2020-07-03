@@ -500,7 +500,7 @@ RULE = {
 		type = "PASSIVE",
 	},
 	drekkemaus = {
-		lname = "Von Drekkemaus",
+		name = "HOUSE_DREKKEMAUS",
 		desc = "HOUSE_DREKKEMAUS_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -509,7 +509,7 @@ RULE = {
 		type = "BOSS",
 	},
 	jingle = {
-		lname = "Jingle",
+		name = "HOUSE_JINGLE",
 		desc = "HOUSE_JINGLE_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -518,7 +518,7 @@ RULE = {
 		type = "BOSS",
 	},
 	papaille = {
-		lname = "Papaille",
+		name = "HOUSE_PAPAILLE",
 		desc = "HOUSE_PAPAILLE_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -527,7 +527,7 @@ RULE = {
 		type = "BOSS",
 	},
 	icemice = {
-		lname = "Icemice",
+		name = "HOUSE_ICEMICE",
 		desc = "HOUSE_ICEMICE_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -536,7 +536,7 @@ RULE = {
 		type = "BOSS",
 	},
 	snowy = {
-		lname = "Snowy",
+		name = "HOUSE_SNOWY",
 		desc = "HOUSE_SNOWY_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -545,7 +545,7 @@ RULE = {
 		type = "BOSS",
 	},
 	ninguem_v2 = {
-		lname = "Ninguem_v2",
+		name = "HOUSE_NINGUEM",
 		desc = "HOUSE_NINGUEM_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -695,7 +695,7 @@ RULE = {
 		type = "EXTRA",
 	},
 	charlotte = {
-		lname = "Charlotte",
+		name = "HOUSE_CHARLOTTE",
 		desc = "HOUSE_CHARLOTTE_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -704,7 +704,7 @@ RULE = {
 		type = "BOSS",
 	},
 	buffy = {
-		lname = "Buffy",
+		name = "HOUSE_BUFFY",
 		desc = "HOUSE_BUFFY_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -713,7 +713,7 @@ RULE = {
 		type = "BOSS",
 	},
 	elise = {
-		lname = "Elise",
+		name = "HOUSE_ELISE",
 		desc = "HOUSE_ELISE_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
