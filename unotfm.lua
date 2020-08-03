@@ -2462,7 +2462,7 @@ RULE = {
 		type = "CARD",
 	},
 	elisah = {
-		lname = "Elisah",
+		name = "HOUSE_ELISAH",
 		desc = "HOUSE_ELISAH_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",
@@ -8681,7 +8681,7 @@ function showRules(p)
 					end
 				end
 				if #modes > 5 then
-					local txt = string.format("<font color='#%s'><b><a href='event:house'>%s</a></b></font>", ROUND.color[2], string.format(translate(p, "MORE_RULES"), #modes-4))
+					local txt = string.format("<font color='#%s'><b><a href='event:house'>+%s</a></b></font>", ROUND.color[2], #modes-4)
 					ui.addTextArea(10000+5, txt, p, 20, 190+5*20, 150, nil, 0, 0, 0, false)
 				end
 				--tfm.exec.chatMessage("<bv>"..translate(p, "TIP_RULES"), p)
@@ -10020,6 +10020,9 @@ end
 
 LANGT = {en=1, br=2, fr=3, es=4, ru=5, cn=6, pl=7, hu=8, tr=9}
 function translate(p, k, a, b, c, d, e)
+	if not k then
+		return "#ERROR"
+	end
 	if not LANG[k] then 
 		return "$"..k
 	end
@@ -14897,7 +14900,7 @@ onEvent("NewPlayer", function(p)
 		ui.addTextArea(4001, string.format("<p align='center'><b><a href='event:menu'>%s</a>", translate(p, "MENU")), p, 5, 380, 80, 20, 0x324650, nil, 1, true)
 		ui.addTextArea(4002, string.format("<p align='center'><b><a href='event:openinventory'>%s</a>", translate(p, "INVENTORY")), p, 715, 380, 80, 20, 0x324650, nil, 1, true)
 		translatedChatMessage("WELCOME_TEXT", p)
-		translatedChatMessage("WELCOME_DISCORD", p)
+		translatedChatMessage("WELCOME_DISCORD", p, CONFIG.discord)
 		if not PLAYER[p] then
 			PLAYER[p] = instanceData()
 		end

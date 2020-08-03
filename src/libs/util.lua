@@ -113,6 +113,9 @@ end
 
 LANGT = {en=1, br=2, fr=3, es=4, ru=5, cn=6, pl=7, hu=8, tr=9}
 function translate(p, k, a, b, c, d, e)
+	if not k then
+		return "#ERROR"
+	end
 	if not LANG[k] then 
 		return "$"..k
 	end

@@ -577,7 +577,7 @@ function showRules(p)
 					end
 				end
 				if #modes > 5 then
-					local txt = string.format("<font color='#%s'><b><a href='event:house'>%s</a></b></font>", ROUND.color[2], string.format(translate(p, "MORE_RULES"), #modes-4))
+					local txt = string.format("<font color='#%s'><b><a href='event:house'>+%s</a></b></font>", ROUND.color[2], #modes-4)
 					ui.addTextArea(10000+5, txt, p, 20, 190+5*20, 150, nil, 0, 0, 0, false)
 				end
 				--tfm.exec.chatMessage("<bv>"..translate(p, "TIP_RULES"), p)

@@ -790,7 +790,7 @@ RULE = {
 		type = "CARD",
 	},
 	elisah = {
-		lname = "Elisah",
+		name = "HOUSE_ELISAH",
 		desc = "HOUSE_ELISAH_DESC",
 		mission = "UNLOCK_RULE",
 		img = "161a5c48dcf.png",

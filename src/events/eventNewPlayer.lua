@@ -5,7 +5,7 @@ onEvent("NewPlayer", function(p)
 		ui.addTextArea(4001, string.format("<p align='center'><b><a href='event:menu'>%s</a>", translate(p, "MENU")), p, 5, 380, 80, 20, 0x324650, nil, 1, true)
 		ui.addTextArea(4002, string.format("<p align='center'><b><a href='event:openinventory'>%s</a>", translate(p, "INVENTORY")), p, 715, 380, 80, 20, 0x324650, nil, 1, true)
 		translatedChatMessage("WELCOME_TEXT", p)
-		translatedChatMessage("WELCOME_DISCORD", p)
+		translatedChatMessage("WELCOME_DISCORD", p, CONFIG.discord)
 		if not PLAYER[p] then
 			PLAYER[p] = instanceData()
 		end
