@@ -551,7 +551,7 @@ SKIN = {
 		img = "16793c48ff9.png",
 		imgMini = "16793c2aa1f.png",
 		name = "SKIN_UFO",
-		desc = "SKIN_UFO_DESC",
+		mission = "SKIN_UFO_MISSION",
 		author = "unknown player"
 	},
 	aquarium = {
