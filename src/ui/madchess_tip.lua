@@ -1,8 +1,8 @@
 window.create("CHESS", function(player, var, name)
 	local x = 200 -- 145 = +55
-	local y = 140 -- 100 = +40
-	local width = 500
-	local height = 200
+	local y = 100 -- 100 = +40
+	local width = 590
+	local height = 250
 	-- janela
 	ui.addTextArea(500, "", player, x, y, width, height, 0x573926, 0x573926, alpha, true)
 	ui.addTextArea(501, "", player, x+1, y+1, width-2, height-2, 0x8a583c, 0x8a583c, alpha, true)
@@ -25,17 +25,17 @@ window.create("CHESS", function(player, var, name)
 	
 	-- cartas e descrições
 	local card = {
-		{{{"red","pawn"},"CHESS_PAWN"},{{"red","rook"},"CHESS_ROOK"},{{"red","knight"},"CHESS_KNIGHT"}},
-		{{{"red","bishop"},"CHESS_BISHOP"},{{"black","queen"},"CHESS_QUEEN"},{{"black","king"},"CHESS_KING"}},
+		{{{"red","pawn"},"CARD_PAWN"},{{"red","rook"},"CARD_ROOK"},{{"red","knight"},"CARD_KNIGHT"}},
+		{{{"red","bishop"},"CARD_BISHOP"},{{"black","queen"},"CARD_QUEEN"},{{"black","king"},"CARD_KING"}},
 	}
 	local text = {500,501,502,503,504,505,506,507,508,509,519}
 	for i, v in pairs(card) do
 		for j, w in pairs(v) do
-			local c = showCard(w[1], 160*j+50, i*80+65, player, "&1000")
+			local c = showCard(w[1], 190*(j-1)+x+10, (i-1)*110+y+10, player, "&1000")
 			--table.insert(imageId, tfm.exec.addImage(SKIN[w].imgMini, "&2", 100*j+60, i*120, p))
 			table.insert(imageId, c[1])
 			table.insert(imageId, c[2])
-			ui.addTextArea(200+i*12+j, "<font size='10px'>"..translate(player, w[2]), player, 160*j+105, i*80+65, 100, 75, 0, 0, 0, true)
+			ui.addTextArea(200+i*12+j, "<font size='10px'>"..translate(player, w[2]), player, 190*(j-1)+x+60, (i-1)*110+y+10, 130, 110, 0, 0, 0, true)
 			table.insert(text, 200+i*12+j)
 		end
 	end

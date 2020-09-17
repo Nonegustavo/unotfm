@@ -1,7 +1,7 @@
 window.create("CREDITS", function(player, var)
-	local x = 225 -- 145 = +55
+	local x = 125 -- 145 = +55
 	local y = 40 -- 100 = +40
-	local width = 350
+	local width = 550
 	local height = 340
 	-- janela
 	ui.addTextArea(500, "", player, x, y, width, height, 0x573926, 0x573926, alpha, true)
@@ -28,20 +28,22 @@ window.create("CREDITS", function(player, var)
 	local text = {500,501,502,503,504,505,506,507,508,509,510,519,520}
 	
 	local thanks = {
-		{reason="THANKS_TRANSLATE", extra="EN", names="Barberserk#0000"},
-		{reason="THANKS_TRANSLATE", extra="PL", names="Rkubi#0000"},
-		{reason="THANKS_TRANSLATE", extra="RU", names="Fran_bow#1314"},
-		{reason="THANKS_TRANSLATE", extra="ES", names="Niopigaa#0000"},
-		{reason="THANKS_TRANSLATE", extra="FR", names="Urook#1131"},
-		{reason="THANKS_TRANSLATE", extra="CN", names="Wrfg#0000"},
-		{reason="THANKS_CARDS", names="Billysmille#0000"},
-		{reason="THANKS_POPUPS", names="Esh#0095"},
+		{reason="THANKS_TRANSLATE", extra="EN", names={"Barberserk#0000"}},
+		{reason="THANKS_TRANSLATE", extra="PL", names={"Rkubi#0000"}},
+		{reason="THANKS_TRANSLATE", extra="RU", names={"Fran_bow#1314"}},
+		{reason="THANKS_TRANSLATE", extra="ES", names={"Niopigaa#0000"}},
+		{reason="THANKS_TRANSLATE", extra="FR", names={"Urook#1131"}},
+		{reason="THANKS_TRANSLATE", extra="CN", names={"Wrfg#0000"}},
+		{reason="THANKS_TRANSLATE", extra="HU", names={"Weth#9837","Martinkat#0000"}},
+		{reason="THANKS_TRANSLATE", extra="TR", names={"Eralpciko#0000","Star#6725","Cileklidonut#8059"}},
+		{reason="THANKS_CARDS", names={"Billysmille#0000"}},
+		{reason="THANKS_POPUPS", names={"Esh#0095"}},
 	}
 	
 	local t = translate(player, "CREDIT_TXT") .. "\n\n" .. translate(player, "CREDIT_TXT2") .."\n\n" .. translate(player, "THANKS") .. ":\n"
 	
 	for i, v in pairs(thanks) do
-		t = t .. string.format("%s (%s)\n", v.names, translate(player, v.reason))
+		t = t .. string.format("<v>%s <j>(%s) <n>| ", table.concat(v.names, ", "), translate(player, v.reason))
 		if v.extra then
 			t = string.format(t, v.extra)
 		end

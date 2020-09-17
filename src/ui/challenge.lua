@@ -36,10 +36,8 @@ window.create("CHALLENGE", function(player, var, card)
 	local c = showCard(card, x+10, y+5, player, "&1000")
 	table.insert(imageId, c[1])
 	table.insert(imageId, c[2])
-	local key = {red="CHALLENGE_RED", blue="CHALLENGE_BLUE", yellow="CHALLENGE_YELLOW", green="CHALLENGE_GREEN", black="CHALLENGE_BLACK"}
-	local desc = key[card[1]]
 	local previous = previousChair(ROUND.turn)
 	previous = nickMinifier(nickHashtag(ROUND.chair[previous].owner))
-	ui.addTextArea(516, string.format("<p align='center'><font size='14px'>"..translate(player, desc), previous), player, x+65, y+20, width-65, nil, 0, 0, 0, true)
+	ui.addTextArea(516, string.format("<p align='center'><font size='14px'>"..translate(player, "CHALLENGE_COLOR"), previous), player, x+65, y+20, width-65, nil, 0, 0, 0, true)
 	return text, imageId
 end)

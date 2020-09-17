@@ -24,7 +24,7 @@ end
 if CONFIG.tribeHouse then
 	CONFIG.ranked = false
 end
-if not string.match(tfm.get.room.name,"^%w%w%-#unotfm[1-9]$") then
+if not (string.match(tfm.get.room.name,"^%w%w%-#unotfm[1-9]+$") or string.match(tfm.get.room.name,"^*#unotfm[1-9]+$")) then
 	CONFIG.ranked = false
 end
 if string.match(tfm.get.room.name,"music") then
