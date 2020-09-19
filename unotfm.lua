@@ -7652,6 +7652,7 @@ function challengeDrawFour(n)
 					tryDraw(p, ROUND.accumulated.cards, true)
 				end
 				ROUND.accumulated = nil
+				showAccumulated()
 				local img = tfm.exec.addImage(IMG.misc.sucess, "!1000", ROUND.chair[n].x-50, 30)
 				TIMER.img[img] = os.time()+2000
 				if #ROUND.chair[n].hand == 2 and canPlayHand(n) then
@@ -7661,12 +7662,6 @@ function challengeDrawFour(n)
 			else
 				local img = tfm.exec.addImage(IMG.misc.fail, "!1000", ROUND.chair[n].x-50, 30)
 				TIMER.img[img] = os.time()+2000
-				for i, v in pairs(PLAYER) do
-					if v.faustao then
-						local img2 = tfm.exec.addImage(IMG.misc.errou, "!1000", 480, 190, i)
-						TIMER.img[img2] = os.time()+2000
-					end
-				end
 				if ROUND.turn == n then
 					tryDraw(nn, ROUND.accumulated.cards+2, true)
 					ROUND.accumulated = nil
@@ -11844,7 +11839,9 @@ function emoteVerify(final)
 		for j, w in pairs(name) do
 			local img = tfm.exec.addImage(IMG.misc.fail, "!1000", ROUND.chair[w].x-50, 30)
 			TIMER.img[img] = os.time()+2000
-			if not isCursed(w, "ice") then
+			if ROUND.subitDeath then
+				eliminate(w)
+			elseif not isCursed(w, "ice") then
 				if isCursed(w, "thorn") then
 					eliminate(w)
 				else
@@ -13818,21 +13815,20 @@ function paintCard(color, n, auto)
 					for i=1, 10 do
 						tfm.exec.displayParticle(particle[color], 455, y+37, math.random(-20,20)/10, math.random(-20,20)/10, 0, 0)
 					end
-					tryDraw(n, 1)
 					local img = tfm.exec.addImage(IMG.misc.fail, "!1000", ROUND.chair[n].x-50, 30)
 					TIMER.img[img] = os.time()+2000
-					for i, v in pairs(PLAYER) do
-						if v.faustao then
-							local img2 = tfm.exec.addImage(IMG.misc.errou, "!1000", 480, 190, i)
-							TIMER.img[img2] = os.time()+2000
-						end
-					end
 					local s = tfm.exec.addImage(IMG.simonMini[color][ROUND.portal.side], "!1000", 405, 190)
 					TIMER.img[s] = os.time()+2000
 					colorZeros(color, n)
-					passTurn()
-					batataTimer(n)
-					updateShadow(n)
+					if ROUND.subitDeath then
+						eliminate(n)
+						passTurn()
+					else
+						tryDraw(n, 1)
+						passTurn()
+						batataTimer(n)
+						updateShadow(n)
+					end
 				end, 1000)
 			end
 		end

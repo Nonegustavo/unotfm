@@ -1185,6 +1185,7 @@ function challengeDrawFour(n)
 					tryDraw(p, ROUND.accumulated.cards, true)
 				end
 				ROUND.accumulated = nil
+				showAccumulated()
 				local img = tfm.exec.addImage(IMG.misc.sucess, "!1000", ROUND.chair[n].x-50, 30)
 				TIMER.img[img] = os.time()+2000
 				if #ROUND.chair[n].hand == 2 and canPlayHand(n) then
@@ -1194,12 +1195,6 @@ function challengeDrawFour(n)
 			else
 				local img = tfm.exec.addImage(IMG.misc.fail, "!1000", ROUND.chair[n].x-50, 30)
 				TIMER.img[img] = os.time()+2000
-				for i, v in pairs(PLAYER) do
-					if v.faustao then
-						local img2 = tfm.exec.addImage(IMG.misc.errou, "!1000", 480, 190, i)
-						TIMER.img[img2] = os.time()+2000
-					end
-				end
 				if ROUND.turn == n then
 					tryDraw(nn, ROUND.accumulated.cards+2, true)
 					ROUND.accumulated = nil

@@ -44,7 +44,9 @@ function emoteVerify(final)
 		for j, w in pairs(name) do
 			local img = tfm.exec.addImage(IMG.misc.fail, "!1000", ROUND.chair[w].x-50, 30)
 			TIMER.img[img] = os.time()+2000
-			if not isCursed(w, "ice") then
+			if ROUND.subitDeath then
+				eliminate(w)
+			elseif not isCursed(w, "ice") then
 				if isCursed(w, "thorn") then
 					eliminate(w)
 				else
