@@ -776,7 +776,7 @@ SKIN = {
 		img = "1716a7ea0b1.png",
 		imgMini = "1716a7ec4f1.png",
 		name = "SKIN_TOAST",
-		mission = "SKIN_TIME_MISSION",
+		mission = "SKIN_TEAM_MISSION",
 		progress = 600,
 		author = "Arki#0113"
 	},
@@ -784,7 +784,7 @@ SKIN = {
 		img = "1716a7e19b0.png",
 		imgMini = "1716a7e3b37.png",
 		name = "SKIN_PIZZA",
-		mission = "SKIN_PIZZA_MISSION",
+		mission = "SKIN_TEAM_MISSION",
 		progress = 10000,
 		author = "Arki#0113"
 	},

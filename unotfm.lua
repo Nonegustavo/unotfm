@@ -4,7 +4,7 @@ MAP = {"@7094274", "@7108608", "@6149054", "@7131131", "@7131143", "@7146157", "
 MUSIC = {"@7295158"}
 COMMAND = {"chair", "np", "random", "rule", "settings", "ban", "kick", "unban", "adm", "new", "map", "reset", "start", "pw", "p", "profile", "stats", "ranking", "boss", "power", "history", "fake", "color", "bell", "nolag", "shadow", "test", "custom", "givechair", "givebadge", "givescore", "giverule", "isranked", "rulenow", "limit", "spectator", "flag", "faustao", "rules"}
 
-VERSION = "v1.0.11 [30/05/20]"
+VERSION = "v1.0.12 [21/03/21]"
 
 -- progress
 OWNER = "Ninguem#0095"
@@ -1466,7 +1466,7 @@ SKIN = {
 		img = "1716a7ea0b1.png",
 		imgMini = "1716a7ec4f1.png",
 		name = "SKIN_TOAST",
-		mission = "SKIN_TIME_MISSION",
+		mission = "SKIN_TEAM_MISSION",
 		progress = 600,
 		author = "Arki#0113"
 	},
@@ -1474,7 +1474,7 @@ SKIN = {
 		img = "1716a7e19b0.png",
 		imgMini = "1716a7e3b37.png",
 		name = "SKIN_PIZZA",
-		mission = "SKIN_PIZZA_MISSION",
+		mission = "SKIN_TEAM_MISSION",
 		progress = 10000,
 		author = "Arki#0113"
 	},
@@ -6338,7 +6338,7 @@ do
 	local events = {}
 	local scheduled = {_count = 0, _pointer = 1}
 	local paused = false
-	local runtime_threshold = 20
+	local runtime_threshold = 40
 	local _paused = false
 
 	local function runScheduledEvents()
@@ -9396,215 +9396,206 @@ function startGame()
 			end
 		end
 	end
-	addFunctionTimer(function()
-		if ROUND.gameMode.noaction then
-			for i, v in pairs(DECK.numbers) do
-				table.insert(ROUND.deck, {v[1], v[2]})
-			end
-		elseif ROUND.gameMode.mess then
-			for i, v in pairs(DECK.mess) do
-				table.insert(ROUND.deck, {v[1], v[2]})
-			end
-			for i, mode in pairs(RULE) do
-				if DECK[i] and i ~= "bomb" and not mode.notMess then
-					for _, v in pairs(DECK[i]) do
-						table.insert(ROUND.deck, {v[1], v[2]})
-					end
+	if ROUND.gameMode.noaction then
+		for i, v in pairs(DECK.numbers) do
+			table.insert(ROUND.deck, {v[1], v[2]})
+		end
+	elseif ROUND.gameMode.mess then
+		for i, v in pairs(DECK.mess) do
+			table.insert(ROUND.deck, {v[1], v[2]})
+		end
+		for i, mode in pairs(RULE) do
+			if DECK[i] and i ~= "bomb" and not mode.notMess then
+				for _, v in pairs(DECK[i]) do
+					table.insert(ROUND.deck, {v[1], v[2]})
 				end
 			end
-		else
-			for i, v in pairs(DECK.vanilla) do
-				table.insert(ROUND.deck, {v[1], v[2]})
-			end
-			for i, mode in pairs(RULE) do
-				if ROUND.gameMode[i] and DECK[i] and i ~= "bomb" then
-					for _, v in pairs(DECK[i]) do
-						table.insert(ROUND.deck, {v[1], v[2]})
-					end
+		end
+	else
+		for i, v in pairs(DECK.vanilla) do
+			table.insert(ROUND.deck, {v[1], v[2]})
+		end
+		for i, mode in pairs(RULE) do
+			if ROUND.gameMode[i] and DECK[i] and i ~= "bomb" then
+				for _, v in pairs(DECK[i]) do
+					table.insert(ROUND.deck, {v[1], v[2]})
 				end
 			end
-			if ROUND.gameMode.supercombo then
-				local pool = {{"red","shield"},{"blue","shield"},{"green","shield"},{"yellow","shield"}}
-				for i=1, #ROUND.deck do
-					if ROUND.deck[i][2] == "n0" then
-						ROUND.deck[i] = table.remove(pool)
-					end
+		end
+		if ROUND.gameMode.supercombo then
+			local pool = {{"red","shield"},{"blue","shield"},{"green","shield"},{"yellow","shield"}}
+			for i=1, #ROUND.deck do
+				if ROUND.deck[i][2] == "n0" then
+					ROUND.deck[i] = table.remove(pool)
 				end
 			end
-			if ROUND.gameMode.simon then
-				for i=1, 4 do
-					for j, v in pairs(ROUND.deck) do
-						if v[2] == "wild" then
-							table.remove(ROUND.deck, j)
-							break
-						end
-					end
-				end
-			end
-			if ROUND.gameMode.custom then
-				for i, v in pairs(CONFIG.custom.color) do
-					for j=1, v do
-						table.insert(ROUND.deck, {i,"custom"})
+		end
+		if ROUND.gameMode.simon then
+			for i=1, 4 do
+				for j, v in pairs(ROUND.deck) do
+					if v[2] == "wild" then
+						table.remove(ROUND.deck, j)
+						break
 					end
 				end
 			end
 		end
-		addFunctionTimer(function()
-			ROUND.deck = shuffleDeck(ROUND.deck)
-			updateFlow()
-			local cont = 0
-			local pool = {}
-			for i, v in pairs(ROUND.chair) do
-				if v.mode == "BUSY" then
-					cont = cont + 1
-				else
-					table.insert(pool, i)
+		if ROUND.gameMode.custom then
+			for i, v in pairs(CONFIG.custom.color) do
+				for j=1, v do
+					table.insert(ROUND.deck, {i,"custom"})
 				end
 			end
-			if cont % 2 == 1 and ROUND.gameMode.team then
-				local chair = pool[math.random(#pool)]
-				explosion(3, ROUND.chair[chair].x, 80, 10, 20)
-				playerSit("Elise", ROUND.chair[chair], chair)
-				if BOT.Elise.eventWelcome then
-					BOT.Elise.eventWelcome()
-				end
+		end
+	end
+	ROUND.deck = shuffleDeck(ROUND.deck)
+	updateFlow()
+	local cont = 0
+	local pool = {}
+	for i, v in pairs(ROUND.chair) do
+		if v.mode == "BUSY" then
+			cont = cont + 1
+		else
+			table.insert(pool, i)
+		end
+	end
+	if cont % 2 == 1 and ROUND.gameMode.team then
+		local chair = pool[math.random(#pool)]
+		explosion(3, ROUND.chair[chair].x, 80, 10, 20)
+		playerSit("Elise", ROUND.chair[chair], chair)
+		if BOT.Elise.eventWelcome then
+			BOT.Elise.eventWelcome()
+		end
+		cont = cont + 1
+	end
+	local max = math.ceil(cont/2)
+	cont = 0
+	local players = {}
+	pool = {1, 2, 3, 4, 5}
+	pool = shuffleDeck(pool)
+	
+	ROUND.gameMode2 = {}
+	ROUND.deck2 = {}
+	ROUND.pile2 = {}
+	ROUND.portal = {side="orange", img={}}
+	for i, v in pairs(ROUND.deck) do
+		table.insert(ROUND.deck2, {v[1], v[2]})
+	end
+	ROUND.deck2 = shuffleDeck(ROUND.deck2)
+	for i, v in pairs(ROUND.gameMode) do
+		ROUND.gameMode2[i] = true
+	end
+	for i, v in pairs(ROUND.chair) do
+		if v.mode == "EMPTY" or v.mode == "FREE" or not PLAYER[v.owner] then
+			v.mode = "DELETED"
+			drawChair(i)
+		else
+			table.insert(skins, {player = v.owner, skin = v.skin.id})
+			if BOT[v.owner] and BOT[v.owner].eventStart then
+				BOT[v.owner].eventStart()
+			end
+			table.insert(players, i)
+			ui.removeTextArea(32, v.owner)
+			ui.removeTextArea(33, v.owner)
+			local color = tonumber(ROUND.color[1], 16)
+			ui.addTextArea(10, string.format("<b><p align='center'><font size='14px' color='#%s'>%s", ROUND.color[1], CONFIG.UNO), v.owner, 675, 205, 100, 20, -1, color, 1, false)
+			ui.addTextArea(11, string.format("<p align='center'><font size='14px' color='#%s'>%s", ROUND.color[1], translate(v.owner, "CHALLENGE")), v.owner, 675, 240, 100, 20, -1, color, 1, false)
+			ui.addTextArea(12, string.format("<p align='center'><font size='14px' color='#%s'>%s", ROUND.color[1], translate(v.owner, "PASS")), v.owner, 675, 275, 100, 20, -1, color, 1, false)
+			if ROUND.gameMode.team then
+				v.team = pool[(cont-1)%max+1]
+				ROUND.team[v.team][i] = true
+				drawChair(i)
 				cont = cont + 1
+			elseif not RANKED and not CONFIG.noFlags then
+				v.flag = PLAYER[v.owner].flagEquipped
+				drawChair(i)
+			else
+				v.flag = "default"
 			end
-			local max = math.ceil(cont/2)
-			cont = 0
-			local players = {}
-			pool = {1, 2, 3, 4, 5}
-			pool = shuffleDeck(pool)
-			
-			ROUND.gameMode2 = {}
-			ROUND.deck2 = {}
-			ROUND.pile2 = {}
-			ROUND.portal = {side="orange", img={}}
-			for i, v in pairs(ROUND.deck) do
-				table.insert(ROUND.deck2, {v[1], v[2]})
+		end
+	end
+	for i, v in pairs(ROUND.chair) do
+		if not PLAYER[v.owner] then
+			v.mode = "DELETED"
+			drawChair(i)
+		elseif v.mode ~= "DELETED" then
+			local cards = ROUND.gameMode.maxi and 9 or ROUND.gameMode.mini and 4 or 7
+			v.hand2 = {}
+			if v.owner == "Buffy" then
+				drawCard(i, cards-2, "START")
+			elseif v.owner == "Elisah" then
+				drawCard(i, cards-3, "START")
+				local color = {"red", "blue", "yellow", "green"}
+				for i=1, 3 do
+					table.insert(v.hand, {table.remove(color, math.random(#color)), "curse", true})
+				end
+				showCardsGainned(i, cards)
+				updateScore(i)
+			elseif v.owner == "Papaille" then
+				drawCard(i, cards+2, "START")
+			else
+				drawCard(i, cards, "START")
 			end
-			ROUND.deck2 = shuffleDeck(ROUND.deck2)
-			for i, v in pairs(ROUND.gameMode) do
-				ROUND.gameMode2[i] = true
-			end
-			addFunctionTimer(function()
-				for i, v in pairs(ROUND.chair) do
-					if v.mode == "EMPTY" or v.mode == "FREE" or not PLAYER[v.owner] then
-						v.mode = "DELETED"
-						drawChair(i)
-					else
-						table.insert(skins, {player = v.owner, skin = v.skin.id})
-						if BOT[v.owner] and BOT[v.owner].eventStart then
-							BOT[v.owner].eventStart()
-						end
-						table.insert(players, i)
-						ui.removeTextArea(32, v.owner)
-						ui.removeTextArea(33, v.owner)
-						local color = tonumber(ROUND.color[1], 16)
-						ui.addTextArea(10, string.format("<b><p align='center'><font size='14px' color='#%s'>%s", ROUND.color[1], CONFIG.UNO), v.owner, 675, 205, 100, 20, -1, color, 1, false)
-						ui.addTextArea(11, string.format("<p align='center'><font size='14px' color='#%s'>%s", ROUND.color[1], translate(v.owner, "CHALLENGE")), v.owner, 675, 240, 100, 20, -1, color, 1, false)
-						ui.addTextArea(12, string.format("<p align='center'><font size='14px' color='#%s'>%s", ROUND.color[1], translate(v.owner, "PASS")), v.owner, 675, 275, 100, 20, -1, color, 1, false)
-						if ROUND.gameMode.team then
-							v.team = pool[(cont-1)%max+1]
-							ROUND.team[v.team][i] = true
-							drawChair(i)
-							cont = cont + 1
-						elseif not RANKED and not CONFIG.noFlags then
-							v.flag = PLAYER[v.owner].flagEquipped
-							drawChair(i)
-						else
-							v.flag = "default"
-						end
+			drawCard2(i, 4)
+			local color = v.hand[1][1]
+			local sameColor = true
+			if ROUND.gameMode.bluegreen and (color == "green" or color == "blue") then
+				for j, w in pairs(v.hand) do
+					if w[1] ~= "green" or w[1] ~= "blue" then
+						sameColor = false
+						break
 					end
 				end
-				addFunctionTimer(function()
-					for i, v in pairs(ROUND.chair) do
-						if not PLAYER[v.owner] then
-							v.mode = "DELETED"
-							drawChair(i)
-						elseif v.mode ~= "DELETED" then
-							local cards = ROUND.gameMode.maxi and 9 or ROUND.gameMode.mini and 4 or 7
-							v.hand2 = {}
-							if v.owner == "Buffy" then
-								drawCard(i, cards-2, "START")
-							elseif v.owner == "Elisah" then
-								drawCard(i, cards-3, "START")
-								local color = {"red", "blue", "yellow", "green"}
-								for i=1, 3 do
-									table.insert(v.hand, {table.remove(color, math.random(#color)), "curse", true})
-								end
-								showCardsGainned(i, cards)
-								updateScore(i)
-							elseif v.owner == "Papaille" then
-								drawCard(i, cards+2, "START")
-							else
-								drawCard(i, cards, "START")
-							end
-							drawCard2(i, 4)
-							local color = v.hand[1][1]
-							local sameColor = true
-							if ROUND.gameMode.bluegreen and (color == "green" or color == "blue") then
-								for j, w in pairs(v.hand) do
-									if w[1] ~= "green" or w[1] ~= "blue" then
-										sameColor = false
-										break
-									end
-								end
-							else
-								for j, w in pairs(v.hand) do
-									if w[1] ~= color then
-										sameColor = false
-										break
-									end
-								end
-							end
-							if sameColor then
-								unlockChair(v.owner, "loot")
-							end
-						end
+			else
+				for j, w in pairs(v.hand) do
+					if w[1] ~= color then
+						sameColor = false
+						break
 					end
-					ROUND.turn = players[math.random(#players)]
-					if #skins >= 8 then
-						local compare = skins[1].skin
-						local isTheSame = true
-						for i, v in pairs(skins) do
-							if v.skin ~= compare then
-								isTheSame = false
-							end
-						end
-						if isTheSame then
-							for i, v in pairs(skins) do
-								unlockChair(v.player, "vangogh")
-							end
-						end
-					end
-					for i, v in pairs(PLAYER) do
-						if not v.chair then
-							--tfm.exec.chatMessage("<bl>"..translate(i, "TIP_26"), i)
-							v.spaceDelay = 0
-							v.lastChair = nil
-							v.school = 0
-						end
-						if v.chairDelayTimer then
-							if v.chairDelayTimer.img then
-								tfm.exec.removeImage(v.chairDelayTimer.img)
-							end
-							v.chairDelayTimer = nil
-						end
-						if useTotoro(i) then
-							unlockChair(i, "totoro")
-						end
-					end
-					if ROUND.gameMode.mulligan then
-						mulligan()
-					else
-						addFunctionTimer(roundBegin, 500)
-					end
-				end, 500)
-				
-			end, 500)
-		end, 500)
-	end, 500)
+				end
+			end
+			if sameColor then
+				unlockChair(v.owner, "loot")
+			end
+		end
+	end
+	ROUND.turn = players[math.random(#players)]
+	if #skins >= 8 then
+		local compare = skins[1].skin
+		local isTheSame = true
+		for i, v in pairs(skins) do
+			if v.skin ~= compare then
+				isTheSame = false
+			end
+		end
+		if isTheSame then
+			for i, v in pairs(skins) do
+				unlockChair(v.player, "vangogh")
+			end
+		end
+	end
+	for i, v in pairs(PLAYER) do
+		if not v.chair then
+			--tfm.exec.chatMessage("<bl>"..translate(i, "TIP_26"), i)
+			v.spaceDelay = 0
+			v.lastChair = nil
+			v.school = 0
+		end
+		if v.chairDelayTimer then
+			if v.chairDelayTimer.img then
+				tfm.exec.removeImage(v.chairDelayTimer.img)
+			end
+			v.chairDelayTimer = nil
+		end
+		if useTotoro(i) then
+			unlockChair(i, "totoro")
+		end
+	end
+	if ROUND.gameMode.mulligan then
+		mulligan()
+	else
+		roundBegin()
+	end
 end
 
 function roundBegin()
@@ -9668,7 +9659,9 @@ function returnCards()
 			local count = 0
 			local card = false
 			if v.flag == "cloud" then
-				local card = table.remove(ROUND.actionPool, math.random(#ROUND.actionPool))
+				local card = randomActionCard()
+				card[3] = true
+				card[4] = true
 				table.insert(v.hand, card)
 				count = count + 1
 			end
@@ -10014,7 +10007,7 @@ function translate(p, k, a, b, c, d, e)
 end
 ]]--
 
-LANGT = {en=1, br=2, fr=3, es=4, ru=5, cn=6, pl=7, hu=8, tr=9}
+LANGT = {en=1, br=2, fr=3, ru=4, es=5, cn=6, pl=7, hu=8, tr=9}
 function translate(p, k, a, b, c, d, e)
 	if not k then
 		return "#ERROR"
@@ -15105,7 +15098,7 @@ onEvent("TextAreaCallback", function(id, p, callback, ever)
 	if not PLAYER[p] or p:sub(1,1) == "*" then
 		return true
 	end
-	PLAYER[p].antiDoubleClick2 = PLAYER[p].antiDoubleClick2 or (os.time() - 5)
+	PLAYER[p].antiDoubleClick2 = PLAYER[p].antiDoubleClick2 or (os.time() - 50)
 	if PLAYER[p].antiDoubleClick2 < os.time() or ever then
 		PLAYER[p].antiDoubleClick2 = os.time() + 200
 	else
@@ -15278,7 +15271,7 @@ onEvent("TextAreaCallback", function(id, p, callback, ever)
 	elseif arg[1] == "options" then
 		closeAll(p, "OPTIONS")
 		window.open(p, "OPTIONS")
-	elseif arg[1] == "equipt" then
+	elseif arg[1] == "equipt" and arg[2] and PLAYER[p].trophy[arg[2]] then
 		PLAYER[p].trophyEquiped = arg[2]
 		saveData(p)
 		window.close(p, "TROPHY")

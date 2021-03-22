@@ -3,7 +3,7 @@ onEvent("TextAreaCallback", function(id, p, callback, ever)
 	if not PLAYER[p] or p:sub(1,1) == "*" then
 		return true
 	end
-	PLAYER[p].antiDoubleClick2 = PLAYER[p].antiDoubleClick2 or (os.time() - 5)
+	PLAYER[p].antiDoubleClick2 = PLAYER[p].antiDoubleClick2 or (os.time() - 50)
 	if PLAYER[p].antiDoubleClick2 < os.time() or ever then
 		PLAYER[p].antiDoubleClick2 = os.time() + 200
 	else
@@ -176,7 +176,7 @@ onEvent("TextAreaCallback", function(id, p, callback, ever)
 	elseif arg[1] == "options" then
 		closeAll(p, "OPTIONS")
 		window.open(p, "OPTIONS")
-	elseif arg[1] == "equipt" then
+	elseif arg[1] == "equipt" and arg[2] and PLAYER[p].trophy[arg[2]] then
 		PLAYER[p].trophyEquiped = arg[2]
 		saveData(p)
 		window.close(p, "TROPHY")

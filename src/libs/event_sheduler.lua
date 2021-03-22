@@ -7,7 +7,7 @@ do
 	local events = {}
 	local scheduled = {_count = 0, _pointer = 1}
 	local paused = false
-	local runtime_threshold = 20
+	local runtime_threshold = 40
 	local _paused = false
 
 	local function runScheduledEvents()
