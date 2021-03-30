@@ -504,6 +504,13 @@ function unlockChair(p, name, ever)
 				PLAYER[p].skinEquiped = "vampire"
 			end
 			saveData(p)
+			local cont = 0
+			for i, v in pairs(PLAYER[p].skin) do
+				cont = cont + 1
+			end
+			if cont >= 120 then
+				system.giveEventGift(p, TITLE.king_of_thrones)
+			end
 		elseif PLAYER[p].faustao then
 			tfm.exec.chatMessage("["..string.format(translate(p, "CHAIR_UNLOCKED"), translate(p, SKIN[name].name)).."]", p)
 		end

@@ -175,6 +175,7 @@ function endGame(p, card, winners, mode)
 		if countRules(PLAYER[p].rules) >= CONFIG.qtdRule then
 			unlockChair(p, "candy", true)
 			unlockRule(p, "custom", true)
+			system.giveEventGift(p, TITLE.foul_play)
 		end
 		if pp then
 			if countRules(PLAYER[pp].rules) >= CONFIG.qtdRule then
@@ -275,6 +276,7 @@ function endGame(p, card, winners, mode)
 					end
 					if PLAYER[p].stats.victory.all >= 3000 then
 						unlockChair(p, "cheese")
+						system.giveEventGift(p, TITLE.uno)
 					end
 				end
 				if card then

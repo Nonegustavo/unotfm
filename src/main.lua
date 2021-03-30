@@ -21,14 +21,9 @@ if not temp then
 else
 	CONFIG.ranked = false
 end
-if CONFIG.tribeHouse then
+if tfm.get.room.isTribeHouse or tfm.get.room.name:sub(1,1) == "@" then
 	CONFIG.ranked = false
-end
-if not (string.match(tfm.get.room.name,"^%w%w%-#unotfm[1-9]+$") or string.match(tfm.get.room.name,"^*#unotfm[1-9]+$")) then
-	CONFIG.ranked = false
-end
-if string.match(tfm.get.room.name,"music") then
-	CONFIG.music = true
+	CONFIG.tribeHouse = true
 end
 system.disableChatCommandDisplay(nil, true)
 tfm.exec.disableAutoShaman()

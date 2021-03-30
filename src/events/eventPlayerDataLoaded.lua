@@ -50,40 +50,12 @@ onEvent("PlayerDataLoaded", function(p, data)
 			--PLAYER[p].powerup.lamp = stats.lamp and tonumber(stats.lamp) or 0
 			--PLAYER[p].powerup.rematch = stats.rematch and tonumber(stats.rematch) or 0
 		end
-		if PLAYER[p].stats.victory.red >= 300 then
-			unlockFlag(p, "picnic", true)
+		local cont = 0
+		for i, v in pairs(PLAYER[p].skin) do
+			cont = cont + 1
 		end
-		if PLAYER[p].stats.victory.blue >= 300 then
-			unlockFlag(p, "metal", true)
-		end
-		if PLAYER[p].stats.victory.yellow >= 300 then
-			unlockFlag(p, "paper", true)
-		end
-		if PLAYER[p].stats.victory.green >= 300 then
-			unlockFlag(p, "carpet", true)
-		end
-		if PLAYER[p].stats.victory.wild >= 300 then
-			unlockFlag(p, "disco", true)
-		end
-		if PLAYER[p].stats.victory.team >= 10 then
-			unlockRule(p, "team", true)
-		end
-		if PLAYER[p].stats.victory.team >= 100 then
-			unlockChair(p, "breakfast", true)
-		end
-		if PLAYER[p].trophy.drekkemaus then
-			unlockRule(p, "drekkemaus", true)
-			unlockRule(p, "buffy", true)
-		end
-		if PLAYER[p].trophy.noel then
-			unlockRule(p, "jingle", true)
-			unlockRule(p, "papaille", true)
-		end
-		if PLAYER[p].trophy.charlotte then
-			unlockRule(p, "charlotte", true)
-		end
-		if PLAYER[p].trophy.elisah then
-			unlockRule(p, "elisah", true)
+		if cont >= 120 then
+			system.giveEventGift(p, TITLE.king_of_thrones)
 		end
 		unlockRule(p, "elise", true)
 		unlockChair(p, "random", true)

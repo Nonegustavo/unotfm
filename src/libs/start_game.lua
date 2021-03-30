@@ -331,8 +331,8 @@ function returnCards()
 		if PLAYER[v.owner] then
 			local count = 0
 			local card = false
-			if v.flag == "cloud" then
-				local card = randomActionCard()
+			if v.flag == "cloud" and not ROUND.gameMode.mess then
+				local card = math.random() > 0.05 and randomActionCard() or {"black", "wild"}
 				card[3] = true
 				card[4] = true
 				table.insert(v.hand, card)

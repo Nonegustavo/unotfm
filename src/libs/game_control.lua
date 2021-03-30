@@ -620,7 +620,9 @@ end
 
 function drawCard2(n, qtd)
 	if ROUND.chair[n].owner == "Ninguem_v2" and #ROUND.actionPool > qtd then
-		table.insert(ROUND.chair[n].hand2, table.remove(ROUND.actionPool, math.random(#ROUND.actionPool)))
+		for i=1, qtd do
+			table.insert(ROUND.chair[n].hand2, table.remove(ROUND.actionPool, math.random(#ROUND.actionPool)))
+		end
 	else
 		for i=1, qtd do
 			table.insert(ROUND.chair[n].hand2, table.remove(ROUND.deck2))

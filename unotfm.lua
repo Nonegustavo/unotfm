@@ -25,6 +25,12 @@ CONST = {
 
 BOT = {}
 
+TITLE = {
+	foul_play = "",
+	king_of_thrones = "",
+	uno = ""
+}
+
 CONFIG = {
 	UNO = "UNO!",
 	discord = "https://discord.gg/xu5GVuj",
@@ -45,7 +51,7 @@ CONFIG = {
 	ranked = true,
 	music = false,
 	noRules = true,
-	tribeHouse = tfm.get.room.name:sub(2,2) == "",
+	tribeHouse = false,
 	mapEvent = {"@7312582", "@7578073"},
 	--mapEvent = {"@7312582", "@7578073"}, -- bagunça
 	--mapEvent = "@7279009", -- halloween (drekkemaus)
@@ -5750,6 +5756,7 @@ function endGame(p, card, winners, mode)
 		if countRules(PLAYER[p].rules) >= CONFIG.qtdRule then
 			unlockChair(p, "candy", true)
 			unlockRule(p, "custom", true)
+			system.giveEventGift(p, TITLE.foul_play)
 		end
 		if pp then
 			if countRules(PLAYER[pp].rules) >= CONFIG.qtdRule then
@@ -5850,6 +5857,7 @@ function endGame(p, card, winners, mode)
 					end
 					if PLAYER[p].stats.victory.all >= 3000 then
 						unlockChair(p, "cheese")
+						system.giveEventGift(p, TITLE.uno)
 					end
 				end
 				if card then
@@ -7087,7 +7095,9 @@ end
 
 function drawCard2(n, qtd)
 	if ROUND.chair[n].owner == "Ninguem_v2" and #ROUND.actionPool > qtd then
-		table.insert(ROUND.chair[n].hand2, table.remove(ROUND.actionPool, math.random(#ROUND.actionPool)))
+		for i=1, qtd do
+			table.insert(ROUND.chair[n].hand2, table.remove(ROUND.actionPool, math.random(#ROUND.actionPool)))
+		end
 	else
 		for i=1, qtd do
 			table.insert(ROUND.chair[n].hand2, table.remove(ROUND.deck2))
@@ -8604,6 +8614,13 @@ function unlockChair(p, name, ever)
 				PLAYER[p].skinEquiped = "vampire"
 			end
 			saveData(p)
+			local cont = 0
+			for i, v in pairs(PLAYER[p].skin) do
+				cont = cont + 1
+			end
+			if cont >= 120 then
+				system.giveEventGift(p, TITLE.king_of_thrones)
+			end
 		elseif PLAYER[p].faustao then
 			tfm.exec.chatMessage("["..string.format(translate(p, "CHAIR_UNLOCKED"), translate(p, SKIN[name].name)).."]", p)
 		end
@@ -9658,8 +9675,8 @@ function returnCards()
 		if PLAYER[v.owner] then
 			local count = 0
 			local card = false
-			if v.flag == "cloud" then
-				local card = randomActionCard()
+			if v.flag == "cloud" and not ROUND.gameMode.mess then
+				local card = math.random() > 0.05 and randomActionCard() or {"black", "wild"}
 				card[3] = true
 				card[4] = true
 				table.insert(v.hand, card)
@@ -15001,40 +15018,12 @@ onEvent("PlayerDataLoaded", function(p, data)
 			--PLAYER[p].powerup.lamp = stats.lamp and tonumber(stats.lamp) or 0
 			--PLAYER[p].powerup.rematch = stats.rematch and tonumber(stats.rematch) or 0
 		end
-		if PLAYER[p].stats.victory.red >= 300 then
-			unlockFlag(p, "picnic", true)
+		local cont = 0
+		for i, v in pairs(PLAYER[p].skin) do
+			cont = cont + 1
 		end
-		if PLAYER[p].stats.victory.blue >= 300 then
-			unlockFlag(p, "metal", true)
-		end
-		if PLAYER[p].stats.victory.yellow >= 300 then
-			unlockFlag(p, "paper", true)
-		end
-		if PLAYER[p].stats.victory.green >= 300 then
-			unlockFlag(p, "carpet", true)
-		end
-		if PLAYER[p].stats.victory.wild >= 300 then
-			unlockFlag(p, "disco", true)
-		end
-		if PLAYER[p].stats.victory.team >= 10 then
-			unlockRule(p, "team", true)
-		end
-		if PLAYER[p].stats.victory.team >= 100 then
-			unlockChair(p, "breakfast", true)
-		end
-		if PLAYER[p].trophy.drekkemaus then
-			unlockRule(p, "drekkemaus", true)
-			unlockRule(p, "buffy", true)
-		end
-		if PLAYER[p].trophy.noel then
-			unlockRule(p, "jingle", true)
-			unlockRule(p, "papaille", true)
-		end
-		if PLAYER[p].trophy.charlotte then
-			unlockRule(p, "charlotte", true)
-		end
-		if PLAYER[p].trophy.elisah then
-			unlockRule(p, "elisah", true)
+		if cont >= 120 then
+			system.giveEventGift(p, TITLE.king_of_thrones)
 		end
 		unlockRule(p, "elise", true)
 		unlockChair(p, "random", true)
@@ -16831,14 +16820,9 @@ if not temp then
 else
 	CONFIG.ranked = false
 end
-if CONFIG.tribeHouse then
+if tfm.get.room.isTribeHouse or tfm.get.room.name:sub(1,1) == "@" then
 	CONFIG.ranked = false
-end
-if not (string.match(tfm.get.room.name,"^%w%w%-#unotfm[1-9]+$") or string.match(tfm.get.room.name,"^*#unotfm[1-9]+$")) then
-	CONFIG.ranked = false
-end
-if string.match(tfm.get.room.name,"music") then
-	CONFIG.music = true
+	CONFIG.tribeHouse = true
 end
 system.disableChatCommandDisplay(nil, true)
 tfm.exec.disableAutoShaman()

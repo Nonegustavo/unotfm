@@ -23,6 +23,12 @@ CONST = {
 
 BOT = {}
 
+TITLE = {
+	foul_play = "",
+	king_of_thrones = "",
+	uno = ""
+}
+
 CONFIG = {
 	UNO = "UNO!",
 	discord = "https://discord.gg/xu5GVuj",
@@ -43,7 +49,7 @@ CONFIG = {
 	ranked = true,
 	music = false,
 	noRules = true,
-	tribeHouse = tfm.get.room.name:sub(2,2) == "",
+	tribeHouse = false,
 	mapEvent = {"@7312582", "@7578073"},
 	--mapEvent = {"@7312582", "@7578073"}, -- bagunça
 	--mapEvent = "@7279009", -- halloween (drekkemaus)
