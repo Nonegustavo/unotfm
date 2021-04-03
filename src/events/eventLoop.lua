@@ -68,13 +68,7 @@ onEvent("Loop", function(current, remaining)
 				end
 				endGame(name, nil, nil, "TIME")
 			else
-				if ROUND.time - GLOBAL_TIME < 9000 then
-					if ROUND.chair[ROUND.turn].confuse or isCursed(ROUND.turn, "poison") then
-						BOT.A.autoPlay()
-					elseif BOT[ROUND.chair[ROUND.turn].owner] then
-						BOT[ROUND.chair[ROUND.turn].owner].autoPlay()
-					end
-				end
+				
 				updateTurnTimer()
 				if remaining < 60000  then
 					blinkAllert()
@@ -88,7 +82,11 @@ onEvent("Loop", function(current, remaining)
 				elseif ROUND.limbo and ROUND.limbo-GLOBAL_TIME < 5000 then
 					blinkAllert()
 				end
-				if ROUND.time < GLOBAL_TIME then
+				if ROUND.chair[ROUND.turn].confuse or isCursed(ROUND.turn, "poison") then
+					BOT.A.autoPlay()
+				elseif BOT[ROUND.chair[ROUND.turn].owner] then
+					BOT[ROUND.chair[ROUND.turn].owner].autoPlay()
+				elseif ROUND.time < GLOBAL_TIME then
 					autoPlay()
 				end
 				if ROUND.turn and (ROUND.chair[ROUND.turn].peace or ROUND.chair[ROUND.turn].peace2) then

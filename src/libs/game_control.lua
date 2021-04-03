@@ -38,7 +38,7 @@ function canPlay(n, c)
 			local peace = numeric or not (ROUND.chair[n].peace or (ROUND.gameMode.clean and #ROUND.chair[n].hand == 1))
 			--return ROUND.gameMode.hell and not (isNumeric(card) or isNumeric(top)) and not (ROUND.chair[n].peace or (ROUND.gameMode.clean and #ROUND.chair[n].hand == 1)) or ROUND.accumulated.allowed[card[2]]
 			
-			return (ROUND.gameMode.hell and not numeric or ROUND.accumulated.allowed[card[2]]) and peace
+			return (ROUND.gameMode.hell and not numeric or ROUND.accumulated.allowed[card[2]] or ROUND.gameMode.nou and card[2]=="reverse") and peace
 		else
 			local numeric = isNumeric(card) -- carta é numerica
 			local hell = ROUND.gameMode.hell and not (numeric or isNumeric(top)) -- satisfaz a regra do inferno
@@ -561,7 +561,9 @@ function drawCard(n, qtd, cause, card)
 				for i, v in pairs(ROUND.topCard.img) do
 					tfm.exec.removeImage(v)
 				end
-				drawTopCard()
+				--drawTopCard()
+				clearTopCard()
+				addTopCard(ROUND.topCard.card, nil, true)
 				for i=1, 10 do
 					tfm.exec.displayParticle(3, 345, 230, math.random(-20,20)/10, math.random(-20,20)/10, 0, 0)
 				end
@@ -649,7 +651,7 @@ function discardCard(n, qtd)
 		ROUND.chair[n].uno = "uno"
 	end
 	updateScore(n)
-	drawTopCard()
+	--drawTopCard()
 	updateHand(n)
 end
 
@@ -741,7 +743,8 @@ function playCard(n, card, start, jumpin, fastDraw)
 		discardEffectRaw(430, y, fx[ROUND.topCard.card[1]])
 		ROUND.topCard.card[1] = "black"
 	end
-	local y = drawTopCard()
+	--local y = drawTopCard()
+	local y = addTopCard(ROUND.topCard.card)
 	if ROUND.chair[n].played then
 		local fx = {9, 2, 29, 3}
 		for i=1, 20 do
@@ -798,7 +801,9 @@ function playCard(n, card, start, jumpin, fastDraw)
 			end
 			if ROUND.topCard.card[1] == "black" then
 				ROUND.topCard.card[1] = ROUND.topCard.card2[1]
-				drawTopCard()
+				--drawTopCard()
+				removeTopCard()
+				addTopCard(ROUND.topCard.card, nil, true)
 			end
 			ROUND.chair[n].confuse = false
 			passTurn()
@@ -823,7 +828,9 @@ function playCard(n, card, start, jumpin, fastDraw)
 					if mustBeEliminated(n) then
 						if ROUND.topCard.card[1] == "black" then
 							ROUND.topCard.card[1] = ROUND.topCard.card2[1]
-							drawTopCard()
+							--drawTopCard()
+							removeTopCard()
+							addTopCard(ROUND.topCard.card, nil, true)
 						end
 						eliminate(n)
 						passTurn()
@@ -893,7 +900,10 @@ function passTurn(skipped)
 		end
 	end
 	ui.removeTextArea(5)
+	local n = ROUND.turn
 	ROUND.turn = nextChair(ROUND.turn)
+	updateHand(n)
+	updateHand(ROUND.turn)
 	if cont == 1 then
 		endGame(name)
 	elseif ROUND.turn then
@@ -969,35 +979,61 @@ function passTurn(skipped)
 				if ROUND.gameMode.supercombo then
 					if ROUND.topCard.card[2] == "draw4" or ROUND.topCard.card[2] == "draw99" then
 						if ROUND.gameMode.nochallenge then
-							txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_PLUS_FOUR_ANTICHALLENGE"))
+							if ROUND.gameMode.nou then
+								txt = "DRAW_PLUS_FOUR_ANTICHALLENGE_REVERSE"
+							else
+								txt = "DRAW_PLUS_FOUR_ANTICHALLENGE"
+							end
 						else
-							txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_PLUS_FOUR"))
+							if ROUND.gameMode.nou then
+								txt = "DRAW_PLUS_FOUR_REVERSE"
+							else
+								txt = "DRAW_PLUS_FOUR"
+							end
 						end
+					elseif ROUND.gameMode.nou then
+						txt = "DRAW_PLUS_REVERSE"
 					else
-						txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_PLUS"))
+						txt = "DRAW_PLUS"
 					end
 				elseif ROUND.gameMode.hell then
 					if ROUND.topCard.card[2] == "draw4" or ROUND.topCard.card[2] == "draw99" then
 						if ROUND.gameMode.nochallenge then
-							txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_HELL_FOUR_ANTICHALLENGE"))
+							txt = "DRAW_HELL_FOUR_ANTICHALLENGE"
 						else
-							txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_HELL_FOUR"))
+							txt = "DRAW_HELL_FOUR"
 						end
 					else
-						txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_HELL"))
+						txt = "DRAW_HELL"
 					end
 				elseif ROUND.accumulated.allowed.draw2 then
-					txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_TWO"))
-				elseif ROUND.accumulated.allowed.draw4 then
-					if ROUND.gameMode.nocombo then
-						txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_CHALLENGE"))
-					elseif ROUND.accumulated.nochallenge then
-						txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_FOUR_ANTICHALLENGE"))
+					if ROUND.gameMode.nou then
+						txt = "DRAW_TWO_REVERSE"
 					else
-						txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_FOUR"))
+						txt = "DRAW_TWO"
 					end
+				elseif ROUND.accumulated.allowed.draw4 then
+					if ROUND.gameMode.nou then
+						if ROUND.gameMode.nocombo then
+							txt = "DRAW_CHALLENGE_REVERSE"
+						elseif ROUND.accumulated.nochallenge then
+							txt = "DRAW_FOUR_ANTICHALLENGE_REVERSE"
+						else
+							txt = "DRAW_FOUR_REVERSE"
+						end
+					else
+						if ROUND.gameMode.nocombo then
+							txt = "DRAW_CHALLENGE"
+						elseif ROUND.accumulated.nochallenge then
+							txt = "DRAW_FOUR_ANTICHALLENGE"
+						else
+							txt = "DRAW_FOUR"
+						end
+					end
+				elseif ROUND.accumulated.allowed.reverse then
+					txt = "DRAW_REVERSE"
 				end
-				ui.addTextArea(19, string.format(txt, ROUND.accumulated.cards), ROUND.chair[ROUND.turn].owner, 100, 305, 600, nil, 0, 0, 0, false)
+				ui.addTextArea(19, string.format(string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, txt)), ROUND.accumulated.cards), ROUND.chair[ROUND.turn].owner, 100, 305, 600, nil, 0, 0, 0, false)
 			else
 				ROUND.chair[ROUND.turn].playedChair = true
 			end
@@ -1231,7 +1267,9 @@ function fastDraw(n, pos)
 		for i=1, 10 do
 			tfm.exec.displayParticle(3, 345, 210, math.random(-20,20)/10, math.random(-20,20)/10, 0, 0)
 		end
-		drawTopCard()
+		--drawTopCard()
+		clearTopCard()
+		addTopCard(ROUND.topCard.card, nil, true)
 	end
 	if ROUND.chair[n].peace and not pos and not isNumeric(ROUND.deck[#ROUND.deck]) then
 		drawCard(n, 1)
@@ -1311,7 +1349,6 @@ function autoPlay()
 					table.insert(ROUND.pile, 1, card)
 				end
 			until #chair.hand <= 0
-			drawTopCard()
 			passTurn()
 			chair.mode = "DELETED"
 			ui.removeTextArea(n+1000)
@@ -1356,7 +1393,8 @@ function tracking(n)
 			tfm.exec.displayParticle(3, 345, 230, math.random(-20,20)/10, math.random(-20,20)/10, 0, 0)
 		end
 		explosion(35, 400, 250, 20, 20)
-		drawTopCard()
+		clearTopCard()
+		addTopCard(ROUND.topCard.card)
 		showDeck()
 	end
 	if #ROUND.deck > 0 then
@@ -1450,7 +1488,6 @@ function eliminate(n, pass, final)
 				end
 			end
 		end
-		drawTopCard()
 		if pass then
 			passTurn()
 		end

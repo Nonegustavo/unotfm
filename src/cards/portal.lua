@@ -74,7 +74,9 @@ function portal(n)
 		end
 	end
 	showDeck()
-	local y = drawTopCard()
+	clearTopCard()
+	--local y = drawTopCard()
+	addTopCard(ROUND.topCard.card, nil, true)
 	explosion(3, 455, y+37, 5, 40)
 	updateCurse()
 	if ROUND.subitDeath and not ROUND.cloud.obj then

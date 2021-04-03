@@ -32,7 +32,7 @@ function(p, var, page)
 	local y = 30
 	local width = 400
 	local height = 360
-	local pool = {"nochallenge","mini","maxi","noaction","clean","nocombo","supercombo","hell","satisfaction","insatisfaction","camouflage","flash","limit","jumpin","black","revelation","stack","sequence","perfection","tracking","mulligan","overload","limbo","fastdraw","hard","shiny","neighbor","team","mess","bluegreen","peace","death","gift","trade","carousel","chair","spy","rain","equality","imitate","meep","random","bomb","rule","chess","steal","web","thunder","clone","luck","box","wish","ink","confuse","batata","curse","magnet","portal","compass","tornado","theft","ban","simon","half","paradox","oddeven","mimic","mix","justice","key","share"}
+	local pool = {"nochallenge","mini","maxi","noaction","clean","nocombo","supercombo","hell","satisfaction","insatisfaction","camouflage","flash","limit","jumpin","black","revelation","stack","sequence","perfection","tracking","mulligan","overload","limbo","fastdraw","hard","shiny","neighbor","team","mess","bluegreen","nou","peace","death","gift","trade","carousel","chair","spy","rain","equality","imitate","meep","random","bomb","rule","chess","steal","web","thunder","clone","luck","box","wish","ink","confuse","batata","curse","magnet","portal","compass","tornado","theft","ban","simon","half","paradox","oddeven","mimic","mix","justice","key","share"}
 	local hidden = {"custom", "elise", "charlotte", "elisah", "drekkemaus", "buffy", "jingle", "papaille", "snowy", "icemice"}
 	for i, v in pairs(hidden) do
 		if PLAYER[p].rules[v] or CONFIG.rule[v] then

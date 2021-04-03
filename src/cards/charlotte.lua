@@ -31,7 +31,7 @@ function red(n)
 		showCardsGainned(target, 1)
 		updateScore(n)
 		updateScore(target)
-		drawTopCard()
+		--drawTopCard()
 		updateHand(n)
 		updateHand(target)
 		if mustBeEliminated(target) then

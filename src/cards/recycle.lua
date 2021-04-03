@@ -29,7 +29,7 @@ function steal(n)
 				updateScore(i)
 			end
 		end
-		drawTopCard()
+		--drawTopCard()
 	end
 	if not isEndGame("BAN") then
 		passTurn()

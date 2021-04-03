@@ -5,7 +5,9 @@ function curse(n)
 	end
 	local pool = {}
 	for i, v in pairs(CURSE) do
-		table.insert(pool, i)
+		if not (ROUND.gameMode.mess and i=="shoe") then
+			table.insert(pool, i)
+		end
 	end
 	local player = 0
 	local rand = pool[math.random(#pool)]

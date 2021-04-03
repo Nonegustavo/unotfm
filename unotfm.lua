@@ -62,7 +62,7 @@ CONFIG = {
 	pityTimer = 15, -- evento: 8, casual: 15
 	eventRate = 0.04, -- evento: 0.07, casual: 0.04
 	actualTimer = 0,
-	qtdRule = 71,
+	qtdRule = 72,
 }
 
 ROUND = {}
@@ -1825,7 +1825,7 @@ RULE = {
 		mission = "UNLOCK_RULE",
 		img = "161a5c637ab.png",
 		imgDesc = "15c4c119de5.png",
-		conflict = {"supercombo","hell","noaction"},
+		conflict = {"supercombo","hell","noaction","nou"},
 		public = true,
 		rulecard = true,
 		type = "PASSIVE",
@@ -2058,7 +2058,7 @@ RULE = {
 		mission = "UNLOCK_RULE",
 		img = "161a5c60865.png",
 		imgDesc = "15c904433ae.png",
-		conflict = {"maxi","mess","peace","death","gift","trade","carousel","chair","spy","rain","equality","imitate","meeep","random","bomb","chess","rule","steal","web","thunder","clone","nochallenge","hell","nocombo","supercombo","luck","box","wish","ink","confuse","portal","batata","compass","draw99","curse","magnet","tornado","theft","simon","ban","dice","paradox","half","oddeven","mimic","mix","justice","share","key"},
+		conflict = {"maxi","mess","peace","death","gift","trade","carousel","chair","spy","rain","equality","imitate","meeep","random","bomb","chess","rule","steal","web","thunder","clone","nochallenge","hell","nocombo","supercombo","luck","box","wish","ink","confuse","portal","batata","compass","draw99","curse","magnet","tornado","theft","simon","ban","dice","paradox","half","oddeven","mimic","mix","justice","share","key","nou"},
 		public = true,
 		type = "PASSIVE",
 	},
@@ -2237,7 +2237,7 @@ RULE = {
 		name = "HOUSE_BOX",
 		desc = "HOUSE_BOX_DESC",
 		mission = "UNLOCK_RULE",
-		img = " 15f1674f2cb.png",
+		img = "178954da279.png",
 		imgDesc = "1610b6b1641.png",
 		conflict = {"noaction","mess"},
 		card = {color={"red","blue"}},
@@ -2460,7 +2460,7 @@ RULE = {
 		name = "HOUSE_CURSE",
 		desc = "HOUSE_CURSE_DESC",
 		mission = "UNLOCK_RULE",
-		img = " 16259816bc3.png",
+		img = "178954d61b7.png",
 		imgDesc = "1627e2b7736.png",
 		conflict = {"noaction","mess"},
 		card = {color={"red","blue","yellow","green"}},
@@ -2672,6 +2672,17 @@ RULE = {
 		rulecard = true,
 		public = true,
 		type = "CARD",
+	},
+	nou = {
+		name = "HOUSE_NO_U",
+		desc = "HOUSE_NO_U_DESC",
+		mission = "UNLOCK_RULE",
+		img = "178952d00cb.png",
+		imgDesc = "178952da56c.png",
+		conflict = {"noaction","nocombo"},
+		rulecard = true,
+		public = true,
+		type = "PASSIVE",
 	},
 }
 
@@ -2971,8 +2982,8 @@ CHAIRS ={"Chairs","Cadeiras","Chaises","Кресла","Sillas","椅子","Krzesł
 POWERUPS ={"Powerups","Poderes","Bonus","Улучшения","Poderes","額外功能","Dopalacze ","Felerősítések","Güçlendirici"},
 PANELS ={"Panels","Painéis","Panneaux","Панели","Paneles","名稱版面","Panele","Panelek","Paneller"},
 LEADERBOARD ={"Leaderboard","Ranking","Classement","Лидеры","Ranking","排行榜","Ranking","Ranglista","Skor Tablosu"},
-SPOTLIGHTS ={"Spotlights","Holofotes","","","","","Reflektorfény","Sahne ışıkları"},
-MAPS ={"Maps","Mapas","","","","","","Pályák","Haritalar"},
+SPOTLIGHTS ={"Spotlights","Holofotes","","","聚光燈","","Reflektorfény","Sahne ışıkları"},
+MAPS ={"Maps","Mapas","","","","地圖","","Pályák","Haritalar"},
 SETTINGS ={"Settings","Opções","Paramètres","Настройки","Ajustes","設定","Ustawienia","Beállítások","Ayarlar"},
 ITEMS ={"Items","Itens","Objets","Предметы","Artículos","物品","Przedmioty","Tárgyak","Eşyalar"},
 PROFILE ={"Profile","Perfil","Profil","Профиль","Perfil","個人資料","Profil","Profil","Profil"},
@@ -2980,8 +2991,8 @@ CLOSE ={"Close","Fechar","Fermer","Закрыть","Cerrar","關閉","Zamknij","
 NEXT ={"Next","Próximo","Suivant","Следующий","Siguiente","下一個","Dalej","Következő","İleri"},
 BACK ={"Back","Voltar","Retour","Назад","Volver","返回","Z powrotem","Vissza","Geri"},
 PREVIOUS ={"Previous","Anterior","Précédent","Предыдущий","Anterior","上一個","Wstecz","Előző","Önceki"},
-FAVORITES ={"Favorites","Favoritos","","","","","","Kedvencek","Favoriler"},
-FAVORITES_ADD ={"Add to favorites","Adicionar aos favoritos","","","","","","Hozzáadás a kedvencekhez","Favorilere ekle"},
+FAVORITES ={"Favorites","Favoritos","","","","喜愛","","Kedvencek","Favoriler"},
+FAVORITES_ADD ={"Add to favorites","Adicionar aos favoritos","","","","加到喜愛","","Hozzáadás a kedvencekhez","Favorilere ekle"},
 VICTORY ={"Victories","Vitórias","Victoires","Победы","Victorias","勝利次數","Zwycięstwa","Győzelmek","Galibiyetler"},
 TEAM_VICTORY ={"Team victories","Vitórias em dupla","Victoires de l'équipe","Командные победы","Victorias en Equipo","團隊勝利次數","Zwycięstwa drużynowe","Csapat győzelmek","Takım Galibiyetleri"},
 ROUND_PLAYED ={"Rounds played","Partidas jogadas","Tours joués","Раундов сыграно","Rondas jugadas","玩過的回合數","Zagrane rundy","Játszott körök","Oynanılan Oyun"},
@@ -3011,38 +3022,38 @@ CHALLENGE ={"Challenge","Desafiar","Défi","Вызов","Desafiar","質疑","Wyz
 DRAW ={"Draw","Comprar","Tirer","Взять","Tomar","抽取卡牌","Wyciągnij","Húzás","Kart çek"},
 CHANGE_HAND ={"Change cards","Trocar cartas","Changer les cartes","Сменить карты","Cambiar Cartas","更換卡牌","Zmiana kart","Kártyák kicserélése","Değiştir"},
 CHAIR_ALLERT ={"Back to your chair!","Volte para sua cadeira!","Retournez a votre chaise!","Вернитесь к своему креслу!","¡Vuelve a tu silla!","返回你的座位!","Wróć na swój fotel!","Menj vissza a székedhez!","Sandalyenize geri dönün!"},
-PROCESSING ={"Processing...","Processando...","","","","","","Processing...","İşleniyor..."},
+PROCESSING ={"Processing...","Processando...","","","","處理中...","","Processing...","İşleniyor..."},
 PLAYER_WON ={"%s won the game!","%s venceu o jogo!","%s a gagné la partie!","%s выиграл игру!","¡%s gana el juego!","%s 勝出了遊戲!","%s wygrał grę!","%s megnyerte a játékot!","%s oyunu kazandı!"},
 PLAYER_LOST ={"Everyone lost!","Todos perderam!","Tout le monde a perdu!","Все проиграли!","¡Todos han perdido!","所有人都輸了!","Wszyscy zgubieni!","Mindenki veszített!","Herkes kaybetti!"},
 TEAM_WON ={"%s and %s won!","%s e %s venceram!","%s et %s ont gagné!","%s и %s выиграли!","¡%s y %s han ganado!","%s 和 %s 勝出了!","%s i %s wygrali!","%s és %s nyert!","%s ve %s kazandı!"},
 PLAYER_TIED ={"Tie!","Empate!","Égalité!","Привязан!","¡Córbata!","和局!","Remis!","Döntetlen!","Kravat!"},
 TEAM_SHOW_CARD ={"Click on a card to show it to your partner.","Clique em uma carta para mostrá-la ao seu parceiro!","Cliquez sur une carte pour la montrer à votre coéquipier.","Нажмите на карту, чтобы показать её своему партнеру.","Clic en una carta para mostrársela a tu compañero.","點擊卡牌來向隊友展示它。","Kliknij na kartę, aby pokazać ją swojemu partnerowi.","Kattints egy kártyára, hogy megmutasd a partnerednek.","Partnerinize göstermek için bir karta tıklayın."},
 TEAM_DESCRIPTION ={"This is your partner. Work as a team to win this match.","Este é o seu parceiro. Trabalhe em equipe para vencer esta partida.","C'est votre coéquipier. Jouez ensemble pour gagner cette partie.","Это твой партнёр. Работайте в команде, чтобы выиграть.","Éste es tu compañero. Trabajen en equipo para ganar esta partida.","他是你的隊友。以團隊形式贏得這回合吧!","To jest twój partner. Pracujcie jako drużyna, aby wygrać rundę.","Ez a partnered. Dolgozzatok csapatban, hogy megnyerjétek a mérkőzést.","Bu partneriniz. Bu maçı kazanmak için takım olarak çalışın."},
-CHALENGE_COLOR ={"Do you think %s has a card with this color?","Você acha que %s tem uma carta dessa cor?","","","","","","","Sizce %s bu renkte bir karta sahip mi?"},
+CHALENGE_COLOR ={"Do you think %s has a card with this color?","Você acha que %s tem uma carta dessa cor?","","","","你認為 %s 手上有這顏色的卡牌嗎?","","","Sizce %s bu renkte bir karta sahip mi?"},
 KILL_PAWN ={"Killed the Pawn!","Matou o Peão!","Pion tué!","Пешка убита!","¡Mató al Peón!","士兵被殺掉了!","Zabito Pionka!","A Gyalog elesett!","Piyonu öldürdü!"},
 KILL_BISHOP ={"Killed the Bishop!","Matou o Bispo!","Fou tué!","Офицер убит!","¡Mató al Obispo!","主教被殺掉了!","Zabito Gońca!","A Futó elesett!","Piskopos öldürdü!"},
 KILL_KNIGHT ={"Killed the Knight!","Matou o Cavalo!","Chevalier tué!","Конь убит!","¡Mató al Caballero!","騎士被殺掉了!","Zabito Skoczka!","A Lovag elesett!","Şövalyeyi Öldürdü!"},
 KILL_ROOK ={"Killed the Rook!","Matou a Torre!","Tour tuée!","Ладья убита!","¡Mató a la Torre!","城堡被殺掉了!","Zabito Wieżę!","A Bástya elesett!","Kaleyi Öldürdü!"},
 KILL_QUEEN ={"Killed the Queen!","Matou a Rainha!","Reine tuée!","Королева убита!","¡Mató a la Reina!","王后被殺掉了!","Zabito Królową!","A Királynő elesett!","Kraliçeyi öldürdü!"},
 KILL_KING ={"Killed the King!","Matou o Rei!","Roi tué!","Король убит!","¡Mató al Rey!","國王被殺掉了!","Zabito Króla!","A Király elesett!","Kralı öldürdü!"},
-MISSION_DESC ={"You receive a new quest every day. You can accumulate up to 3 quests.","Você recebe uma nova missão por dia. É possível acumular até 3 missões.","","","","","","","Her gün yeni bir görev alırsınız. En fazla 3 görev toplayabilirsiniz."},
-MISSION_CHANGE ={"Change","Trocar","","","","","","","Değişiklik"},
-MISSION_NEW ={"New quest in %s.","Nova missão em %s.","","","","","","","%s içinde yeni görev."},
-MISSION ={"Quests","Missões","","","","","","","Görevler"},
-COMPLETED_RED ={"You have completed the quest '%s' and got %s red tickets!","Você completou a missão '%s' e recebeu %s tickets vermelhos!","","","","","","","%s' görevini tamamladınız ve %s kırmızı bilet aldınız!"},
-COMPLETED_BLUE ={"You have completed the quest '%s' and got %s blue tickets!","Você completou a missão '%s' e recebeu %s tickets azuis!","","","","","","","%s' görevini tamamladınız ve %s mavi bilet aldınız!"},
-COMPLETED_YELLOW ={"You have completed the quest '%s' and got %s yellow tickets!","Você completou a missão '%s' e recebeu %s tickets amarelos!","","","","","","","%s' görevini tamamladınız ve %s sarı bilet aldınız!"},
-COMPLETED_GREEN ={"You have completed the quest '%s' and got %s green tickets!","Você completou a missão '%s' e recebeu %s tickets verdes!","","","","","","","%s' görevini tamamladınız ve %s yeşil bilet aldınız!"},
-MISSION1 ={"All Reds","Tudo Vermelho","","","","","","","Tüm Kırmızılar"},
-MISSION1_DESC ={"Play %s red cards.","Jogue %s cartas vermelhas.","","","","","","","%s  kırmızı kartı oynayın."},
-MISSION2 ={"All Blues","Tudo Azul","","","","","","","Tüm Maviler"},
-MISSION2_DESC ={"Play %s blue cards.","Jogue %s cartas azuis.","","","","","","","%s mavi kartları oynayın."},
-MISSION3 ={"All Yellows","Tudo Amarelo","","","","","","","Tüm Sarılar"},
-MISSION3_DESC ={"Play %s yellow cards.","Jogue %s cartas amarelas.","","","","","","","%s sarı kart oynayın."},
-MISSION4 ={"All Greens","Tudo Verde","","","","","","","Tüm Yeşiller"},
-MISSION4_DESC ={"Play %s green cards.","Jogue %s cartas verdes.","","","","","","","%s yeşil kart oynayın."},
-MISSION5 ={"Draw, friend, draw!","Compre, amigo. Compre!","","","","","","","Çek, arkadaş, çek!"},
-MISSION5_DESC ={"Play %s +2 cards.","Jogue %s cartas +2.","","","","","","","%s +2 kart oynayın."},
+MISSION_DESC ={"You receive a new quest every day. You can accumulate up to 3 quests.","Você recebe uma nova missão por dia. É possível acumular até 3 missões.","","","","你每天都會接到一個新任務。而最多可以累積至 3 個任務。","","","Her gün yeni bir görev alırsınız. En fazla 3 görev toplayabilirsiniz."},
+MISSION_CHANGE ={"Change","Trocar","","","","更換","","","Değişiklik"},
+MISSION_NEW ={"New quest in %s.","Nova missão em %s.","","","","新任務在 %s 之後。","","","%s içinde yeni görev."},
+MISSION ={"Quests","Missões","","","","任務","","","Görevler"},
+COMPLETED_RED ={"You have completed the quest '%s' and got %s red tickets!","Você completou a missão '%s' e recebeu %s tickets vermelhos!","","","","你已經完成了任務 '%s' 並得到了 %s 張紅券!","","","%s' görevini tamamladınız ve %s kırmızı bilet aldınız!"},
+COMPLETED_BLUE ={"You have completed the quest '%s' and got %s blue tickets!","Você completou a missão '%s' e recebeu %s tickets azuis!","","","","你已經完成了任務 '%s' 並得到了 %s 張藍券!","","","%s' görevini tamamladınız ve %s mavi bilet aldınız!"},
+COMPLETED_YELLOW ={"You have completed the quest '%s' and got %s yellow tickets!","Você completou a missão '%s' e recebeu %s tickets amarelos!","","","","你已經完成了任務 '%s' 並得到了 %s 張黃券!","","","%s' görevini tamamladınız ve %s sarı bilet aldınız!"},
+COMPLETED_GREEN ={"You have completed the quest '%s' and got %s green tickets!","Você completou a missão '%s' e recebeu %s tickets verdes!","","","","你已經完成了任務 '%s' 並得到了 %s 張綠券!","","","%s' görevini tamamladınız ve %s yeşil bilet aldınız!"},
+MISSION1 ={"All Reds","Tudo Vermelho","","","","滿堂紅","","","Tüm Kırmızılar"},
+MISSION1_DESC ={"Play %s red cards.","Jogue %s cartas vermelhas.","","","","發出 %s 張紅卡","","","%s  kırmızı kartı oynayın."},
+MISSION2 ={"All Blues","Tudo Azul","","","","一片藍","","","Tüm Maviler"},
+MISSION2_DESC ={"Play %s blue cards.","Jogue %s cartas azuis.","","","","發出 %s 張藍卡","","","%s mavi kartları oynayın."},
+MISSION3 ={"All Yellows","Tudo Amarelo","","","","黃澄澄","","","Tüm Sarılar"},
+MISSION3_DESC ={"Play %s yellow cards.","Jogue %s cartas amarelas.","","","","發出 %s 張黃卡","","","%s sarı kart oynayın."},
+MISSION4 ={"All Greens","Tudo Verde","","","","綠油油","","","Tüm Yeşiller"},
+MISSION4_DESC ={"Play %s green cards.","Jogue %s cartas verdes.","","","","發出 %s 張綠卡","","","%s yeşil kart oynayın."},
+MISSION5 ={"Draw, friend, draw!","Compre, amigo. Compre!","","","","抽, 朋友, 抽吧!","","","Çek, arkadaş, çek!"},
+MISSION5_DESC ={"Play %s +2 cards.","Jogue %s cartas +2.","","","","發出 %s 張 +2 卡","","","%s +2 kart oynayın."},
 MISSION6 ={"Turning the Game","Vai e Vem.","","","","","","","Oyun dönüyor"},
 MISSION6_DESC ={"Play %s Reverse cards.","Jogue %s cartas Reverter.","","","","","","","%s Ters kartları oynat."},
 MISSION7 ={"Blocker","Bloqueador","","","","","","","Engelleyici"},
@@ -3623,7 +3634,9 @@ HOUSE_POKER_DESC ={"At the start of the game, each player chooses a rule to add 
 HOUSE_ADD ={"More Rules","Mais Regras","","","","更多規矩","","Több Szabály","Daha Fazla Kural"},
 HOUSE_ADD_DESC ={"Enable this rule to allow the game to sometimes add other rules.","Ative esta regra para permitir que o jogo adicione outras regras de vez em quando.","","","","選擇這規矩來讓遊戲隨時增加額外的規矩。","","Ha ez a szabály érvényes, a játékhoz véletlenszerűen egyéb szabályok hozzáadódhatnak.","Oyunun bazen başka kurallar eklemesine izin vermek için bu kuralı etkinleştirin."},
 HOUSE_LIMITLESS ={"Limitless","Sem Limite","","","","無限","","Határtalan","Sınırsız"},
-HOUSE_LIMITLESS ={"Players can now have more than 30 cards in hand.","Os jogadores agora podem ter mais de 30 cartas na mão.","","","","現在玩家手上可以多於 30 張卡牌。","","A játékosoknak lehet egyszerre több, mint 30 kártya a kezében.","Oyuncuların elinde artık 30'dan fazla kart olabilir."},
+HOUSE_LIMITLESS_DESC ={"Players can now have more than 30 cards in hand.","Os jogadores agora podem ter mais de 30 cartas na mão.","","","","現在玩家手上可以多於 30 張卡牌。","","A játékosoknak lehet egyszerre több, mint 30 kártya a kezében.","Oyuncuların elinde artık 30'dan fazla kart olabilir."},
+HOUSE_NO_U ={"NO U","Contra-ataque","","","","","","",""},
+HOUSE_NO_U_DESC ={"You can play Reverse Cards to counterattack card draws.","Você pode jogar cartas Reverter para contra-atacar compras de carta.","","","","","","",""},
 HOUSE_TOURNAMENT ={"Tournament","Torneio","","Турнир","Torneo","聯賽","Turniej","Bajnokság","Turnuva"},
 HOUSE_TOURNAMENT_DESC ={"Multiple matches will occur. When a player reaches %s points, they will be the winner. Click here and see how scoring works.","Várias partidas ocorrerão. Quando um jogador atingir %s pontos, ele será o vencedor. Clique aqui e veja como funciona a pontuação.","","Происходить будут несколько матчей. Когда игрок наберет %s очков, он станет победителем. Нажмите здесь и посмотрите, как работают оценки.","Múltiples juegos ocurrirán. Cuando un jugador pase los puntos de %s, será el ganador. Da clic aquí para ver como funciona la puntuación.","多場遊戲會同時進行。當一個玩家達到 %s 分數, 他就會成為勝利者。 點這裡查看如何計算分數。","Będą się pojawiać wielokrotne rozgrywki. Kiedy gracz osiągnie %s punktów, zostanie zwycięzcą. Kliknij tutaj i zobacz jak działa punktacja.","Egymás után több játék fog megtörténni. Ha egy játékos elér %s pontot, ő lesz a győztes. Kattints ide, hogy lásd hogy működik a pontozás.","Birden çok eşleşme olacak. Bir oyuncu %s puana ulaştığında kazanan olur. Buraya tıklayın ve puanlamanın nasıl çalıştığını görün."},
 HOUSE_SURVIVOR ={"Survival Tournament","Torneio de Sobrevivência","","Турнир На Выживание","Torneo de Supervivencia","生存賽制聯賽","Turniej Przetrwania","Túlélő Bajnokság","Hayatta Kalma Turnuvası"},
@@ -3771,11 +3784,17 @@ MANAGE_BAN ={"%s banned from room.","%s banido da sala.","%s a été banni du sa
 MANAGE_UNBANED ={"%s unbanned from room.","%s desbanido da sala.","%s n'est plus banni du salon.","%s не забанен в комнате.","Se le ha removido la sanción a %s de la sala.","%s 的 ban 解除了。","%s został odbanowany w tym pokoju.","%s kitiltása feloldva.","%s odadan yasağın kaldırıldı."},
 UNO_FAIL ={"You did not say UNO!","Você não disse UNO!","Vous n'avez pas dit UNO!","Вы не сказали УНО!","¡No dijiste UNO!","你沒有說 UNO!","Nie powiedziałeś UNO!","Nem mondtál UNO-t!","UNO demedin!"},
 DRAW_TWO ={"Discard a +2 or draw %s cards!","Descarte um +2 ou compre %s cartas!","Défaussez un +2 ou tirez %s cartes!","Сбросьте +2 или возьмите %s карт(ы)!","¡Descarta un +2 o toma %s cartas!","發出 +2 卡牌或是罰抽 %s 張卡!","Odrzuć +2 lub dobierz %s kart!","Játssz ki egy +2-t vagy húzz %s kártyát!"," +2 atın veya %s kart çekin!"},
+DRAW_TWO_REVERSE ={"Discard a +2 or Rerverse or draw %s cards!","Descarte um +2 ou Reverter ou compre %s cartas!","","","","","","",""},
 DRAW_FOUR ={"Discard a +4, challenge or draw %s cards!","Descarte um +4, desafie ou compre %s cartas!","Défaussez un +2, défiez, ou tirez %s cartes!","Сбросьте +4, бросьте вызов или возьмите %s карт(ы)!","¡Descarta un +4, desafía o toma %s cartas! ","發出 +4 卡牌, 質疑 或是罰抽 %s 張卡!","Odrzuć +4, wyzwanie lub dobierz %s kart!","Játssz ki egy +4-et, hívd ki az előző játékost vagy húzz %s kártyát!","Bir +4 atın, itiraz edin veya %s kart çekin!"},
+DRAW_FOUR_REVERSE ={"Discard a +4 or Rerverse, challenge or draw %s cards!","Descarte um +4 ou Reverter, desafie ou compre %s cartas!","","","","","","",""},
 DRAW_FOUR_ANTICHALLENGE ={"Discard a +4 or draw %s cards!","Descarte um +4 ou compre %s cartas!","Défaussez un +4 ou tirez %s cartes!","Сбросьте +4 или возьмите %s карт(ы)!","¡Descarta un +4 o toma %s cartas!","發出 +4 卡牌或是罰抽 %s 張卡!","Odrzuć +4 lub dobierz %s kart!","Játssz ki egy +4-et vagy húzz %s kártyát!","Bir +4 atın veya %s kart çekin!"},
+DRAW_FOUR_ANTICHALLENGE ={"Discard a +4 or Reverse or draw %s cards!","Descarte um +4 ou Reverter ou compre %s cartas!","","","","","","",""},
 DRAW_PLUS ={"Discard a card with + or draw %s cards!","Descarte uma carta com + ou compre %s cartas!","Défaussez une carte avec un + ou tirez %s cartes!","Сбросьте карту с + или возьмите %s карт(ы)!","¡Descarta una carta con + o toma %s cartas!","發出帶 + 號的卡或是罰抽 %s 張卡!","Odrzuć kartę z + lub dobierz %s kart!","Játssz ki egy kártyát + szimbólummal vagy húzz %s kártyát!"," + İşaretli bir kartı atın veya %s kart çekin!"},
+DRAW_PLUS_REVERSE ={"Discard a card with + or Reverse draw %s cards!","Descarte uma carta com + ou Reverter ou compre %s cartas!","","","","","","",""},
 DRAW_PLUS_FOUR ={"Discard a card with +, challenge or draw %s cards!","Descarte uma carta com +, desafie ou compre %s cartas!","Défaussez une carte avec un +, défiez, ou tirez %s cartes!","Сбросьте карту с +, бросьте вызов или возьмите %s карт(ы)!","¡Descarta una carta con +, desafía o toma %s cartas!","發出帶 + 號的卡, 質疑 或是罰抽 %s 張卡!","Odrzuć kartę z +, wyzwanie lub dobierz %s kart!","Játssz ki egy kártyát + szimbólummal, hívd ki az előző játékost vagy húzz %s kártyát!"," + İle bir kartı atın, itiraz edin veya %s kart çekin! "},
+DRAW_PLUS_FOUR_REVERSE ={"Discard a card with + or Reverse, challenge or draw %s cards!","Descarte uma carta com + ou Reverter, desafie ou compre %s cartas!","","","","","","",""},
 DRAW_PLUS_FOUR_ANTICHALLENGE ={"Discard a card with + or draw %s cards!","Descarte uma carta com + ou compre %s cartas!","Défaussez une carte avec un + ou tirez %s cartes!","Сбросьте карту с + или возьмите %s карт(ы)!","¡Descarta una carta con + o toma %s cartas!","發出帶 + 號的卡或是罰抽 %s 張卡!","Odrzuć kartę z + lub dobierz %s kart!","Játssz ki egy kártyát + szimbólummal vagy húzz %s kártyát!"," + İşaretli bir kartı atın veya %s kart çekin!"},
+DRAW_PLUS_FOUR_ANTICHALLENGE_REVERSE ={"Discard a card with + or Reverse or draw %s cards!","Descarte uma carta com + ou Reverter ou compre %s cartas!","","","","","","",""},
 DRAW_HELL ={"Discard an action card or draw %s cards!","Descarte uma carta de ação ou compre %s cartas!","Défaussez une carte action ou tirez %s cartes!","Сбросьте карту действий или возьмите %s карт(ы)!","¡Descarta una carta de acción o toma %s cartas!","發出行動卡牌或是罰抽 %s 張卡!","Odrzuć kartę akcji lub dobierz %s kart!","Játssz ki egy akciókártyát vagy húzz %s kártyát!","Bir eylem kartını atın veya %s kart çekin!"},
 DRAW_HELL_FOUR ={"Discard an action card, challenge or draw %s cards!","Descarte uma carta de ação, desafie ou compre %s cartas!","Défaussez une carte action, défiez, ou tirez %s cartes!","Сбросьте карту действий, бросьте вызов или возьмите %s карт(ы)!","¡Descarta una carta de acción, desafía o toma %s cartas!","發出行動卡牌, 質疑 或是罰抽 %s 張卡!","Odrzuć kartę akcji, wyzwanie lub dobierz %s kart!","Játssz ki egy akciókártyát, hívd ki az előző játékost vagy húzz %s kártyát!","Bir aksiyon kartını atın, itiraz edin veya %s kart çekin!"},
 DRAW_HELL_FOUR_ANTICHALLENGE ={"Discard an action card or draw %s cards!","Descarte uma carta de ação ou compre %s cartas!","Défaussez une carte action ou tirez %s cartes!","Сбросьте карту действий или возьмите %s карт(ы)!","¡Descarta una carta de accióm o toma %s cartas!","發出行動卡牌或是罰抽 %s 張卡!","Odrzuć kartę akcji lub dobierz %s kart!","Játssz ki egy akciókártyát vagy húzz %s kártyát!","Bir aksyon kartı atın veya %s kart çekin!"},
@@ -5310,7 +5329,7 @@ end
 PACK = {
 	chairs = {"default","red","blue","yellow","green","white","fire","water","earth","air","rainbow","wood","stone","gold","diamond","king","luck","angel","junky","shaman","beach","cine","hell","cards","candy","cheese","fraise","illuminati","gift","bog","got","hamburguer","skull","school","time","pencil","chess","show","anvil","garden","falls","unicorn","psycho","television","radio","newspaper","cat","potato","rip","apple","heart","breakfast","bones","chocolate","marine","loot","random","astral","computer","elemental","guitar","popcorn","trash","wonderland","friend","football","cuphead","bootcamp","gaga","gothic","mecatopus","pumpkin","ufo","aquarium","help","font","chimney","circus","cisne","coffee","croissant","space","mermaid","phone","quartz","snowman","totoro","vangogh","chest","coca","flamingo","honey","old","pineapple","sack","smartphone","vampire","moon","max","bill","horn","toast","pizza","samson","fashion","undertale","forest","kiss","mountain","pikachu","simpsons","truelove","cyan","orange","pink","purple","black","toxic","thunder","crystal","dark","light","eclipse","toothless","lightfury","kratos","shenlong","spider"},
 
-	rules = {"nochallenge","mini","maxi","noaction","clean","nocombo","supercombo","hell","satisfaction","insatisfaction","camouflage","flash","limit","jumpin","black","revelation","stack","perfection","tracking","mulligan","overload","peace","death","gift","trade","carousel","chair","spy","rain","equality","imitate","meep","random","bomb","rule","chess","steal","fastdraw","hard","web","thunder","clone","sequence","luck","box","wish","ink","confuse","shiny","neighbor","team","batata","limbo","curse","magnet","portal","compass","mess","custom","tornado","theft","ban","simon","half","paradox","oddeven","mimic","mix","justice","bluegreen","elise","charlotte","elisah", "drekkemaus","buffy","jingle","papaille","snowy","icemice","key","share"},
+	rules = {"nochallenge","mini","maxi","noaction","clean","nocombo","supercombo","hell","satisfaction","insatisfaction","camouflage","flash","limit","jumpin","black","revelation","stack","perfection","tracking","mulligan","overload","peace","death","gift","trade","carousel","chair","spy","rain","equality","imitate","meep","random","bomb","rule","chess","steal","fastdraw","hard","web","thunder","clone","sequence","luck","box","wish","ink","confuse","shiny","neighbor","team","batata","limbo","curse","magnet","portal","compass","mess","custom","tornado","theft","ban","simon","half","paradox","oddeven","mimic","mix","justice","bluegreen","elise","charlotte","elisah", "drekkemaus","buffy","jingle","papaille","snowy","icemice","key","share","nou"},
 
 	medals = {"none", "beta", "drekkemaus", "noel", "charlotte", "elisah", "buffy", "snowy"},
 
@@ -6513,7 +6532,7 @@ function canPlay(n, c)
 			local peace = numeric or not (ROUND.chair[n].peace or (ROUND.gameMode.clean and #ROUND.chair[n].hand == 1))
 			--return ROUND.gameMode.hell and not (isNumeric(card) or isNumeric(top)) and not (ROUND.chair[n].peace or (ROUND.gameMode.clean and #ROUND.chair[n].hand == 1)) or ROUND.accumulated.allowed[card[2]]
 			
-			return (ROUND.gameMode.hell and not numeric or ROUND.accumulated.allowed[card[2]]) and peace
+			return (ROUND.gameMode.hell and not numeric or ROUND.accumulated.allowed[card[2]] or ROUND.gameMode.nou and card[2]=="reverse") and peace
 		else
 			local numeric = isNumeric(card) -- carta é numerica
 			local hell = ROUND.gameMode.hell and not (numeric or isNumeric(top)) -- satisfaz a regra do inferno
@@ -7036,7 +7055,9 @@ function drawCard(n, qtd, cause, card)
 				for i, v in pairs(ROUND.topCard.img) do
 					tfm.exec.removeImage(v)
 				end
-				drawTopCard()
+				--drawTopCard()
+				clearTopCard()
+				addTopCard(ROUND.topCard.card, nil, true)
 				for i=1, 10 do
 					tfm.exec.displayParticle(3, 345, 230, math.random(-20,20)/10, math.random(-20,20)/10, 0, 0)
 				end
@@ -7124,7 +7145,7 @@ function discardCard(n, qtd)
 		ROUND.chair[n].uno = "uno"
 	end
 	updateScore(n)
-	drawTopCard()
+	--drawTopCard()
 	updateHand(n)
 end
 
@@ -7216,7 +7237,8 @@ function playCard(n, card, start, jumpin, fastDraw)
 		discardEffectRaw(430, y, fx[ROUND.topCard.card[1]])
 		ROUND.topCard.card[1] = "black"
 	end
-	local y = drawTopCard()
+	--local y = drawTopCard()
+	local y = addTopCard(ROUND.topCard.card)
 	if ROUND.chair[n].played then
 		local fx = {9, 2, 29, 3}
 		for i=1, 20 do
@@ -7273,7 +7295,9 @@ function playCard(n, card, start, jumpin, fastDraw)
 			end
 			if ROUND.topCard.card[1] == "black" then
 				ROUND.topCard.card[1] = ROUND.topCard.card2[1]
-				drawTopCard()
+				--drawTopCard()
+				removeTopCard()
+				addTopCard(ROUND.topCard.card, nil, true)
 			end
 			ROUND.chair[n].confuse = false
 			passTurn()
@@ -7298,7 +7322,9 @@ function playCard(n, card, start, jumpin, fastDraw)
 					if mustBeEliminated(n) then
 						if ROUND.topCard.card[1] == "black" then
 							ROUND.topCard.card[1] = ROUND.topCard.card2[1]
-							drawTopCard()
+							--drawTopCard()
+							removeTopCard()
+							addTopCard(ROUND.topCard.card, nil, true)
 						end
 						eliminate(n)
 						passTurn()
@@ -7368,7 +7394,10 @@ function passTurn(skipped)
 		end
 	end
 	ui.removeTextArea(5)
+	local n = ROUND.turn
 	ROUND.turn = nextChair(ROUND.turn)
+	updateHand(n)
+	updateHand(ROUND.turn)
 	if cont == 1 then
 		endGame(name)
 	elseif ROUND.turn then
@@ -7444,35 +7473,61 @@ function passTurn(skipped)
 				if ROUND.gameMode.supercombo then
 					if ROUND.topCard.card[2] == "draw4" or ROUND.topCard.card[2] == "draw99" then
 						if ROUND.gameMode.nochallenge then
-							txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_PLUS_FOUR_ANTICHALLENGE"))
+							if ROUND.gameMode.nou then
+								txt = "DRAW_PLUS_FOUR_ANTICHALLENGE_REVERSE"
+							else
+								txt = "DRAW_PLUS_FOUR_ANTICHALLENGE"
+							end
 						else
-							txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_PLUS_FOUR"))
+							if ROUND.gameMode.nou then
+								txt = "DRAW_PLUS_FOUR_REVERSE"
+							else
+								txt = "DRAW_PLUS_FOUR"
+							end
 						end
+					elseif ROUND.gameMode.nou then
+						txt = "DRAW_PLUS_REVERSE"
 					else
-						txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_PLUS"))
+						txt = "DRAW_PLUS"
 					end
 				elseif ROUND.gameMode.hell then
 					if ROUND.topCard.card[2] == "draw4" or ROUND.topCard.card[2] == "draw99" then
 						if ROUND.gameMode.nochallenge then
-							txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_HELL_FOUR_ANTICHALLENGE"))
+							txt = "DRAW_HELL_FOUR_ANTICHALLENGE"
 						else
-							txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_HELL_FOUR"))
+							txt = "DRAW_HELL_FOUR"
 						end
 					else
-						txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_HELL"))
+						txt = "DRAW_HELL"
 					end
 				elseif ROUND.accumulated.allowed.draw2 then
-					txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_TWO"))
-				elseif ROUND.accumulated.allowed.draw4 then
-					if ROUND.gameMode.nocombo then
-						txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_CHALLENGE"))
-					elseif ROUND.accumulated.nochallenge then
-						txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_FOUR_ANTICHALLENGE"))
+					if ROUND.gameMode.nou then
+						txt = "DRAW_TWO_REVERSE"
 					else
-						txt = string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, "DRAW_FOUR"))
+						txt = "DRAW_TWO"
 					end
+				elseif ROUND.accumulated.allowed.draw4 then
+					if ROUND.gameMode.nou then
+						if ROUND.gameMode.nocombo then
+							txt = "DRAW_CHALLENGE_REVERSE"
+						elseif ROUND.accumulated.nochallenge then
+							txt = "DRAW_FOUR_ANTICHALLENGE_REVERSE"
+						else
+							txt = "DRAW_FOUR_REVERSE"
+						end
+					else
+						if ROUND.gameMode.nocombo then
+							txt = "DRAW_CHALLENGE"
+						elseif ROUND.accumulated.nochallenge then
+							txt = "DRAW_FOUR_ANTICHALLENGE"
+						else
+							txt = "DRAW_FOUR"
+						end
+					end
+				elseif ROUND.accumulated.allowed.reverse then
+					txt = "DRAW_REVERSE"
 				end
-				ui.addTextArea(19, string.format(txt, ROUND.accumulated.cards), ROUND.chair[ROUND.turn].owner, 100, 305, 600, nil, 0, 0, 0, false)
+				ui.addTextArea(19, string.format(string.format("<p align='center'><font color='#ffffff'>%s", translate(ROUND.chair[ROUND.turn].owner, txt)), ROUND.accumulated.cards), ROUND.chair[ROUND.turn].owner, 100, 305, 600, nil, 0, 0, 0, false)
 			else
 				ROUND.chair[ROUND.turn].playedChair = true
 			end
@@ -7706,7 +7761,9 @@ function fastDraw(n, pos)
 		for i=1, 10 do
 			tfm.exec.displayParticle(3, 345, 210, math.random(-20,20)/10, math.random(-20,20)/10, 0, 0)
 		end
-		drawTopCard()
+		--drawTopCard()
+		clearTopCard()
+		addTopCard(ROUND.topCard.card, nil, true)
 	end
 	if ROUND.chair[n].peace and not pos and not isNumeric(ROUND.deck[#ROUND.deck]) then
 		drawCard(n, 1)
@@ -7786,7 +7843,6 @@ function autoPlay()
 					table.insert(ROUND.pile, 1, card)
 				end
 			until #chair.hand <= 0
-			drawTopCard()
 			passTurn()
 			chair.mode = "DELETED"
 			ui.removeTextArea(n+1000)
@@ -7831,7 +7887,8 @@ function tracking(n)
 			tfm.exec.displayParticle(3, 345, 230, math.random(-20,20)/10, math.random(-20,20)/10, 0, 0)
 		end
 		explosion(35, 400, 250, 20, 20)
-		drawTopCard()
+		clearTopCard()
+		addTopCard(ROUND.topCard.card)
 		showDeck()
 	end
 	if #ROUND.deck > 0 then
@@ -7925,7 +7982,6 @@ function eliminate(n, pass, final)
 				end
 			end
 		end
-		drawTopCard()
 		if pass then
 			passTurn()
 		end
@@ -8268,40 +8324,47 @@ function showDeck(p)
 	end
 end
 
-function showCard(card, x, y, p, target, size)
+function showCard(card, x, y, p, target, size, scaleX, scaleY, angle, alpha, anchorX, anchorY)
+	scaleX = scaleX or 1
+	scaleY = scaleY or 1
+	angle = angle or 0
+	angle = math.rad(angle)
+	alpa = alpha or 1
+	anchorX = anchorX or 0
+	anchorY = anchorY or 0
 	if not (p and BOT[p]) then
 		if type(card) == "table" then
 			local img = {}
 			if not size then
 				--table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].noLag[card[2]][card[1]], target or "_1000", x, y, p))
-				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].color[card[1]][size or "mini"], target or "_1000", x, y, p))
-				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].symbol[card[2]][size or "mini"], target or "_1000", x, y, p))
+				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].color[card[1]][size or "mini"], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
+				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].symbol[card[2]][size or "mini"], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 			else
-				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].color[card[1]][size or "mini"], target or "_1000", x, y, p))
-				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].symbol[card[2]][size or "mini"], target or "_1000", x, y, p))
+				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].color[card[1]][size or "mini"], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
+				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].symbol[card[2]][size or "mini"], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 			end
 			if not size and card[4] then
-				table.insert(img, tfm.exec.addImage(IMG.misc.ribbon, target or "_1000", x, y-10, p))
+				table.insert(img, tfm.exec.addImage(IMG.misc.ribbon, target or "_1000", x, y-10, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 			end
-			if not size and card.lock then
-				table.insert(img, tfm.exec.addImage(IMG.misc.lock[ROUND.portal.side], target or "_1000", x, y, p))
+			if (not size or size=="mini") and card.lock then
+				table.insert(img, tfm.exec.addImage(IMG.misc.lock[ROUND.portal.side], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 			end
 			if card[1] ~= "black" then
 				if p then
 					if tfm.get.room.playerList[p] and PLAYER[p] and PLAYER[p].colorBlind then
-						table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].colorBlind[card[1]][size or "mini"], target or "_1000", x, y, p))
+						table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].colorBlind[card[1]][size or "mini"], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 					end
 				else
 					for i, v in pairs(PLAYER) do
 						if v.colorBlind then
-							table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].colorBlind[card[1]][size or "mini"], target or "_1000", x, y, i))
+							table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].colorBlind[card[1]][size or "mini"], target or "_1000", x, y, i, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 						end
 					end
 				end
 			end
 			return img
 		else
-			return {tfm.exec.addImage(IMG.skin[ROUND.cardSkin].misc.back, target or "_1000", x, y, p)}
+			return {tfm.exec.addImage(IMG.skin[ROUND.cardSkin].misc.back, target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY)}
 		end
 	else
 		return {}
@@ -8338,6 +8401,8 @@ end
 function updateHand(n, new)
 	local tt = os.time() + 10
 	local replay = false
+	local a = n == ROUND.turn and 1 or 0.6
+	local y = n == ROUND.turn and 320 or 340
 	new = new or {}
 	for i, v in pairs(ROUND.chair[n].imgHand) do
 		tfm.exec.removeImage(v)
@@ -8352,23 +8417,23 @@ function updateHand(n, new)
 				else
 					local targetImage = "_".. 1000*i
 					local x = ((i-1)/(#ROUND.chair[n].hand-1))*750
-					local c = showCard(v, x, 320, ROUND.chair[n].owner, targetImage)
+					local c = showCard(v, x, y, ROUND.chair[n].owner, targetImage, "mini", 1, 1, 0, a)
 					if v[2] == "batata" then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.batata[ROUND.chair[n].batata], "_1000", x, 300, ROUND.chair[n].owner))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.batata[ROUND.chair[n].batata], "_1000", x, y-20, ROUND.chair[n].owner))
 					end
 					for i, v in pairs(c) do
 						table.insert(ROUND.chair[n].imgHand, v)
 					end
 					local card = FLAG[ROUND.chair[n].flag].card
 					if card and card[1] == v[1] and card[2] == v[2] then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.wish, targetImage, x-25, 295, ROUND.chair[n].owner))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.wish, targetImage, x-25, y-25, ROUND.chair[n].owner, "mini", 1, 1, 0, a))
 					end
 					if isCursed(n, "shoe") and not isNumeric(v) then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.shoe[ROUND.portal.side], targetImage, x, 320, ROUND.chair[n].owner))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.shoe[ROUND.portal.side], targetImage, x, y, ROUND.chair[n].owner, "mini", 1, 1, 0, a))
 					end
 					for j, w in pairs(new) do
 						if v == w then
-							local l = tfm.exec.addImage(IMG.misc.glowCard, targetImage, x-5, 315, ROUND.chair[n].owner)
+							local l = tfm.exec.addImage(IMG.misc.glowCard, targetImage, x-5, y-5, ROUND.chair[n].owner, "mini", 1, 1, 0, a)
 							table.insert(ROUND.chair[n].imgHand, l)
 							TIMER.img[l] = os.time()+2000
 							break
@@ -8384,23 +8449,23 @@ function updateHand(n, new)
 				else
 					local targetImage = "_".. 1000*i
 					local x = 400-#ROUND.chair[n].hand*25+50*(i-1)
-					local c = showCard(v, x, 320, ROUND.chair[n].owner, targetImage)
+					local c = showCard(v, x, y, ROUND.chair[n].owner, targetImage, "mini", 1, 1, 0, a)
 					if v[2] == "batata" then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.batata[ROUND.chair[n].batata], targetImage, x, 300, ROUND.chair[n].owner))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.batata[ROUND.chair[n].batata], targetImage, x, y-20, ROUND.chair[n].owner))
 					end
 					for i, v in pairs(c) do
 						table.insert(ROUND.chair[n].imgHand, v)
 					end
 					local card = FLAG[ROUND.chair[n].flag].card
 					if card and card[1] == v[1] and card[2] == v[2] then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.wish, "!0", x-25, 295, ROUND.chair[n].owner))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.wish, "!0", x-25, y-25, ROUND.chair[n].owner, "mini", 1, 1, 0, a))
 					end
 					if isCursed(n, "shoe") and not isNumeric(v) then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.shoe[ROUND.portal.side], targetImage, x, 320, ROUND.chair[n].owner))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.shoe[ROUND.portal.side], targetImage, x, y, ROUND.chair[n].owner, "mini", 1, 1, 0, a))
 					end
 					for j, w in pairs(new) do
 						if v == w then
-							local l = tfm.exec.addImage(IMG.misc.glowCard, targetImage, x-5, 315, ROUND.chair[n].owner)
+							local l = tfm.exec.addImage(IMG.misc.glowCard, targetImage, x-5, y-5, ROUND.chair[n].owner, "mini", 1, 1, 0, a)
 							table.insert(ROUND.chair[n].imgHand, l)
 							TIMER.img[l] = os.time()+500
 							break
@@ -8455,6 +8520,7 @@ function updateHand(n, new)
 end
 
 function updateShadow(n, t)
+	if true then return false end
 	if not BOT[ROUND.chair[n].owner] then
 		local tt = t or os.time()+20
 		for i, v in pairs(ROUND.chair[n].imgShadow) do
@@ -8653,7 +8719,7 @@ function unlockFlag(p, name)
 end
 
 function showRules(p)
-	local order = {"dos","neighbor","custom","red","blue","green","bluegreen","yellow","ninguem","flash","jumpin","stack","sequence","hard","limbo","overload","perfection","satisfaction","insatisfaction","tracking","fastdraw","clean","nocombo","supercombo","hell","black","nochallenge","simon","imitate","shiny","batata","bomb","draw99","compass","curse","confuse","justice","magnet","peace","steal","theft","death","portal","ink","dice","paradox","half","oddeven","mimic","ban","mix","gift","trade","web","tornado","carousel","luck","chair","spy","thunder","rain","equality","meep","wish","box","random","clone","key","share","rule","chess","team","camouflage","limit","noaction","mess","revelation","mini","maxi","mulligan","drekkemaus","jingle","papaille","charlotte","elisah","buffy","snowy","icemice","elise"}
+	local order = {"dos","neighbor","custom","red","blue","green","bluegreen","yellow","ninguem","nou","flash","jumpin","stack","sequence","hard","limbo","overload","perfection","satisfaction","insatisfaction","tracking","fastdraw","clean","nocombo","supercombo","hell","black","nochallenge","simon","imitate","shiny","batata","bomb","draw99","compass","curse","confuse","justice","magnet","peace","steal","theft","death","portal","ink","dice","paradox","half","oddeven","mimic","ban","mix","gift","trade","web","tornado","carousel","luck","chair","spy","thunder","rain","equality","meep","wish","box","random","clone","key","share","rule","chess","team","camouflage","limit","noaction","mess","revelation","mini","maxi","mulligan","drekkemaus","jingle","papaille","charlotte","elisah","buffy","snowy","icemice","elise"}
 	local modes = {}
 	for i, v in pairs(order) do
 		if ROUND.gameMode[v] then
@@ -8862,9 +8928,48 @@ function drawTopCard(p)
 		table.insert(ROUND.topCard.img, v)
 	end
 	if ROUND.gameMode.neighbor and isNumeric(ROUND.topCard.card) then
-		table.insert(ROUND.topCard.img, tfm.exec.addImage(IMG.neighbor[ROUND.topCard.card[2]][ROUND.portal.side], target or "_1000", 430, y, p))
+		table.insert(ROUND.topCard.img, tfm.exec.addImage(IMG.neighbor[ROUND.topCard.card[2]][ROUND.portal.side], "_1000", 430, y, p))
 	end
 	return y
+end
+
+function addTopCard(card, p, update)
+	ROUND.topCard.img2 = ROUND.topCard.img2 or {}
+	if #ROUND.topCard.img2 >= 20 then
+		for i, v in pairs(ROUND.topCard.img2[1]) do
+			tfm.exec.removeImage(v)
+		end
+		table.remove(ROUND.topCard.img2, 1)
+	end
+	local x = update and ROUND.topCard.x or 455 + math.random(-8, 8)
+	local y = update and ROUND.topCard.y or 245 + math.random(-5, 5)
+	local a = update and ROUND.topCard.a or math.random(-20, 20)
+	local c = showCard(card, x, y, p, nil, "big", 0.55, 0.55, a, 1, 0.5, 0.5)
+	if ROUND.gameMode.neighbor and isNumeric(ROUND.topCard.card) then
+		table.insert(c, tfm.exec.addImage(IMG.neighbor[ROUND.topCard.card[2]][ROUND.portal.side], "_1000", x, y, p, 1, 1, math.rad(a), 1, 0.5, 0.5))
+	end
+	table.insert(ROUND.topCard.img2, c)
+	ROUND.topCard.x = x
+	ROUND.topCard.y = y
+	ROUND.topCard.a = a
+	return y
+end
+
+function removeTopCard()
+	local card = ROUND.topCard.img2[#ROUND.topCard.img2]
+	for i, v in pairs(card) do
+		tfm.exec.removeImage(v)
+	end
+	table.remove(ROUND.topCard.img2)
+end
+
+function clearTopCard()
+	for i, v in pairs(ROUND.topCard.img2) do
+		for j, w in pairs(v) do
+			tfm.exec.removeImage(w)
+		end
+	end
+	ROUND.topCard.img2 = {}
 end
 
 function showPreviousCard(p)
@@ -9352,7 +9457,7 @@ function randomGameMode()
 		if CONFIG.noRules then
 			CONFIG.noRules = false
 		else
-			local modes = {"mini","maxi","jumpin","jumpin","jumpin","stack","stack","stack","supercombo","supercombo","mulligan","mulligan","mulligan","rule","rule","random","tracking","limit","flash","chess","chess","ninguem_v2"}
+			local modes = {"nou","nou","mini","maxi","jumpin","jumpin","jumpin","stack","stack","stack","supercombo","supercombo","mulligan","mulligan","mulligan","rule","rule","random","tracking","limit","flash","chess","chess","ninguem_v2"}
 			for i, v in pairs(RULE) do
 				if v.public then
 					table.insert(modes, i)
@@ -10342,7 +10447,7 @@ function makeBan(n, card)
 		end
 	end
 	ROUND.gameMode[choice[2]] = nil
-	drawTopCard()
+	--drawTopCard()
 	showDeck()
 	for i, v in pairs(tfm.get.room.playerList) do
 		showRules(i)
@@ -10407,7 +10512,8 @@ function makeBatata(n, target)
 				eliminate(target)
 			end
 			ROUND.topCard.card = ROUND.topCard.card2
-			drawTopCard()
+			--drawTopCard()
+			removeTopCard()
 			passTurn()
 			ROUND.chair[n].confuse = false
 			batataTimer(n)
@@ -10429,7 +10535,9 @@ function bomb(n)
 	table.insert(ROUND.deck, math.random(#ROUND.deck+1), card)
 	showDeck()
 	ROUND.topCard.card = ROUND.topCard.card2
-	drawTopCard()
+	--drawTopCard()
+	removeTopCard()
+	addTopCard(ROUND.topCard.card, nil, true)
 	local y = 195 - (#ROUND.deck/108 * 10)
 	local img = showCard({"black","bomb"}, 320, y, nil, "!1000")
 	for i, v in pairs(img) do
@@ -10635,7 +10743,7 @@ function red(n)
 		showCardsGainned(target, 1)
 		updateScore(n)
 		updateScore(target)
-		drawTopCard()
+		--drawTopCard()
 		updateHand(n)
 		updateHand(target)
 		if mustBeEliminated(target) then
@@ -10738,7 +10846,9 @@ function clone(n)
 	local wild = {wild="black", draw4="black", king="black", queen="black", half="black", simon="black"}
 	ROUND.topCard.card[2] = ROUND.topCard.card2[2]
 	ROUND.topCard.card[1] = wild[ROUND.topCard.card2[2]] or ROUND.topCard.card2[1]
-	local y = drawTopCard()
+	--local y = drawTopCard()
+	removeTopCard()
+	local y = addTopCard(ROUND.topCard.card, nil, true)
 	tfm.exec.displayParticle(12, 455, y+37, 0, 0, 0, 0)
 	ROUND.chair[n].action = nil
 	_G[ROUND.topCard.card[2]](n)
@@ -10818,7 +10928,9 @@ function curse(n)
 	end
 	local pool = {}
 	for i, v in pairs(CURSE) do
-		table.insert(pool, i)
+		if not (ROUND.gameMode.mess and i=="shoe") then
+			table.insert(pool, i)
+		end
 	end
 	local player = 0
 	local rand = pool[math.random(#pool)]
@@ -11198,7 +11310,7 @@ function makeCustomDonate(n, m, action, num, returnedValues)
 		end
 		updateScore(n)
 		updateScore(m)
-		drawTopCard()
+		--drawTopCard()
 		updateHand(n)
 		updateHand(m)
 	end
@@ -11287,7 +11399,7 @@ function customDiscard(n, action, num, returnedValues)
 			mimicDiscard(n, returnedValues[n][num])
 		end
 		updateScore(n)
-		drawTopCard()
+		--drawTopCard()
 		updateHand(n)
 	end
 end
@@ -12448,8 +12560,10 @@ function random(n)
 	ROUND.chair[n].action = {name="random"}
 	ROUND.topCard.card = randomActionCard()
 	ROUND.topCard.card[3] = nil
-	drawTopCard()
-	local y = drawTopCard()
+	--drawTopCard()
+	--local y = drawTopCard()
+	removeTopCard()
+	local y = addTopCard(ROUND.topCard.card, nil, true)
 	tfm.exec.displayParticle(12, 455, y+37, 0, 0, 0, 0)
 	ROUND.chair[n].action = nil
 	_G[ROUND.topCard.card[2]](n)
@@ -12641,7 +12755,7 @@ function makePicnicGift(n, target)
 			showCardsGainned(target, 1)
 			updateScore(n)
 			updateScore(target)
-			drawTopCard()
+			--drawTopCard()
 			updateHand(n)
 			updateHand(target)
 			if isIlluminati(target) then
@@ -12732,7 +12846,7 @@ function leafFlag(n) -- carpet
 			ROUND.chair[n].uno = "uno"
 			updateScore(n)
 		end
-		drawTopCard()
+		--drawTopCard()
 	end
 	passTurn()
 	batataTimer(n)
@@ -12875,7 +12989,9 @@ function portal(n)
 		end
 	end
 	showDeck()
-	local y = drawTopCard()
+	clearTopCard()
+	--local y = drawTopCard()
+	addTopCard(ROUND.topCard.card, nil, true)
 	explosion(3, 455, y+37, 5, 40)
 	updateCurse()
 	if ROUND.subitDeath and not ROUND.cloud.obj then
@@ -12965,7 +13081,7 @@ function steal(n)
 				updateScore(i)
 			end
 		end
-		drawTopCard()
+		--drawTopCard()
 	end
 	if not isEndGame("BAN") then
 		passTurn()
@@ -12978,7 +13094,17 @@ end
 --[[ src/cards/reverse.lua ]]--
 
 function reverse(n)
-	if ROUND.gameMode.hell and ROUND.accumulated then
+	local skipp = false
+	if ROUND.gameMode.nou and ROUND.accumulated and not ROUND.gameMode.supercombo then
+			local target = previousChair(ROUND.turn)
+			tryDraw(target, ROUND.accumulated.cards)
+			local img = tfm.exec.addImage(ROUND.flow == "RIGHT" and IMG.misc.left or IMG.misc.right, "!1000", ROUND.chair[target].x-50, 30)
+			TIMER.img[img] = os.time()+1000
+			explosion(35, ROUND.chair[target].x, 80, 50, 10)
+			ROUND.accumulated = nil
+			showAccumulated()
+			skipp = true
+	elseif ROUND.gameMode.hell and ROUND.accumulated then
 		ROUND.accumulated = nil
 		addBlockPoint(ROUND.chair[n].owner)
 	end
@@ -13002,6 +13128,9 @@ function reverse(n)
 		if ROUND.love >= 4 then
 			unlockChair(ROUND.chair[n].owner, "truelove")
 			unlockChair(ROUND.chair[nextChair(n)].owner, "truelove")
+		end
+		if skipp then
+			ROUND.turn = nextChair(ROUND.turn)
 		end
 		passTurn()
 		batataTimer(n)
@@ -13741,7 +13870,9 @@ function paintCard(color, n, auto)
 	end
 	
 	ROUND.topCard.card[1] = color
-	local y = drawTopCard()
+	--local y = drawTopCard()
+	removeTopCard()
+	local y = addTopCard(ROUND.topCard.card, nil, true)
 	local particle = {red=21, blue=23, yellow=24, green=22}
 	local plus = ROUND.chair[n].action.plusfour
 	for i=1, 10 do
@@ -13820,7 +13951,9 @@ function paintCard(color, n, auto)
 					ROUND.chair[n].action = false
 					color = ROUND.simon[action.simon]
 					ROUND.topCard.card[1] = color
-					local y = drawTopCard()
+					removeTopCard()
+					addTopCard(ROUND.topCard.card, nil, true)
+					--local y = drawTopCard()
 					local particle = {red=21, blue=23, yellow=24, green=22}
 					for i=1, 10 do
 						tfm.exec.displayParticle(particle[color], 455, y+37, math.random(-20,20)/10, math.random(-20,20)/10, 0, 0)
@@ -13906,14 +14039,14 @@ function wish(n)
 			table.insert(o, math.random(#ROUND.pile-1))
 		end
 		local player = ROUND.chair[n].owner
-		local y = drawTopCard()
-		local top = tfm.exec.addImage(IMG.misc.wish, "!0", 405, y-25)
+		--local y = drawTopCard()
+		--local top = tfm.exec.addImage(IMG.misc.wish, "!0", 405, y-25)
 		local img = tfm.exec.addImage(IMG.skin[ROUND.portal.side].misc.discover, "!100", ROUND.chair[n].x-50, 20)
 		local l = tfm.exec.addImage(IMG.misc.genericLayer, "!1000", 0, 0, player)
 		local t1 = showCard(ROUND.pile[o[1]], 230, 200, player, "!1000", "big")
 		local t2 = showCard(ROUND.pile[o[2]], 350, 200, player, "!1000", "big")
 		local t3 = showCard(ROUND.pile[o[3]], 470, 200, player, "!1000", "big")
-		local images = {top, img, l}
+		local images = {img, l}
 		for i, v in pairs({t1,t2,t3}) do
 			for j, w in pairs(v) do
 				table.insert(images, w)
@@ -13993,6 +14126,11 @@ onEvent("ChatCommand", function(p, cmd)
 			local name = whichNick(arg[3]) or arg[3]
 			if tonumber(arg[2]) and PLAYER[name] then
 				tfm.exec.setPlayerScore(name, tonumber(arg[2]))
+			end
+		elseif arg[1] == "givetitle" and arg[2] and arg[3] then
+			local name = whichNick(arg[3]) or arg[3]
+			if PLAYER[name] then
+				system.giveEventGift(name, arg[2])
 			end
 		elseif arg[1] == "boss" and ROUND.state == "PLAY" and PLAYER[p].chair then
 			ROUND.chair[PLAYER[p].chair].boss = true
@@ -14409,13 +14547,7 @@ onEvent("Loop", function(current, remaining)
 				end
 				endGame(name, nil, nil, "TIME")
 			else
-				if ROUND.time - GLOBAL_TIME < 9000 then
-					if ROUND.chair[ROUND.turn].confuse or isCursed(ROUND.turn, "poison") then
-						BOT.A.autoPlay()
-					elseif BOT[ROUND.chair[ROUND.turn].owner] then
-						BOT[ROUND.chair[ROUND.turn].owner].autoPlay()
-					end
-				end
+				
 				updateTurnTimer()
 				if remaining < 60000  then
 					blinkAllert()
@@ -14429,7 +14561,11 @@ onEvent("Loop", function(current, remaining)
 				elseif ROUND.limbo and ROUND.limbo-GLOBAL_TIME < 5000 then
 					blinkAllert()
 				end
-				if ROUND.time < GLOBAL_TIME then
+				if ROUND.chair[ROUND.turn].confuse or isCursed(ROUND.turn, "poison") then
+					BOT.A.autoPlay()
+				elseif BOT[ROUND.chair[ROUND.turn].owner] then
+					BOT[ROUND.chair[ROUND.turn].owner].autoPlay()
+				elseif ROUND.time < GLOBAL_TIME then
 					autoPlay()
 				end
 				if ROUND.turn and (ROUND.chair[ROUND.turn].peace or ROUND.chair[ROUND.turn].peace2) then
@@ -14942,7 +15078,7 @@ onEvent("NewPlayer", function(p)
 			updateArrow(p)
 			updateFlow(p)
 			showDeck(p)
-			drawTopCard(p)
+			--drawTopCard(p)
 			showAccumulated(p)
 			showRules(p)
 			if ROUND.portal then
@@ -14950,7 +15086,7 @@ onEvent("NewPlayer", function(p)
 			end
 		elseif ROUND.state == "FINISH" then
 			showDeck(p)
-			drawTopCard(p)
+			--drawTopCard(p)
 		end
 		giveTip(p)
 		tfm.exec.addPhysicObject(0, 400, 530, {height=10, width=3000})
@@ -15370,7 +15506,7 @@ end)
 window.create("HOUSE", function(player, var, name, page)
 
 	local pool = {}
-	local order = {"dos","neighbor","custom","red","blue","green","bluegreen","yellow","ninguem","flash","jumpin","stack","sequence","hard","limbo","overload","perfection","satisfaction","insatisfaction","tracking","fastdraw","clean","nocombo","supercombo","hell","black","nochallenge","simon","imitate","shiny","batata","bomb","draw99","compass","curse","confuse","justice","magnet","peace","steal","theft","death","portal","ink","dice","paradox","half","oddeven","mimic","ban","mix","gift","trade","web","tornado","carousel","luck","chair","spy","thunder","rain","equality","meep","wish","box","random","clone","key","share","rule","chess","team","camouflage","limit","noaction","mess","revelation","mini","maxi","mulligan","drekkemaus","jingle","papaille","charlotte","elisah","buffy","snowy","icemice","elise"}
+	local order = {"dos","neighbor","custom","red","blue","green","bluegreen","yellow","ninguem","nou","flash","jumpin","stack","sequence","hard","limbo","overload","perfection","satisfaction","insatisfaction","tracking","fastdraw","clean","nocombo","supercombo","hell","black","nochallenge","simon","imitate","shiny","batata","bomb","draw99","compass","curse","confuse","justice","magnet","peace","steal","theft","death","portal","ink","dice","paradox","half","oddeven","mimic","ban","mix","gift","trade","web","tornado","carousel","luck","chair","spy","thunder","rain","equality","meep","wish","box","random","clone","key","share","rule","chess","team","camouflage","limit","noaction","mess","revelation","mini","maxi","mulligan","drekkemaus","jingle","papaille","charlotte","elisah","buffy","snowy","icemice","elise"}
 	for i, v in pairs(order) do
 		if ROUND.gameMode[v] then
 			table.insert(pool, v)
@@ -15679,7 +15815,7 @@ window.create("CHALLENGE", function(player, var, card)
 	table.insert(imageId, c[2])
 	local previous = previousChair(ROUND.turn)
 	previous = nickMinifier(nickHashtag(ROUND.chair[previous].owner))
-	ui.addTextArea(516, string.format("<p align='center'><font size='14px'>"..translate(player, "CHALLENGE_COLOR"), previous), player, x+65, y+20, width-65, nil, 0, 0, 0, true)
+	ui.addTextArea(516, string.format("<p align='center'><font size='14px'>"..translate(player, "CHALENGE_COLOR"), previous), player, x+65, y+20, width-65, nil, 0, 0, 0, true)
 	return text, imageId
 end)
 
@@ -16634,7 +16770,7 @@ function(p, var, page)
 	local y = 30
 	local width = 400
 	local height = 360
-	local pool = {"nochallenge","mini","maxi","noaction","clean","nocombo","supercombo","hell","satisfaction","insatisfaction","camouflage","flash","limit","jumpin","black","revelation","stack","sequence","perfection","tracking","mulligan","overload","limbo","fastdraw","hard","shiny","neighbor","team","mess","bluegreen","peace","death","gift","trade","carousel","chair","spy","rain","equality","imitate","meep","random","bomb","rule","chess","steal","web","thunder","clone","luck","box","wish","ink","confuse","batata","curse","magnet","portal","compass","tornado","theft","ban","simon","half","paradox","oddeven","mimic","mix","justice","key","share"}
+	local pool = {"nochallenge","mini","maxi","noaction","clean","nocombo","supercombo","hell","satisfaction","insatisfaction","camouflage","flash","limit","jumpin","black","revelation","stack","sequence","perfection","tracking","mulligan","overload","limbo","fastdraw","hard","shiny","neighbor","team","mess","bluegreen","nou","peace","death","gift","trade","carousel","chair","spy","rain","equality","imitate","meep","random","bomb","rule","chess","steal","web","thunder","clone","luck","box","wish","ink","confuse","batata","curse","magnet","portal","compass","tornado","theft","ban","simon","half","paradox","oddeven","mimic","mix","justice","key","share"}
 	local hidden = {"custom", "elise", "charlotte", "elisah", "drekkemaus", "buffy", "jingle", "papaille", "snowy", "icemice"}
 	for i, v in pairs(hidden) do
 		if PLAYER[p].rules[v] or CONFIG.rule[v] then

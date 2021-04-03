@@ -39,7 +39,9 @@ function paintCard(color, n, auto)
 	end
 	
 	ROUND.topCard.card[1] = color
-	local y = drawTopCard()
+	--local y = drawTopCard()
+	removeTopCard()
+	local y = addTopCard(ROUND.topCard.card, nil, true)
 	local particle = {red=21, blue=23, yellow=24, green=22}
 	local plus = ROUND.chair[n].action.plusfour
 	for i=1, 10 do
@@ -118,7 +120,9 @@ function paintCard(color, n, auto)
 					ROUND.chair[n].action = false
 					color = ROUND.simon[action.simon]
 					ROUND.topCard.card[1] = color
-					local y = drawTopCard()
+					removeTopCard()
+					addTopCard(ROUND.topCard.card, nil, true)
+					--local y = drawTopCard()
 					local particle = {red=21, blue=23, yellow=24, green=22}
 					for i=1, 10 do
 						tfm.exec.displayParticle(particle[color], 455, y+37, math.random(-20,20)/10, math.random(-20,20)/10, 0, 0)

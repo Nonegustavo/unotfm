@@ -49,7 +49,8 @@ function makeBatata(n, target)
 				eliminate(target)
 			end
 			ROUND.topCard.card = ROUND.topCard.card2
-			drawTopCard()
+			--drawTopCard()
+			removeTopCard()
 			passTurn()
 			ROUND.chair[n].confuse = false
 			batataTimer(n)

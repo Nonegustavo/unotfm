@@ -38,6 +38,6 @@ window.create("CHALLENGE", function(player, var, card)
 	table.insert(imageId, c[2])
 	local previous = previousChair(ROUND.turn)
 	previous = nickMinifier(nickHashtag(ROUND.chair[previous].owner))
-	ui.addTextArea(516, string.format("<p align='center'><font size='14px'>"..translate(player, "CHALLENGE_COLOR"), previous), player, x+65, y+20, width-65, nil, 0, 0, 0, true)
+	ui.addTextArea(516, string.format("<p align='center'><font size='14px'>"..translate(player, "CHALENGE_COLOR"), previous), player, x+65, y+20, width-65, nil, 0, 0, 0, true)
 	return text, imageId
 end)

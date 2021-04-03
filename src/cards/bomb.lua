@@ -3,7 +3,9 @@ function bomb(n)
 	table.insert(ROUND.deck, math.random(#ROUND.deck+1), card)
 	showDeck()
 	ROUND.topCard.card = ROUND.topCard.card2
-	drawTopCard()
+	--drawTopCard()
+	removeTopCard()
+	addTopCard(ROUND.topCard.card, nil, true)
 	local y = 195 - (#ROUND.deck/108 * 10)
 	local img = showCard({"black","bomb"}, 320, y, nil, "!1000")
 	for i, v in pairs(img) do

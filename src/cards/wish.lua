@@ -10,14 +10,14 @@ function wish(n)
 			table.insert(o, math.random(#ROUND.pile-1))
 		end
 		local player = ROUND.chair[n].owner
-		local y = drawTopCard()
-		local top = tfm.exec.addImage(IMG.misc.wish, "!0", 405, y-25)
+		--local y = drawTopCard()
+		--local top = tfm.exec.addImage(IMG.misc.wish, "!0", 405, y-25)
 		local img = tfm.exec.addImage(IMG.skin[ROUND.portal.side].misc.discover, "!100", ROUND.chair[n].x-50, 20)
 		local l = tfm.exec.addImage(IMG.misc.genericLayer, "!1000", 0, 0, player)
 		local t1 = showCard(ROUND.pile[o[1]], 230, 200, player, "!1000", "big")
 		local t2 = showCard(ROUND.pile[o[2]], 350, 200, player, "!1000", "big")
 		local t3 = showCard(ROUND.pile[o[3]], 470, 200, player, "!1000", "big")
-		local images = {top, img, l}
+		local images = {img, l}
 		for i, v in pairs({t1,t2,t3}) do
 			for j, w in pairs(v) do
 				table.insert(images, w)

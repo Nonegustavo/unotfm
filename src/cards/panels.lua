@@ -59,7 +59,7 @@ function makePicnicGift(n, target)
 			showCardsGainned(target, 1)
 			updateScore(n)
 			updateScore(target)
-			drawTopCard()
+			--drawTopCard()
 			updateHand(n)
 			updateHand(target)
 			if isIlluminati(target) then
@@ -150,7 +150,7 @@ function leafFlag(n) -- carpet
 			ROUND.chair[n].uno = "uno"
 			updateScore(n)
 		end
-		drawTopCard()
+		--drawTopCard()
 	end
 	passTurn()
 	batataTimer(n)

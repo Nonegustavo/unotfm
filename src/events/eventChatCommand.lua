@@ -27,6 +27,11 @@ onEvent("ChatCommand", function(p, cmd)
 			if tonumber(arg[2]) and PLAYER[name] then
 				tfm.exec.setPlayerScore(name, tonumber(arg[2]))
 			end
+		elseif arg[1] == "givetitle" and arg[2] and arg[3] then
+			local name = whichNick(arg[3]) or arg[3]
+			if PLAYER[name] then
+				system.giveEventGift(name, arg[2])
+			end
 		elseif arg[1] == "boss" and ROUND.state == "PLAY" and PLAYER[p].chair then
 			ROUND.chair[PLAYER[p].chair].boss = true
 		elseif arg[1] == "fake" and arg[2] and arg[3] then

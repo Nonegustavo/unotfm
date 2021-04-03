@@ -301,7 +301,7 @@ function makeCustomDonate(n, m, action, num, returnedValues)
 		end
 		updateScore(n)
 		updateScore(m)
-		drawTopCard()
+		--drawTopCard()
 		updateHand(n)
 		updateHand(m)
 	end
@@ -390,7 +390,7 @@ function customDiscard(n, action, num, returnedValues)
 			mimicDiscard(n, returnedValues[n][num])
 		end
 		updateScore(n)
-		drawTopCard()
+		--drawTopCard()
 		updateHand(n)
 	end
 end

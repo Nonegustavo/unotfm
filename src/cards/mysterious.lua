@@ -3,8 +3,10 @@ function random(n)
 	ROUND.chair[n].action = {name="random"}
 	ROUND.topCard.card = randomActionCard()
 	ROUND.topCard.card[3] = nil
-	drawTopCard()
-	local y = drawTopCard()
+	--drawTopCard()
+	--local y = drawTopCard()
+	removeTopCard()
+	local y = addTopCard(ROUND.topCard.card, nil, true)
 	tfm.exec.displayParticle(12, 455, y+37, 0, 0, 0, 0)
 	ROUND.chair[n].action = nil
 	_G[ROUND.topCard.card[2]](n)

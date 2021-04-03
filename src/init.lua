@@ -60,7 +60,7 @@ CONFIG = {
 	pityTimer = 15, -- evento: 8, casual: 15
 	eventRate = 0.04, -- evento: 0.07, casual: 0.04
 	actualTimer = 0,
-	qtdRule = 71,
+	qtdRule = 72,
 }
 
 ROUND = {}

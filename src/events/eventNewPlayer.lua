@@ -40,7 +40,7 @@ onEvent("NewPlayer", function(p)
 			updateArrow(p)
 			updateFlow(p)
 			showDeck(p)
-			drawTopCard(p)
+			--drawTopCard(p)
 			showAccumulated(p)
 			showRules(p)
 			if ROUND.portal then
@@ -48,7 +48,7 @@ onEvent("NewPlayer", function(p)
 			end
 		elseif ROUND.state == "FINISH" then
 			showDeck(p)
-			drawTopCard(p)
+			--drawTopCard(p)
 		end
 		giveTip(p)
 		tfm.exec.addPhysicObject(0, 400, 530, {height=10, width=3000})

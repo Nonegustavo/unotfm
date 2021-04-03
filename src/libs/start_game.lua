@@ -8,7 +8,7 @@ function randomGameMode()
 		if CONFIG.noRules then
 			CONFIG.noRules = false
 		else
-			local modes = {"mini","maxi","jumpin","jumpin","jumpin","stack","stack","stack","supercombo","supercombo","mulligan","mulligan","mulligan","rule","rule","random","tracking","limit","flash","chess","chess","ninguem_v2"}
+			local modes = {"nou","nou","mini","maxi","jumpin","jumpin","jumpin","stack","stack","stack","supercombo","supercombo","mulligan","mulligan","mulligan","rule","rule","random","tracking","limit","flash","chess","chess","ninguem_v2"}
 			for i, v in pairs(RULE) do
 				if v.public then
 					table.insert(modes, i)

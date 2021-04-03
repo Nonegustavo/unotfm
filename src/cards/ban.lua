@@ -86,7 +86,7 @@ function makeBan(n, card)
 		end
 	end
 	ROUND.gameMode[choice[2]] = nil
-	drawTopCard()
+	--drawTopCard()
 	showDeck()
 	for i, v in pairs(tfm.get.room.playerList) do
 		showRules(i)

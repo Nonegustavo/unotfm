@@ -158,40 +158,47 @@ function showDeck(p)
 	end
 end
 
-function showCard(card, x, y, p, target, size)
+function showCard(card, x, y, p, target, size, scaleX, scaleY, angle, alpha, anchorX, anchorY)
+	scaleX = scaleX or 1
+	scaleY = scaleY or 1
+	angle = angle or 0
+	angle = math.rad(angle)
+	alpa = alpha or 1
+	anchorX = anchorX or 0
+	anchorY = anchorY or 0
 	if not (p and BOT[p]) then
 		if type(card) == "table" then
 			local img = {}
 			if not size then
 				--table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].noLag[card[2]][card[1]], target or "_1000", x, y, p))
-				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].color[card[1]][size or "mini"], target or "_1000", x, y, p))
-				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].symbol[card[2]][size or "mini"], target or "_1000", x, y, p))
+				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].color[card[1]][size or "mini"], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
+				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].symbol[card[2]][size or "mini"], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 			else
-				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].color[card[1]][size or "mini"], target or "_1000", x, y, p))
-				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].symbol[card[2]][size or "mini"], target or "_1000", x, y, p))
+				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].color[card[1]][size or "mini"], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
+				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].symbol[card[2]][size or "mini"], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 			end
 			if not size and card[4] then
-				table.insert(img, tfm.exec.addImage(IMG.misc.ribbon, target or "_1000", x, y-10, p))
+				table.insert(img, tfm.exec.addImage(IMG.misc.ribbon, target or "_1000", x, y-10, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 			end
-			if not size and card.lock then
-				table.insert(img, tfm.exec.addImage(IMG.misc.lock[ROUND.portal.side], target or "_1000", x, y, p))
+			if (not size or size=="mini") and card.lock then
+				table.insert(img, tfm.exec.addImage(IMG.misc.lock[ROUND.portal.side], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 			end
 			if card[1] ~= "black" then
 				if p then
 					if tfm.get.room.playerList[p] and PLAYER[p] and PLAYER[p].colorBlind then
-						table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].colorBlind[card[1]][size or "mini"], target or "_1000", x, y, p))
+						table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].colorBlind[card[1]][size or "mini"], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 					end
 				else
 					for i, v in pairs(PLAYER) do
 						if v.colorBlind then
-							table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].colorBlind[card[1]][size or "mini"], target or "_1000", x, y, i))
+							table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].colorBlind[card[1]][size or "mini"], target or "_1000", x, y, i, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 						end
 					end
 				end
 			end
 			return img
 		else
-			return {tfm.exec.addImage(IMG.skin[ROUND.cardSkin].misc.back, target or "_1000", x, y, p)}
+			return {tfm.exec.addImage(IMG.skin[ROUND.cardSkin].misc.back, target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY)}
 		end
 	else
 		return {}
@@ -228,6 +235,8 @@ end
 function updateHand(n, new)
 	local tt = os.time() + 10
 	local replay = false
+	local a = n == ROUND.turn and 1 or 0.6
+	local y = n == ROUND.turn and 320 or 340
 	new = new or {}
 	for i, v in pairs(ROUND.chair[n].imgHand) do
 		tfm.exec.removeImage(v)
@@ -242,23 +251,23 @@ function updateHand(n, new)
 				else
 					local targetImage = "_".. 1000*i
 					local x = ((i-1)/(#ROUND.chair[n].hand-1))*750
-					local c = showCard(v, x, 320, ROUND.chair[n].owner, targetImage)
+					local c = showCard(v, x, y, ROUND.chair[n].owner, targetImage, "mini", 1, 1, 0, a)
 					if v[2] == "batata" then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.batata[ROUND.chair[n].batata], "_1000", x, 300, ROUND.chair[n].owner))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.batata[ROUND.chair[n].batata], "_1000", x, y-20, ROUND.chair[n].owner))
 					end
 					for i, v in pairs(c) do
 						table.insert(ROUND.chair[n].imgHand, v)
 					end
 					local card = FLAG[ROUND.chair[n].flag].card
 					if card and card[1] == v[1] and card[2] == v[2] then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.wish, targetImage, x-25, 295, ROUND.chair[n].owner))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.wish, targetImage, x-25, y-25, ROUND.chair[n].owner, "mini", 1, 1, 0, a))
 					end
 					if isCursed(n, "shoe") and not isNumeric(v) then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.shoe[ROUND.portal.side], targetImage, x, 320, ROUND.chair[n].owner))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.shoe[ROUND.portal.side], targetImage, x, y, ROUND.chair[n].owner, "mini", 1, 1, 0, a))
 					end
 					for j, w in pairs(new) do
 						if v == w then
-							local l = tfm.exec.addImage(IMG.misc.glowCard, targetImage, x-5, 315, ROUND.chair[n].owner)
+							local l = tfm.exec.addImage(IMG.misc.glowCard, targetImage, x-5, y-5, ROUND.chair[n].owner, "mini", 1, 1, 0, a)
 							table.insert(ROUND.chair[n].imgHand, l)
 							TIMER.img[l] = os.time()+2000
 							break
@@ -274,23 +283,23 @@ function updateHand(n, new)
 				else
 					local targetImage = "_".. 1000*i
 					local x = 400-#ROUND.chair[n].hand*25+50*(i-1)
-					local c = showCard(v, x, 320, ROUND.chair[n].owner, targetImage)
+					local c = showCard(v, x, y, ROUND.chair[n].owner, targetImage, "mini", 1, 1, 0, a)
 					if v[2] == "batata" then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.batata[ROUND.chair[n].batata], targetImage, x, 300, ROUND.chair[n].owner))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.batata[ROUND.chair[n].batata], targetImage, x, y-20, ROUND.chair[n].owner))
 					end
 					for i, v in pairs(c) do
 						table.insert(ROUND.chair[n].imgHand, v)
 					end
 					local card = FLAG[ROUND.chair[n].flag].card
 					if card and card[1] == v[1] and card[2] == v[2] then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.wish, "!0", x-25, 295, ROUND.chair[n].owner))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.wish, "!0", x-25, y-25, ROUND.chair[n].owner, "mini", 1, 1, 0, a))
 					end
 					if isCursed(n, "shoe") and not isNumeric(v) then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.shoe[ROUND.portal.side], targetImage, x, 320, ROUND.chair[n].owner))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.shoe[ROUND.portal.side], targetImage, x, y, ROUND.chair[n].owner, "mini", 1, 1, 0, a))
 					end
 					for j, w in pairs(new) do
 						if v == w then
-							local l = tfm.exec.addImage(IMG.misc.glowCard, targetImage, x-5, 315, ROUND.chair[n].owner)
+							local l = tfm.exec.addImage(IMG.misc.glowCard, targetImage, x-5, y-5, ROUND.chair[n].owner, "mini", 1, 1, 0, a)
 							table.insert(ROUND.chair[n].imgHand, l)
 							TIMER.img[l] = os.time()+500
 							break
@@ -345,6 +354,7 @@ function updateHand(n, new)
 end
 
 function updateShadow(n, t)
+	if true then return false end
 	if not BOT[ROUND.chair[n].owner] then
 		local tt = t or os.time()+20
 		for i, v in pairs(ROUND.chair[n].imgShadow) do
@@ -543,7 +553,7 @@ function unlockFlag(p, name)
 end
 
 function showRules(p)
-	local order = {"dos","neighbor","custom","red","blue","green","bluegreen","yellow","ninguem","flash","jumpin","stack","sequence","hard","limbo","overload","perfection","satisfaction","insatisfaction","tracking","fastdraw","clean","nocombo","supercombo","hell","black","nochallenge","simon","imitate","shiny","batata","bomb","draw99","compass","curse","confuse","justice","magnet","peace","steal","theft","death","portal","ink","dice","paradox","half","oddeven","mimic","ban","mix","gift","trade","web","tornado","carousel","luck","chair","spy","thunder","rain","equality","meep","wish","box","random","clone","key","share","rule","chess","team","camouflage","limit","noaction","mess","revelation","mini","maxi","mulligan","drekkemaus","jingle","papaille","charlotte","elisah","buffy","snowy","icemice","elise"}
+	local order = {"dos","neighbor","custom","red","blue","green","bluegreen","yellow","ninguem","nou","flash","jumpin","stack","sequence","hard","limbo","overload","perfection","satisfaction","insatisfaction","tracking","fastdraw","clean","nocombo","supercombo","hell","black","nochallenge","simon","imitate","shiny","batata","bomb","draw99","compass","curse","confuse","justice","magnet","peace","steal","theft","death","portal","ink","dice","paradox","half","oddeven","mimic","ban","mix","gift","trade","web","tornado","carousel","luck","chair","spy","thunder","rain","equality","meep","wish","box","random","clone","key","share","rule","chess","team","camouflage","limit","noaction","mess","revelation","mini","maxi","mulligan","drekkemaus","jingle","papaille","charlotte","elisah","buffy","snowy","icemice","elise"}
 	local modes = {}
 	for i, v in pairs(order) do
 		if ROUND.gameMode[v] then
@@ -752,9 +762,48 @@ function drawTopCard(p)
 		table.insert(ROUND.topCard.img, v)
 	end
 	if ROUND.gameMode.neighbor and isNumeric(ROUND.topCard.card) then
-		table.insert(ROUND.topCard.img, tfm.exec.addImage(IMG.neighbor[ROUND.topCard.card[2]][ROUND.portal.side], target or "_1000", 430, y, p))
+		table.insert(ROUND.topCard.img, tfm.exec.addImage(IMG.neighbor[ROUND.topCard.card[2]][ROUND.portal.side], "_1000", 430, y, p))
 	end
 	return y
+end
+
+function addTopCard(card, p, update)
+	ROUND.topCard.img2 = ROUND.topCard.img2 or {}
+	if #ROUND.topCard.img2 >= 20 then
+		for i, v in pairs(ROUND.topCard.img2[1]) do
+			tfm.exec.removeImage(v)
+		end
+		table.remove(ROUND.topCard.img2, 1)
+	end
+	local x = update and ROUND.topCard.x or 455 + math.random(-8, 8)
+	local y = update and ROUND.topCard.y or 245 + math.random(-5, 5)
+	local a = update and ROUND.topCard.a or math.random(-20, 20)
+	local c = showCard(card, x, y, p, nil, "big", 0.55, 0.55, a, 1, 0.5, 0.5)
+	if ROUND.gameMode.neighbor and isNumeric(ROUND.topCard.card) then
+		table.insert(c, tfm.exec.addImage(IMG.neighbor[ROUND.topCard.card[2]][ROUND.portal.side], "_1000", x, y, p, 1, 1, math.rad(a), 1, 0.5, 0.5))
+	end
+	table.insert(ROUND.topCard.img2, c)
+	ROUND.topCard.x = x
+	ROUND.topCard.y = y
+	ROUND.topCard.a = a
+	return y
+end
+
+function removeTopCard()
+	local card = ROUND.topCard.img2[#ROUND.topCard.img2]
+	for i, v in pairs(card) do
+		tfm.exec.removeImage(v)
+	end
+	table.remove(ROUND.topCard.img2)
+end
+
+function clearTopCard()
+	for i, v in pairs(ROUND.topCard.img2) do
+		for j, w in pairs(v) do
+			tfm.exec.removeImage(w)
+		end
+	end
+	ROUND.topCard.img2 = {}
 end
 
 function showPreviousCard(p)
