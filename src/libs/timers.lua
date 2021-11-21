@@ -21,13 +21,11 @@ function addImageTimer(u, a, x, y, t, p)
 	return i
 end
 
-function delImagesTimer(tt)
+function delImagesTimer()
 	-- procura imagens pra apagar, requer TIMER.img
 	local apagar = {}
 	for i, v in pairs(TIMER.img) do
-		if tt and tt+10 < os.time() then
-			break
-		elseif v < os.time() then
+		if v < os.time() then
 			tfm.exec.removeImage(i)
 			table.insert(apagar, i)
 		end
@@ -77,20 +75,14 @@ function addFunctionTimer(f, t, ...)
 	table.insert(TIMER.func, {exec=f, time=GLOBAL_TIME+t, arg=table.pack(...)})
 end
 
-function execFunctionTimer(tt)
+function execFunctionTimer()
 	-- procura por funções para executar
 	local apagar={}
 	for i, v in pairs(TIMER.func) do
-		if tt and tt+10 < os.time() then
-			break
-		elseif v.time < GLOBAL_TIME then
+		if v.time < GLOBAL_TIME then
 			v.exec(table.unpack(v.arg or {}))
 			table.insert(apagar, i)
 		end
-		--if v.time < os.time() then
-		--  v.exec(table.unpack(v.arg or {}))
-		--  table.insert(apagar, i)
-		--end
 	end
 	for i=1, #apagar do
 		table.remove(TIMER.func, apagar[i])
@@ -101,9 +93,7 @@ function delTxtTimer(tt)
 	-- procura textos pra apagar, requer TIMER.txt
 	local apagar = {}
 	for i, v in pairs(TIMER.txt) do
-		if tt and tt+20 < os.time() then
-			break
-		elseif v.time < os.time() then
+		if v.time < os.time() then
 			table.insert(apagar,i)
 			ui.removeTextArea(v.id, v.player)
 		end

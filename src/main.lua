@@ -25,6 +25,10 @@ if tfm.get.room.isTribeHouse or tfm.get.room.name:sub(1,1) == "@" then
 	CONFIG.ranked = false
 	CONFIG.tribeHouse = true
 end
+if tfm.get.room.name:find("#event$") then
+	CONFIG.eventRoom = true
+	CONFIG.ranked = true
+end
 system.disableChatCommandDisplay(nil, true)
 tfm.exec.disableAutoShaman()
 --tfm.exec.disablePhysicalConsumables(true)

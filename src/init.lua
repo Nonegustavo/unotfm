@@ -24,9 +24,9 @@ CONST = {
 BOT = {}
 
 TITLE = {
-	foul_play = "",
-	king_of_thrones = "",
-	uno = ""
+	foul_play = "T_499",
+	king_of_thrones = "T_500",
+	uno = "T_501"
 }
 
 CONFIG = {

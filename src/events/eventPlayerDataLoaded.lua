@@ -57,6 +57,15 @@ onEvent("PlayerDataLoaded", function(p, data)
 		if cont >= 120 then
 			system.giveEventGift(p, TITLE.king_of_thrones)
 		end
+		cont = 0
+		for i, v in pairs(PLAYER[p].rules) do
+			cont = cont + 1
+		end
+		if cont >= CONFIG.qtdRule then
+			system.giveEventGift(p, TITLE.foul_play)
+			unlockRule(p, "custom", true)
+			unlockChair(p, "candy", true)
+		end
 		unlockRule(p, "elise", true)
 		unlockChair(p, "random", true)
 		PLAYER[p].loaded = true

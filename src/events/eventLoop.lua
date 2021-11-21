@@ -82,12 +82,12 @@ onEvent("Loop", function(current, remaining)
 				elseif ROUND.limbo and ROUND.limbo-GLOBAL_TIME < 5000 then
 					blinkAllert()
 				end
-				if ROUND.chair[ROUND.turn].confuse or isCursed(ROUND.turn, "poison") then
-					BOT.A.autoPlay()
-				elseif BOT[ROUND.chair[ROUND.turn].owner] then
-					BOT[ROUND.chair[ROUND.turn].owner].autoPlay()
-				elseif ROUND.time < GLOBAL_TIME then
+				if ROUND.time < GLOBAL_TIME then
 					autoPlay()
+				elseif ROUND.chair[ROUND.turn].confuse or isCursed(ROUND.turn, "poison") then
+					BOT.A.autoPlay()
+				elseif BOT[ROUND.chair[ROUND.turn].owner] and math.random() > 0.5 then
+					BOT[ROUND.chair[ROUND.turn].owner].autoPlay()
 				end
 				if ROUND.turn and (ROUND.chair[ROUND.turn].peace or ROUND.chair[ROUND.turn].peace2) then
 					for i=1, 3 do

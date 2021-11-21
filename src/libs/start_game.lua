@@ -1,6 +1,6 @@
 function randomGameMode()
 	local rules = getRule(tfm.get.room.xmlMapInfo.xml)
-	if rules and ((CONFIG.ranked and tfm.get.room.uniquePlayers >= 6) or CONFIG.test or #rules == 0) then
+	if rules and ((CONFIG.ranked and (tfm.get.room.uniquePlayers >= 6 or CONFIG.eventRoom)) or CONFIG.test or #rules == 0) then
 		for i, v in pairs(rules) do
 			ROUND.gameMode[v] = true
 		end
@@ -333,6 +333,10 @@ function returnCards()
 			local card = false
 			if v.flag == "cloud" and not ROUND.gameMode.mess then
 				local card = math.random() > 0.05 and randomActionCard() or {"black", "wild"}
+				local blacks = {random=1, simon=1, king=1, queen=1, clone=1, half=1, draw99=1}
+				if blacks[card[2]] then
+					card[1] = "black"
+				end
 				card[3] = true
 				card[4] = true
 				table.insert(v.hand, card)

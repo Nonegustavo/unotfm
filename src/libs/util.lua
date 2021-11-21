@@ -139,11 +139,46 @@ function translatedChatMessage(k, p, a, b, c, d, e)
 	end
 end
 
-
+EVENT_MAP = {
+	[1] = {map={"@7312582", "@7578073"}, day=15, rate=0.04, pityTimer=15},
+	[2] = {map={"@7366545"}, day=2, rate=0.07, pityTimer=8},
+	[5] = {map={"@7432492"}, day=1, rate=0.07, pityTimer=8},
+	[10] = {map={"@7279009"}, day=31, rate=0.07, pityTimer=8},
+	[11] = {map={"@7279009"}, day=31, rate=0.07, pityTimer=8},-- remover depois
+	[12] = {map={"@7322204", "@7366545"}, day=25, rate=0.07, pityTimer=8},
+}
+if not CONFIG.eventRoom then
+	table.insert(EVENT_MAP[2].map, "@7312582")
+	table.insert(EVENT_MAP[2].map, "@7578073")
+	table.insert(EVENT_MAP[5].map, "@7312582")
+	table.insert(EVENT_MAP[5].map, "@7578073")
+	table.insert(EVENT_MAP[10].map, "@7312582")
+	table.insert(EVENT_MAP[10].map, "@7578073")
+	table.insert(EVENT_MAP[11].map, "@7312582")
+	table.insert(EVENT_MAP[11].map, "@7578073")
+	table.insert(EVENT_MAP[12].map, "@7312582")
+	table.insert(EVENT_MAP[12].map, "@7578073")
+end
+function updateEventMap()
+	local month = tonumber(os.date("%m"))
+	local event = EVENT_MAP[month] or EVENT_MAP[1]
+	CONFIG.mapEvent = event.map
+	CONFIG.eventRate = event.rate
+	CONFIG.pityTimer = event.pityTimer
+	CONFIG.dayEvent = event.day
+end
 
 function newMap()
-	local map = CONFIG.music and MUSIC[math.random(#MUSIC)] or MAP[math.random(#MAP)]
-	if tfm.get.room.uniquePlayers >= 6 and CONFIG.ranked and not CONFIG.noRules then
+	updateEventMap()
+	local map = MAP[math.random(#MAP)]
+	print(CONFIG.ranked)
+	print(CONFIG.eventRoom)
+	print(tonumber(os.date("%d")))
+	if CONFIG.ranked and CONFIG.eventRoom and tonumber(os.date("%d")) == 15 then
+		map = {"@7312582", "@7578073"}
+	elseif CONFIG.ranked and CONFIG.eventRoom and CONFIG.dayEvent == tonumber(os.date("%d")) then
+		map = CONFIG.mapEvent
+	elseif tfm.get.room.uniquePlayers >= 6 and CONFIG.ranked and not CONFIG.noRules then
 		if CONFIG.mapEvent and (math.random() < CONFIG.eventRate or CONFIG.actualTimer >= CONFIG.pityTimer) then
 			CONFIG.actualTimer = 0
 			map = CONFIG.mapEvent

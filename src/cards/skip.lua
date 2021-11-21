@@ -8,6 +8,7 @@ function skip(n)
 	TIMER.img[img] = os.time()+1000
 	explosion(35, ROUND.chair[ROUND.turn].x, 80, 20, 20)
 	passTurn()
+	updateHand(n)
 	batataTimer(n)
 	ROUND.chair[n].confuse = false
 end

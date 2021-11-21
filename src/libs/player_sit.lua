@@ -10,17 +10,13 @@ function playerSit(p, chair, n)
 		chair.owner = p
 		chair.mode = "BUSY"
 		if PLAYER[p].skinEquiped == "random" then
-			if math.random() > 0.99 then
-				chair.skin.id = "cheeseclassic"
-			else
-				local pool = {}
-				for i, v in pairs(PLAYER[p].skin) do
-					if i ~= "random" then
-						table.insert(pool, i)
-					end
+			local pool = {}
+			for i, v in pairs(PLAYER[p].skin) do
+				if i ~= "random" then
+					table.insert(pool, i)
 				end
-				chair.skin.id = pool[math.random(#pool)]
 			end
+			chair.skin.id = pool[math.random(#pool)]
 		else
 			chair.skin.id = PLAYER[p].skinEquiped
 			chair.light = PLAYER[p].lightEquiped

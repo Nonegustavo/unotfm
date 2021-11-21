@@ -78,7 +78,9 @@ function(player, var, name)
 		if player == name then
 			ui.addTextArea(133, "<p align='center'><font size='10px'><a href='event:trophy 1'>"..translate(player, "CHANGE"), player, x, y+65, 80, nil, 0, 0, 0, true)
 		end
-		table.insert(imageId, tfm.exec.addImage(TROPHY[PLAYER[name].trophyEquiped].img, "&1", x+10, y+10, player))
+		if TROPHY[PLAYER[name].trophyEquiped] then
+			table.insert(imageId, tfm.exec.addImage(TROPHY[PLAYER[name].trophyEquiped].img, "&1", x+10, y+10, player))
+		end
 		--ui.addTextArea(134, "<p align='center'><font size='10px'><a href='event:trophy'>"..translate(player, "CHANGE"), player, x, y+65, 80, nil, 0, 0, 0, true)
 	end
 	do

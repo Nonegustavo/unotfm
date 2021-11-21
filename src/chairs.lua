@@ -785,7 +785,7 @@ SKIN = {
 		imgMini = "1716a7e3b37.png",
 		name = "SKIN_PIZZA",
 		mission = "SKIN_TEAM_MISSION",
-		progress = 10000,
+		progress = 1000,
 		author = "Arki#0113"
 	},
 	

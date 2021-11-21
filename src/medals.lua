@@ -12,15 +12,15 @@ TROPHY = {
 	},
 	drekkemaus = {
 		img = "15ed4c7b562.png",
-		lock = true,
+		--lock = true,
 	},
 	noel = {
 		img = "1600ef5f36a.png",
-		lock = true,
+		--lock = true,
 	},
 	charlotte = {
 		img = "1614e61ad6e.png",
-		lock = true,
+		--lock = true,
 	},
 	elisah = {
 		img = "1631789b13c.png",
@@ -28,10 +28,10 @@ TROPHY = {
 	},
 	buffy = {
 		img = "1662c864cd1.png",
-		lock = true,
+		--lock = true,
 	},
 	snowy = {
 		img = "167d3a64c76.png",
-		lock = true,
+		--lock = true,
 	},
 }

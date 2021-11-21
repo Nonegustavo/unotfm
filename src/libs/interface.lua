@@ -177,7 +177,7 @@ function showCard(card, x, y, p, target, size, scaleX, scaleY, angle, alpha, anc
 				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].color[card[1]][size or "mini"], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 				table.insert(img, tfm.exec.addImage(IMG.skin[ROUND.cardSkin].symbol[card[2]][size or "mini"], target or "_1000", x, y, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 			end
-			if not size and card[4] then
+			if (not size or size=="mini") and card[4] then
 				table.insert(img, tfm.exec.addImage(IMG.misc.ribbon, target or "_1000", x, y-10, p, scaleX, scaleY, angle, alpha, anchorX, anchorY))
 			end
 			if (not size or size=="mini") and card.lock then
@@ -235,7 +235,7 @@ end
 function updateHand(n, new)
 	local tt = os.time() + 10
 	local replay = false
-	local a = n == ROUND.turn and 1 or 0.6
+	local a = n == ROUND.turn and 1 or 0.7
 	local y = n == ROUND.turn and 320 or 340
 	new = new or {}
 	for i, v in pairs(ROUND.chair[n].imgHand) do
@@ -260,14 +260,14 @@ function updateHand(n, new)
 					end
 					local card = FLAG[ROUND.chair[n].flag].card
 					if card and card[1] == v[1] and card[2] == v[2] then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.wish, targetImage, x-25, y-25, ROUND.chair[n].owner, "mini", 1, 1, 0, a))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.wish, targetImage, x-25, y-25, ROUND.chair[n].owner, 1, 1, 0, a))
 					end
 					if isCursed(n, "shoe") and not isNumeric(v) then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.shoe[ROUND.portal.side], targetImage, x, y, ROUND.chair[n].owner, "mini", 1, 1, 0, a))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.shoe[ROUND.portal.side], targetImage, x, y, ROUND.chair[n].owner, 1, 1, 0, a))
 					end
 					for j, w in pairs(new) do
 						if v == w then
-							local l = tfm.exec.addImage(IMG.misc.glowCard, targetImage, x-5, y-5, ROUND.chair[n].owner, "mini", 1, 1, 0, a)
+							local l = tfm.exec.addImage(IMG.misc.glowCard, targetImage, x-5, y-5, ROUND.chair[n].owner, 1, 1, 0, a)
 							table.insert(ROUND.chair[n].imgHand, l)
 							TIMER.img[l] = os.time()+2000
 							break
@@ -292,14 +292,14 @@ function updateHand(n, new)
 					end
 					local card = FLAG[ROUND.chair[n].flag].card
 					if card and card[1] == v[1] and card[2] == v[2] then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.wish, "!0", x-25, y-25, ROUND.chair[n].owner, "mini", 1, 1, 0, a))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.wish, "!0", x-25, y-25, ROUND.chair[n].owner, 1, 1, 0, a))
 					end
 					if isCursed(n, "shoe") and not isNumeric(v) then
-						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.shoe[ROUND.portal.side], targetImage, x, y, ROUND.chair[n].owner, "mini", 1, 1, 0, a))
+						table.insert(ROUND.chair[n].imgHand, tfm.exec.addImage(IMG.misc.shoe[ROUND.portal.side], targetImage, x, y, ROUND.chair[n].owner, 1, 1, 0, a))
 					end
 					for j, w in pairs(new) do
 						if v == w then
-							local l = tfm.exec.addImage(IMG.misc.glowCard, targetImage, x-5, y-5, ROUND.chair[n].owner, "mini", 1, 1, 0, a)
+							local l = tfm.exec.addImage(IMG.misc.glowCard, targetImage, x-5, y-5, ROUND.chair[n].owner, 1, 1, 0, a)
 							table.insert(ROUND.chair[n].imgHand, l)
 							TIMER.img[l] = os.time()+500
 							break

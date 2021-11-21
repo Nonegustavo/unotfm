@@ -14,6 +14,7 @@ function mix1(n)
 	TIMER.img[img] = os.time()+1000
 	explosion(35, ROUND.chair[ROUND.turn].x, 80, 50, 10)
 	passTurn()
+	updateHand(n)
 	batataTimer(n)
 	ROUND.chair[n].confuse = false
 end
@@ -36,6 +37,7 @@ function mix2(n)
 	TIMER.img[img] = os.time()+1000
 	explosion(35, ROUND.chair[ROUND.turn].x, 80, 50, 10)
 	passTurn()
+	updateHand(n)
 	batataTimer(n)
 	ROUND.chair[n].confuse = false
 end
@@ -56,6 +58,7 @@ function mix3(n)
 	TIMER.img[img] = os.time()+1000
 	explosion(35, ROUND.chair[ROUND.turn].x, 80, 50, 10)
 	passTurn()
+	updateHand(n)
 	batataTimer(n)
 	ROUND.chair[n].confuse = false
 end

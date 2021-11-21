@@ -16,11 +16,13 @@ CHAIRLIST = {"random", "default", "red", "blue", "yellow", "green", "white", "cy
 	"flamingo", "honey", "old", "pineapple", "sack", "smartphone", "vampire", "moon", "max", 
 	"bill", "horn", "toast", "pizza", "samson", "fashion", "undertale", "forest", "kiss", 
 	"mountain", "pikachu", "simpsons", "truelove", "eclipse", "toothless", "lightfury", 
-	"kratos", "shenlong", "spider", }
+	"kratos", "shenlong", "spider"}
 PANELLIST = {"default", "picnic", "metal", "paper", "carpet", "disco", "cloud", "circuit"}
+LIGHTLIST = {"yellow", "blue", "green", "red", "white", "pink", "orange", "shaman", "hard", "divine"}
+LIGHTLIST = {"yellow", "blue"}
 
 window.create("INVENTORY", function(player, var, tab, page)
-	local txt, img = {119, 120, 121, 122, 123, 124, 125, 126, 127}, {}
+	local txt, img = {119, 120, 121, 122, 123, 124, 125, 126, 127, 131, 132}, {}
 	local x, y, width, height = 270, 20, 530, 340
 	-- fundo
 	table.insert(img, tfm.exec.addImage("17272d7f862.png", ":1", x, y, player))
@@ -31,8 +33,10 @@ window.create("INVENTORY", function(player, var, tab, page)
 	addLink(121, "tab chairs", player, x+34, y+52, 90, 18, true)
 	ui.addTextArea(122, translate(player, "PANELS"), player, x+39+93+15, y+52, 80, 18, 0, 0, 0, true)
 	addLink(123, "tab panels", player, x+34+93, y+52, 90, 18, true)
-	ui.addTextArea(124, translate(player, "FAVORITES"), player, x+39+93+93+15, y+52, nil, nil, 0, 0, 0, true)
-	addLink(125, "favorites", player, x+34+93+93, y+52, 90, 18, true)
+	ui.addTextArea(131, translate(player, "SPOTLIGHTS"), player, x+39+186+15, y+52, 80, 18, 0, 0, 0, true)
+	addLink(132, "tab lights", player, x+34+186, y+52, 90, 18, true)
+	ui.addTextArea(124, translate(player, "FAVORITES"), player, x+39+93+93+15+186, y+52, nil, nil, 0, 0, 0, true)
+	addLink(125, "favorites", player, x+34+93+93+186, y+52, 90, 18, true)
 	-- botão fechar
 	ui.addTextArea(126, "<p align='center'>"..translate(player, "CLOSE"), player, x+9, y+height-17, width-17, nil, 0, 0, 0, true)
 	addLink(127, "close inventory", player, x+9, y+height-17, width-17, 20, true)
@@ -47,16 +51,17 @@ function(player, var, tab, page)
 	var.fav = var.fav or false
 	table.insert(img, tfm.exec.addImage(var.tab == "chairs" and "17272e2e9bd.png" or "17272e306ca.png", ":1", x+37, y+53, player))
 	table.insert(img, tfm.exec.addImage(var.tab == "panels" and "17272e2e9bd.png" or "17272e306ca.png", ":1", x+37+93, y+53, player))
-	table.insert(img, tfm.exec.addImage(var.fav and "1726d406322.png" or "1726d4041dc.png", ":1", x+37+93+93, y+53, player))
-	local list = {chairs = CHAIRLIST, panels = PANELLIST}
+	table.insert(img, tfm.exec.addImage(var.tab == "lights" and "17272e2e9bd.png" or "17272e306ca.png", ":1", x+37+186, y+53, player))
+	table.insert(img, tfm.exec.addImage(var.fav and "1726d406322.png" or "1726d4041dc.png", ":1", x+37+93+93+183, y+53, player))
+	local list = {chairs = CHAIRLIST, panels = PANELLIST, lights = LIGHTLIST}
 	list = list[var.tab]
-	local inventory = {chairs = "skin", panels = "flags"}
+	local inventory = {chairs = "skin", panels = "flags", lights = "lights"}
 	inventory = inventory[var.tab]
-	local tableref = {chairs = SKIN, panels = FLAG}
+	local tableref = {chairs = SKIN, panels = FLAG, lights = LIGHT}
 	tableref = tableref[var.tab]
-	local equipref = {chairs = "skinEquiped", panels = "flagEquipped"}
+	local equipref = {chairs = "skinEquiped", panels = "flagEquipped", lights = "lightEquiped"}
 	equipref = equipref[var.tab]
-	local imgref = {chairs = "imgMini", panels = "imgDesc"}
+	local imgref = {chairs = "imgMini", panels = "imgDesc", lights = "imgMini"}
 	imgref = imgref[var.tab]
 	-- filtrar itens
 	local unlocked, locked, show = {}, {}, {}

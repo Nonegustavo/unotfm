@@ -26,6 +26,7 @@ function effectKnight(n)
 	explosion(35, ROUND.chair[ROUND.turn].x, 80, 50, 10)
 	passTurn()
 	batataTimer(n)
+	updateHand(n)
 	ROUND.chair[n].confuse = false
 end
 

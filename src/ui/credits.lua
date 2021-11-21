@@ -34,7 +34,7 @@ window.create("CREDITS", function(player, var)
 		{reason="THANKS_TRANSLATE", extra="ES", names={"Niopigaa#0000"}},
 		{reason="THANKS_TRANSLATE", extra="FR", names={"Urook#1131"}},
 		{reason="THANKS_TRANSLATE", extra="CN", names={"Wrfg#0000"}},
-		{reason="THANKS_TRANSLATE", extra="HU", names={"Weth#9837","Martinkat#0000"}},
+		{reason="THANKS_TRANSLATE", extra="HU", names={"Martinkat#0000"}},
 		{reason="THANKS_TRANSLATE", extra="TR", names={"Eralpciko#0000","Star#6725","Cileklidonut#8059"}},
 		{reason="THANKS_CARDS", names={"Billysmille#0000"}},
 		{reason="THANKS_POPUPS", names={"Esh#0095"}},

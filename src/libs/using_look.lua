@@ -28,7 +28,7 @@ function useTotoro(p)
 		local moreLook = split(look[2], ",")
 		local head = split(moreLook[1], "_")
 		local neck = split(moreLook[5], "_")
-		return fur == "81" and (head[1] == "171" or neck[1] == "23")
+		return (fur == "81" or head[1] == "229") and (head[1] == "171" or neck[1] == "23")
 	end
 end
 

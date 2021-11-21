@@ -607,7 +607,7 @@ RULE = {
 		mission = "TEAM_RULE",
 		img = "161a5d35a72.png",
 		imgDesc = "160f639df86.png",
-		lock = "TEAM",
+		public = true,
 		type = "PASSIVE",
 	},
 	custom = {
