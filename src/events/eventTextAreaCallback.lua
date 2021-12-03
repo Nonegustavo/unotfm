@@ -114,8 +114,9 @@ onEvent("TextAreaCallback", function(id, p, callback, ever)
 			window.close(p, "INFO_INVENTORY")
 		end
 	elseif arg[1] == "tab" and arg[2] then
+		local accept = {chairs=1, panels=1, lights=1}
 		local vars = window.getVars(p, "INVENTORY")
-		if vars then
+		if vars and accept[arg[2]] then
 			vars.tab = arg[2]
 			window.update(p, "INVENTORY")
 		end
@@ -138,10 +139,14 @@ onEvent("TextAreaCallback", function(id, p, callback, ever)
 			saveData(p)
 		end
 	elseif arg[1] == "info" and arg[2] and arg[3] then
-		if window.isOpened(p, "INFO_INVENTORY") then
-			window.update(p, "INFO_INVENTORY", arg[2], arg[3])
-		else
-			window.open(p, "INFO_INVENTORY", arg[2], arg[3])
+		local accept = {chairs = SKIN, panels = FLAG, lights = LIGHT}
+		local ref = accept[arg[2]]
+		if ref and ref[arg[3]] then
+			if window.isOpened(p, "INFO_INVENTORY") then
+				window.update(p, "INFO_INVENTORY", arg[2], arg[3])
+			else
+				window.open(p, "INFO_INVENTORY", arg[2], arg[3])
+			end
 		end
 	elseif arg[1] == "addfavorite" and arg[2] and arg[3] then
 		if arg[2] == "chairs" and PLAYER[p].skin[arg[3]] then
@@ -216,17 +221,16 @@ onEvent("TextAreaCallback", function(id, p, callback, ever)
 		window.update(p, "OPTIONS")
 	elseif arg[1] == "party" then
 		tfm.exec.chatMessage(string.format("<vp>/room #unotfm0<b>%s</b>", p), p)
-		tfm.exec.chatMessage(string.format("<vp>/room #unotfm0<b>%s</b>#music", p), p)
 	elseif arg[1] == "copy" then
 		customEditCopies(arg[2])
 		window.update(p, "CUSTOM")
 	elseif arg[1] == "desc" then
 		ui.addTextArea(99999, "", p, 55, 65, 690, 290, 0x142B2E, 0x142B2E, 0.8, true)
 		ui.addPopup(10, 2, translate(p, "CUSTOM_DESC_INFO"), p, 200, 200, 400, true)
-	elseif arg[1] == "remove" then
+	elseif arg[1] == "remove" and arg[2] and tonumber(arg[2]) then
 		customRemoveAction(p, tonumber(arg[2]))
 		window.update(p, "CUSTOM")
-	elseif arg[1] == "edit" then
+	elseif arg[1] == "edit" and arg[3] then
 		ui.addTextArea(99999, "", p, 55, 65, 690, 290, 0x142B2E, 0x142B2E, 0.8, true)
 		if arg[3] == "amount" then
 			local txt = "2 => "..string.format(translate(p, "AMOUNT_X"), 2)
@@ -250,7 +254,7 @@ onEvent("TextAreaCallback", function(id, p, callback, ever)
 		ui.removeTextArea(99998, p)
 		customAddAction(p, arg[2])
 		window.update(p, "CUSTOM")
-	elseif arg[1] == "edit2" then
+	elseif arg[1] == "edit2" and arg[4] and tonumber(arg[2]) then
 		ui.removeTextArea(99999, p)
 		ui.removeTextArea(99998, p)
 		customEditAction(p, tonumber(arg[2]), arg[3], arg[4])
