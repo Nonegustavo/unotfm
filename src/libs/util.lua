@@ -141,10 +141,9 @@ end
 
 EVENT_MAP = {
 	[1] = {map={"@7312582", "@7578073"}, day=15, rate=0.04, pityTimer=15},
-	[2] = {map={"@7366545"}, day=2, rate=0.07, pityTimer=8},
+	[2] = {map={"@7894773"}, day=2, rate=0.07, pityTimer=8},
 	[5] = {map={"@7432492"}, day=1, rate=0.07, pityTimer=8},
 	[10] = {map={"@7279009"}, day=31, rate=0.07, pityTimer=8},
-	[11] = {map={"@7279009"}, day=31, rate=0.07, pityTimer=8},-- remover depois
 	[12] = {map={"@7322204", "@7366545"}, day=25, rate=0.07, pityTimer=8},
 }
 if not CONFIG.eventRoom then
@@ -154,8 +153,6 @@ if not CONFIG.eventRoom then
 	table.insert(EVENT_MAP[5].map, "@7578073")
 	table.insert(EVENT_MAP[10].map, "@7312582")
 	table.insert(EVENT_MAP[10].map, "@7578073")
-	table.insert(EVENT_MAP[11].map, "@7312582")
-	table.insert(EVENT_MAP[11].map, "@7578073")
 	table.insert(EVENT_MAP[12].map, "@7312582")
 	table.insert(EVENT_MAP[12].map, "@7578073")
 end

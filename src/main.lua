@@ -12,8 +12,11 @@ addFunctionTimer(function()
 		if nickHashtag(i) == temp then
 			OWNER = i
 			colorNick(i)
-			break
+			return
 		end
+	end
+	if not (tfm.get.room.isTribeHouse or tfm.get.room.name:sub(1,1) == "@") then
+		CONFIG.ranked = true
 	end
 end, 500)
 if not temp then

@@ -521,7 +521,7 @@ function drawCardTracking(n, card)
 		mimicDraw(n, 1)
 		local new = drawCard(n, 1, "PASS", card)
 		ROUND.chair[n].action = false
-		if ROUND.gameMode.overload and #ROUND.chair[n].hand > 10 or bombInHand(n) or #ROUND.chair[n].hand > 30 then
+		if mustBeEliminated(n) then
 			eliminate(n, true)
 		elseif ROUND.gameMode.insatisfaction then
 			ROUND.chair[n].confuse = false
@@ -571,6 +571,13 @@ function drawCard(n, qtd, cause, card)
 			end
 			if #ROUND.chair[n].hand < CONST.maxHand and #ROUND.deck > 0 then
 				temp = card and table.remove(ROUND.deck, card) or table.remove(ROUND.deck)
+				if ROUND.chair[n].luck then
+					if temp[1] ~= "black" and temp[1] ~= ROUND.topCard.card[1] and temp[2] ~= ROUND.topCard.card[2] then
+						table.insert(ROUND.pile, temp)
+						temp = {ROUND.topCard.card[1], temp[2], true}
+					end
+					ROUND.chair[n].luck = false
+				end
 				table.insert(ROUND.chair[n].hand, temp)
 				table.insert(new, temp)
 			end
@@ -1404,9 +1411,17 @@ function tracking(n)
 		local player = ROUND.chair[n].owner
 		local img = tfm.exec.addImage(IMG.skin[ROUND.portal.side].misc.discover, "!1000", ROUND.chair[n].x-50, 20)
 		local l = tfm.exec.addImage(IMG.misc.genericLayer, "!1000", 0, 0, player)
-		local t1 = showCard(ROUND.deck[o[1]], 230, 200, player, "!1000", "big")
-		local t2 = showCard(ROUND.deck[o[2]], 350, 200, player, "!1000", "big")
-		local t3 = showCard(ROUND.deck[o[3]], 470, 200, player, "!1000", "big")
+		local op = {ROUND.deck[o[1]], ROUND.deck[o[2]], ROUND.deck[o[3]]}
+		if ROUND.chair[n].luck then
+			for i=1, #op do
+				if op[i][1] ~= "black" and op[i][1] ~= ROUND.topCard.card[1] and op[i][2] ~= ROUND.topCard.card[2] then
+					op[i] = {ROUND.topCard.card[1], op[i][2]}
+				end
+			end
+		end
+		local t1 = showCard(op[1], 230, 200, player, "!1000", "big")
+		local t2 = showCard(op[2], 350, 200, player, "!1000", "big")
+		local t3 = showCard(op[3], 470, 200, player, "!1000", "big")
 		local images = {img, l}
 		for i, v in pairs({t1,t2,t3}) do
 			for j, w in pairs(v) do

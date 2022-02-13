@@ -43,13 +43,14 @@ BOT.Charlotte = {
 		end
 		BOT.Charlotte.img = BOT.Charlotte.imgSleepy
 	end,
-	eventLose = function ()
+	eventLose = function (name)
 		if BOT.Charlotte.sleep then
 			quote("Charlotte", "QUOTE_43")
 		elseif math.random() > 0.5 then
 			quote("Charlotte", "QUOTE_44")
 		end
 		BOT.Charlotte.img = BOT.Charlotte.imgSleepy
+		unlockTrophy(name, "charlotte")
 	end,
 	eventLoop = function (n)
 		if not BOT.Charlotte.sleep then

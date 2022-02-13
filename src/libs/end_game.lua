@@ -574,7 +574,7 @@ function endGame(p, card, winners, mode)
 			end
 		end
 	end
-	if not ROUND.startTime or os.time() - ROUND.startTime < 180000 then
-		CONFIG.noRules = true
-	end
+	--if not ROUND.startTime or os.time() - ROUND.startTime < 180000 then
+	--	CONFIG.noRules = true
+	--end
 end
