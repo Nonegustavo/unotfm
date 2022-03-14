@@ -265,7 +265,7 @@ onEvent("ChatCommand", function(p, cmd)
 			PLAYER[p].faustao = true
 		end
 	elseif arg[1] == "challenge" then
-		window.open(p, "CHALLENGE", {"red", "n2"})
+		--window.open(p, "CHALLENGE", {"red", "n2"})
 	elseif arg[1] == "rules" and arg[2] then
 		for i=2, #arg do
 			eventChatCommand(p, "rule " .. arg[i])

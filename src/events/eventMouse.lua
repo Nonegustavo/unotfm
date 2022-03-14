@@ -195,8 +195,7 @@ onEvent("Mouse", function(p, x, y, autoplay)
 									end
 								end
 								local boss = {Drekkemaus=1, Jingle=1, Charlotte=1}
-								if ROUND.gameMode.tracking or ROUND.chair[chair].luck or boss[ROUND.chair[chair].owner] then
-									ROUND.chair[chair].luck = nil
+								if ROUND.gameMode.tracking or boss[ROUND.chair[chair].owner] then
 									tracking(chair)
 								elseif ROUND.gameMode.fastdraw or ROUND.chair[chair].owner == "Papaille" then
 									fastDraw(chair)

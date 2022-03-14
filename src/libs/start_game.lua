@@ -277,6 +277,8 @@ function roundBegin()
 	ROUND.startTime = os.time()
 	if ROUND.gameMode.limit then
 		tfm.exec.setGameTime(360)
+	elseif CONFIG.eventRoom and ROUND.gameMode.mess then
+		tfm.exec.setGameTime(900)
 	else
 		tfm.exec.setGameTime(720)
 	end
