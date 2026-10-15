@@ -354,7 +354,18 @@ function updateHand(n, new)
 end
 
 function updateShadow(n, t)
+
+	if type(n) ~= "number" or not ROUND.chair[n] then
+        return false
+    end
+
+	-- This disables the function, I do not know
+	-- how the following part was reached in one 
+	-- of the bug reports, but just to make sure,
+	-- I added a guard-clause before it.
+	-- @Vit0rg 
 	if true then return false end
+
 	if not BOT[ROUND.chair[n].owner] then
 		local tt = t or os.time()+20
 		for i, v in pairs(ROUND.chair[n].imgShadow) do

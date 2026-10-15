@@ -2,7 +2,15 @@ function draw4(n, hand)
 	ui.removeTextArea(2)
 	ui.removeTextArea(70, ROUND.chair[n].owner)
 	local target = nextChair(n)
-	if ROUND.chair[target].action and ROUND.chair[target].action.name == "SKIP" then
+	if target and ROUND.chair[target]
+		and ROUND.chair[target].action
+		and ROUND.chair[target].action.name == "SKIP"
+		then
+		-- That is a long 'AND chain', but considering the amount of
+		-- indirections and the data modeling, it is the
+		-- type of patch that can be applied 'temporarily', while
+		-- in reality, becomes permanent until a whole refactoring is made.
+		-- @Vit0rg
 		unlockChair(ROUND.chair[n].owner, "pumpkin")
 	end
 	if not ROUND.gameMode.nochallenge or not ROUND.gameMode.nocombo then

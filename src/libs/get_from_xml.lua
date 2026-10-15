@@ -5,7 +5,7 @@ function getChairs(xml)
 	else
 		--arg = split((not CONFIG.ranked or CONFIG.eventRoom) and "40,120,200,280,360,440,520,600,680,760" or str or "50,150,250,350,450,550,650,750", ",")
 		local arg = split("40,120,200,280,360,440,520,600,680,760", ",")
-		
+
 		local chair = {}
 		for i, v in pairs(arg) do
 			local x = tonumber(v)

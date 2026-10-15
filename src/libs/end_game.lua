@@ -1,5 +1,5 @@
 function scoreHand(n)
-	local sum = {n0=0, n1=1, n2=2, n3=3, n4=4, n5=5, n6=6, n7=7, n8=8, n9=9, skip=20, reverse=20, draw2=20, wild=50, draw4=50, peace=20, death=20, carousel=20, trade=20, gift=20, random=20, spy=20, tornado=20, chair=20, imitate=20, silence=20, equal=20}
+	local sum = { n0 = 0, n1 = 1, n2 = 2, n3 = 3, n4 = 4, n5 = 5, n6 = 6, n7 = 7, n8 = 8, n9 = 9, skip = 20, reverse = 20, draw2 = 20, wild = 50, draw4 = 50, peace = 20, death = 20, carousel = 20, trade = 20, gift = 20, random = 20, spy = 20, tornado = 20, chair = 20, imitate = 20, silence = 20, equal = 20 }
 	local score = 0
 	for i, v in pairs(ROUND.chair[n].hand) do
 		score = score + (sum[v[2]] or 20)
@@ -21,7 +21,7 @@ function endGame(p, card, winners, mode)
 			qtdPlayers = qtdPlayers + 1
 		end
 	end
-	for i=10001, 10005 do
+	for i = 10001, 10005 do
 		ui.removeTextArea(i)
 	end
 	ui.removeTextArea(10)
@@ -42,7 +42,7 @@ function endGame(p, card, winners, mode)
 					break
 				end
 				if ccont >= 2 then
-				--  break
+					--  break
 				end
 			end
 		end
@@ -57,16 +57,21 @@ function endGame(p, card, winners, mode)
 		ui.addTextArea(13, "", nil, 0, 0, 800, 400, 1, 1, 0.2, false)
 		if pp then
 			for i, v in pairs(PLAYER) do
-				ui.addTextArea(14, string.format("<p align='center'><font size='40px' color='#ffffff'>%s", string.format(translate(i, "TEAM_WON"), nickHashtag(p), nickHashtag(pp))), i, 0, 160, 800, 400, 1, 1, 0.7, false)
-				tfm.exec.chatMessage("<j>"..string.format(translate(i, "TEAM_WON"), nickHashtag(p), nickHashtag(pp)), i)
+				ui.addTextArea(14,
+					string.format("<p align='center'><font size='40px' color='#ffffff'>%s",
+						string.format(translate(i, "TEAM_WON"), nickHashtag(p), nickHashtag(pp))), i, 0, 160, 800, 400, 1,
+					1, 0.7, false)
+				tfm.exec.chatMessage("<j>" .. string.format(translate(i, "TEAM_WON"), nickHashtag(p), nickHashtag(pp)), i)
 				if not v.chair then
 					v.chairDelay = 0
 				end
 			end
 		else
 			for i, v in pairs(PLAYER) do
-				ui.addTextArea(14, string.format("<p align='center'><font size='40px' color='#ffffff'>%s", string.format(translate(i, "PLAYER_WON"), nickHashtag(p))), i, 0, 160, 800, 400, 1, 1, 0.7, false)
-				tfm.exec.chatMessage("<j>"..string.format(translate(i, "PLAYER_WON"), nickHashtag(p)), i)
+				ui.addTextArea(14,
+					string.format("<p align='center'><font size='40px' color='#ffffff'>%s",
+						string.format(translate(i, "PLAYER_WON"), nickHashtag(p))), i, 0, 160, 800, 400, 1, 1, 0.7, false)
+				tfm.exec.chatMessage("<j>" .. string.format(translate(i, "PLAYER_WON"), nickHashtag(p)), i)
 				if not v.chair then
 					v.chairDelay = 0
 				end
@@ -90,8 +95,10 @@ function endGame(p, card, winners, mode)
 					if CONFIG.scoreBy == "SCORE_2" then
 						tfm.exec.setPlayerScore(v.owner, tempScore, true)
 					else
-						ui.addTextArea(3010+i, "<p align='center'><font size='30px' color='#000000'><b>"..tempScore, nil, v.x-49, 331, 100, nil, 0, 0, 0, false)
-						ui.addTextArea(3000+i, "<p align='center'><font size='30px'><b><j>"..tempScore, nil, v.x-50, 330, 100, nil, 0, 0, 0, false)
+						ui.addTextArea(3010 + i, "<p align='center'><font size='30px' color='#000000'><b>" .. tempScore,
+							nil, v.x - 49, 331, 100, nil, 0, 0, 0, false)
+						ui.addTextArea(3000 + i, "<p align='center'><font size='30px'><b><j>" .. tempScore, nil, v.x - 50,
+							330, 100, nil, 0, 0, 0, false)
 					end
 				end
 				if v.owner and v.owner ~= "" and PLAYER[v.owner] then
@@ -120,7 +127,7 @@ function endGame(p, card, winners, mode)
 						if ROUND.chair[nextChair(i)].skin.id == "vampire" or ROUND.chair[previousChair(i)].skin.id == "vampire" then
 							unlockChair(v.owner, "vampire")
 						end
-						local today = math.floor(os.time()/86400000)
+						local today = math.floor(os.time() / 86400000)
 						if PLAYER[v.owner].lastDayPlayed and PLAYER[v.owner].lastDayPlayed ~= today then
 							if PLAYER[v.owner].lastDayPlayed + 1 == today then
 								PLAYER[v.owner].dayStreak = PLAYER[v.owner].dayStreak + 1
@@ -142,16 +149,20 @@ function endGame(p, card, winners, mode)
 			end
 		end
 		if pp then
-			score = math.ceil(score/2)
+			score = math.ceil(score / 2)
 		end
 		if CONFIG.scoreBy == "SCORE_1" then
 			tfm.exec.setPlayerScore(p, score, true)
-			ui.addTextArea(3010+PLAYER[p].chair, "<p align='center'><font size='30px' color='#000000'><b>"..score, nil, ROUND.chair[PLAYER[p].chair].x-49, 51, 100, nil, 0, 0, 0, false)
-			ui.addTextArea(3000+PLAYER[p].chair, "<p align='center'><font size='30px'><b><vp>"..score, nil, ROUND.chair[PLAYER[p].chair].x-50, 50, 100, nil, 0, 0, 0, false)
+			ui.addTextArea(3010 + PLAYER[p].chair, "<p align='center'><font size='30px' color='#000000'><b>" .. score,
+				nil, ROUND.chair[PLAYER[p].chair].x - 49, 51, 100, nil, 0, 0, 0, false)
+			ui.addTextArea(3000 + PLAYER[p].chair, "<p align='center'><font size='30px'><b><vp>" .. score, nil,
+				ROUND.chair[PLAYER[p].chair].x - 50, 50, 100, nil, 0, 0, 0, false)
 			if pp then
 				tfm.exec.setPlayerScore(pp, score, true)
-				ui.addTextArea(3010+PLAYER[pp].chair, "<p align='center'><font size='30px' color='#000000'><b>"..score, nil, ROUND.chair[PLAYER[pp].chair].x-49, 51, 100, nil, 0, 0, 0, false)
-				ui.addTextArea(3000+PLAYER[pp].chair, "<p align='center'><font size='30px'><b><vp>"..score, nil, ROUND.chair[PLAYER[pp].chair].x-50, 50, 100, nil, 0, 0, 0, false)
+				ui.addTextArea(3010 + PLAYER[pp].chair, "<p align='center'><font size='30px' color='#000000'><b>" ..
+				score, nil, ROUND.chair[PLAYER[pp].chair].x - 49, 51, 100, nil, 0, 0, 0, false)
+				ui.addTextArea(3000 + PLAYER[pp].chair, "<p align='center'><font size='30px'><b><vp>" .. score, nil,
+					ROUND.chair[PLAYER[pp].chair].x - 50, 50, 100, nil, 0, 0, 0, false)
 			end
 		elseif CONFIG.scoreBy == "SCORE_3" then
 			tfm.exec.setPlayerScore(p, 1, true)
@@ -196,7 +207,7 @@ function endGame(p, card, winners, mode)
 			end
 			unlockChair(p, "max", true)
 		end
-		if OWNER ~= "Ninguem#0095" and PLAYER[OWNER] and tfm.get.room.uniquePlayers >= qtdPlayers and math.random(100) <= qtdPlayers*5 then
+		if OWNER ~= "Ninguem#0095" and PLAYER[OWNER] and tfm.get.room.uniquePlayers >= qtdPlayers and math.random(100) <= qtdPlayers * 5 then
 			for i, v in pairs(PLAYER) do
 				if v.chair then
 					unlockChair(i, "show", true)
@@ -240,7 +251,7 @@ function endGame(p, card, winners, mode)
 					if PLAYER[pp].stats.victory.team >= 1000 then
 						unlockChair(pp, "pizza")
 					end
-					
+
 					if PLAYER[p].stats.victory.team >= 10 then
 						unlockRule(p, "team", true)
 					end
@@ -481,7 +492,7 @@ function endGame(p, card, winners, mode)
 					end
 				end
 				if not BOT[p] then
-					if not RANKED and tfm.get.room.playerList[p].score+score >= 3000 then
+					if not RANKED and tfm.get.room.playerList[p].score + score >= 3000 then
 						unlockChair(p, "shaman")
 					end
 					if RANKED then
@@ -490,7 +501,7 @@ function endGame(p, card, winners, mode)
 				end
 				if pp then
 					if not BOT[pp] then
-						if not RANKED and tfm.get.room.playerList[pp].score+score >= 3000 then
+						if not RANKED and tfm.get.room.playerList[pp].score + score >= 3000 then
 							unlockChair(pp, "shaman")
 						end
 						if RANKED then
@@ -512,7 +523,7 @@ function endGame(p, card, winners, mode)
 				end
 				addFunctionTimer(function()
 					for i, v in pairs(PLAYER) do
-						if not BOT[i] and tfm.get.room.playerList[i] and i:sub(1,1) ~= "*" then
+						if not BOT[i] and tfm.get.room.playerList[i] and i:sub(1, 1) ~= "*" then
 							if not v.chair then
 								v.stats.spectator = v.stats.spectator + 1
 								if v.stats.spectator >= 1000 then
@@ -533,18 +544,19 @@ function endGame(p, card, winners, mode)
 									unlockChair(i, "computer")
 								end
 							end
-							
 						end
 						saveData(i)
 					end
 				end, 500)
 			end
-		end,500)
+		end, 500)
 	elseif winners then
 		ui.addTextArea(13, "", nil, 0, 0, 800, 400, 1, 1, 0.2, false)
 		for i, v in pairs(PLAYER) do
-			ui.addTextArea(14, string.format("<p align='center'><font size='40px' color='#ffffff'>%s", translate(i, "PLAYER_TIED")).."\n<font size='30px'>"..table.concat(winners, ", "), i, 0, 160, 800, 400, 1, 1, 0.7, false)
-			tfm.exec.chatMessage("<j>"..translate(i, "PLAYER_TIED").."("..table.concat(winners, ", ")..")", i)
+			ui.addTextArea(14,
+				string.format("<p align='center'><font size='40px' color='#ffffff'>%s", translate(i, "PLAYER_TIED")) ..
+				"\n<font size='30px'>" .. table.concat(winners, ", "), i, 0, 160, 800, 400, 1, 1, 0.7, false)
+			tfm.exec.chatMessage("<j>" .. translate(i, "PLAYER_TIED") .. "(" .. table.concat(winners, ", ") .. ")", i)
 			if not v.chair then
 				v.chairDelay = 0
 			end
@@ -552,15 +564,17 @@ function endGame(p, card, winners, mode)
 	else
 		ui.addTextArea(13, "", nil, 0, 0, 800, 400, 1, 1, 0.2, false)
 		for i, v in pairs(PLAYER) do
-			ui.addTextArea(14, string.format("<p align='center'><font size='40px' color='#ffffff'>%s", translate(i, "PLAYER_LOST")), i, 0, 160, 800, 400, 1, 1, 0.7, false)
-			tfm.exec.chatMessage("<j>"..translate(i, "PLAYER_LOST"), i)
+			ui.addTextArea(14,
+				string.format("<p align='center'><font size='40px' color='#ffffff'>%s", translate(i, "PLAYER_LOST")), i,
+				0, 160, 800, 400, 1, 1, 0.7, false)
+			tfm.exec.chatMessage("<j>" .. translate(i, "PLAYER_LOST"), i)
 			if not v.chair then
 				v.chairDelay = 0
 			end
 		end
 		if CONFIG.ranked and qtdPlayers >= 4 and tfm.get.room.uniquePlayers >= 4 then
 			for i, v in pairs(PLAYER) do
-				if not BOT[i] and tfm.get.room.playerList[i] and i:sub(1,1) ~= "*" then
+				if not BOT[i] and tfm.get.room.playerList[i] and i:sub(1, 1) ~= "*" then
 					if not v.chair and v.notAfk then
 						v.stats.spectator = v.stats.spectator + 1
 						if v.stats.spectator >= 1000 then
