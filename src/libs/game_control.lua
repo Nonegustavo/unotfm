@@ -430,29 +430,66 @@ function whichPlayer(n, x)
 	end
 end
 
+-- Upvalue to memoize the last known valid chair index
+local lastValidChair = 1
+
 function nextChair(n)
-	local sum = {LEFT = -1, RIGHT = 1}
-	local cont = 20
-	n = n or 1
-	repeat
-		n = n + sum[ROUND.flow or "LEFT"]
-		n = n > #ROUND.chair and 1 or n < 1 and #ROUND.chair or n
-		cont = cont - 1
-		if cont <= 0 then
-			n = nil
-			break
-		end
-	until ROUND.chair[n].mode == "BUSY" or ROUND.chair[n].mode == "FREE"
-	return n
+    -- HARD FIX: Guarantee ROUND.chair is a valid table. 
+    -- If it's corrupted (e.g., boolean from XML parsing), fallback safely.
+    if type(ROUND.chair) ~= "table" or #ROUND.chair == 0 then
+        return lastValidChair
+    end
+
+    local sum = {LEFT = -1, RIGHT = 1}
+    local maxChecks = #ROUND.chair
+    n = type(n) == "number" and n or lastValidChair
+
+    local checks = 0
+    repeat
+        n = n + sum[ROUND.flow or "LEFT"]
+        n = n > #ROUND.chair and 1 or n < 1 and #ROUND.chair or n
+
+        local chair = ROUND.chair[n]
+
+        if type(chair) == "table" and (chair.mode == "BUSY" or chair.mode == "FREE") then
+            lastValidChair = n
+            return n
+        end
+
+        checks = checks + 1
+    until checks >= maxChecks
+
+
+    return lastValidChair
 end
 
 function previousChair(n)
-	local sum = {LEFT = 1, RIGHT = -1}
-	repeat
-		n = n + sum[ROUND.flow]
-		n = n > #ROUND.chair and 1 or n < 1 and #ROUND.chair or n
-	until ROUND.chair[n].mode == "BUSY" or ROUND.chair[n].mode == "FREE"
-	return n
+    -- HARD FIX: Guarantee ROUND.chair is a valid table. 
+    -- If it's corrupted (e.g., boolean from XML parsing), fallback safely.
+    if type(ROUND.chair) ~= "table" or #ROUND.chair == 0 then
+        return lastValidChair
+    end
+
+    local sum = {LEFT = 1, RIGHT = -1}
+    local maxChecks = #ROUND.chair
+    n = type(n) == "number" and n or lastValidChair
+
+    local checks = 0
+    repeat
+        n = n + sum[ROUND.flow or "LEFT"]
+        n = n > #ROUND.chair and 1 or n < 1 and #ROUND.chair or n
+
+        local chair = ROUND.chair[n]
+
+        if type(chair) == "table" and (chair.mode == "BUSY" or chair.mode == "FREE") then
+            lastValidChair = n
+            return n
+        end
+
+        checks = checks + 1
+    until checks >= maxChecks
+
+    return lastValidChair
 end
 
 function giveCard(n, card, dontPass)

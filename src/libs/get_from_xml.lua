@@ -1,37 +1,37 @@
 function getChairs(xml)
-	local str = string.match(xml, 'Chair="(.-)"')
-	if not str then
-		return false
-	else
-		--arg = split((not CONFIG.ranked or CONFIG.eventRoom) and "40,120,200,280,360,440,520,600,680,760" or str or "50,150,250,350,450,550,650,750", ",")
-		local arg = split("40,120,200,280,360,440,520,600,680,760", ",")
+    local str = string.match(xml, 'Chair="(.-)"')
+    -- HARD FIX: Never return false.
+	-- Fallback to default coordinates to prevent ROUND.chair from becoming a boolean.
+    if not str then
+        str = "40,120,200,280,360,440,520,600,680,760"
+    end
 
-		local chair = {}
-		for i, v in pairs(arg) do
-			local x = tonumber(v)
-			table.insert(chair, {
-				mode = "EMPTY",
-				['x'] = x,
-				owner = "",
-				plays = 0,
-				maxHand = 0,
-				maxDraw = 0,
-				underTime = true,
-				afk = false,
-				draw = false,
-				phase = false,
-				batata = 1,
-				batata2 = 1,
-				flag = "default",
-				skin = {id = "empty", img = {}},
-				imgHand = {},
-				imgShadow = {},
-				hand = {},
-				clickDelay = os.time(),
-			})
-		end
-		return chair
-	end
+    local arg = split(str, ",")
+    local chair = {}
+    for i, v in pairs(arg) do
+        local x = tonumber(v)
+        table.insert(chair, {
+            mode = "EMPTY",
+            ['x'] = x or (i * 80),
+            owner = "",
+            plays = 0,
+            maxHand = 0,
+            maxDraw = 0,
+            underTime = true,
+            afk = false,
+            draw = false,
+            phase = false,
+            batata = 1,
+            batata2 = 1,
+            flag = "default",
+            skin = {id = "empty", img = {}},
+            imgHand = {},
+            imgShadow = {},
+            hand = {},
+            clickDelay = os.time(),
+        })
+    end
+    return chair
 end
 
 function getColor(xml)
