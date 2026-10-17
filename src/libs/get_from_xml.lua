@@ -1,12 +1,7 @@
 function getChairs(xml)
-    local str = string.match(xml, 'Chair="(.-)"')
-    -- HARD FIX: Never return false.
-	-- Fallback to default coordinates to prevent ROUND.chair from becoming a boolean.
-    if not str then
-        str = "40,120,200,280,360,440,520,600,680,760"
-    end
-
-    local arg = split(str, ",")
+    -- The table always has 10 chairs. The positions in the map Chair="" attribute
+    -- are ignored on purpose: some maps list only 8 of them.
+    local arg = split("40,120,200,280,360,440,520,600,680,760", ",")
     local chair = {}
     for i, v in pairs(arg) do
         local x = tonumber(v)
