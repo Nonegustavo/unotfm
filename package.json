@@ -1,10 +1,8 @@
 {
   "devDependencies": {
-    "watch": "latest",
-    "http": "latest",
     "jsdom": "latest",
-    "sync-request": "latest",
-    "luamin": "latest"
+    "luamin": "latest",
+    "watch": "latest"
   },
   "scripts": {
     "build": "node build.js",
