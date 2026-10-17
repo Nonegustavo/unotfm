@@ -83,8 +83,6 @@ onEvent("TextAreaCallback", function(id, p, callback, ever)
 			window.close(p, "CHESS")
 		elseif arg[2] == "tip" then
 			window.close(p, "TIP")
-		elseif arg[2] == "house" then
-			window.close(p, "HOUSE")
 		elseif arg[2] == "settings" then
 			window.close(p, "SETTINGS")
 		elseif arg[2] == "profile" then

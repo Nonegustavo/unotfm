@@ -70,7 +70,6 @@ onEvent("NewGame", function()
 			flowLight = 1,
 			cloud = {},
 			arrowImg = {},
-			imgRule = {},
 		}
 		ROUND.chair = getChairs(tfm.get.room.xmlMapInfo.xml)
 		ROUND.color = getColor(tfm.get.room.xmlMapInfo.xml)
