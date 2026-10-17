@@ -13,118 +13,95 @@ PACK = {
 
 }
 
-function packChair(t)
+function packChair(t, tail)
 	local str = ""
-	for i, v in pairs(PACK.chairs) do
+	for i, v in ipairs(PACK.chairs) do
 		t[v] = t[v] == true and "1" or t[v]
 		str = str .. (t and t[v] or "0")
 	end
-	return str
+	return str .. (tail or "")
 end
 
-function packRules(t)
+function packRules(t, tail)
 	local str = ""
-	for i, v in pairs(PACK.rules) do
+	for i, v in ipairs(PACK.rules) do
 		t[v] = t[v] == true and "1" or t[v]
 		str = str .. (t and t[v] or "0")
 	end
-	return str
+	return str .. (tail or "")
 end
 
-function packTrophy(t)
+function packTrophy(t, tail)
 	local str = ""
-	for i, v in pairs(PACK.medals) do
+	for i, v in ipairs(PACK.medals) do
 		t[v] = t[v] == true and "1" or t[v]
 		str = str .. (t and t[v] or "0")
 	end
-	return str
+	return str .. (tail or "")
 end
 
-function packLight(t)
+function packLight(t, tail)
 	local str = ""
-	for i, v in pairs(PACK.lights) do
+	for i, v in ipairs(PACK.lights) do
 		t[v] = t[v] == true and "1" or t[v]
 		str = str .. (t and t[v] or "0")
 	end
-	return str
+	return str .. (tail or "")
 end
 
-function packMap(t)
+function packMap(t, tail)
 	local str = ""
-	for i, v in pairs(PACK.maps) do
+	for i, v in ipairs(PACK.maps) do
 		t[v] = t[v] == true and "1" or t[v]
 		str = str .. (t and t[v] or "0")
 	end
-	return str
+	return str .. (tail or "")
 end
 
-function packFlag(t)
+function packFlag(t, tail)
 	local str = ""
-	for i, v in pairs(PACK.panels) do
+	for i, v in ipairs(PACK.panels) do
 		t[v] = t[v] == true and "1" or t[v]
 		str = str .. (t and t[v] or "0")
 	end
-	return str
+	return str .. (tail or "")
+end
+
+-- Data saved by a newer version of the module can have more positions than
+-- the list knows. Those extra positions are returned apart as the tail, so
+-- saving the data again keeps them instead of erasing them.
+function unpackList(list, str)
+	local t = {}
+	for i=1, math.min(#str, #list) do
+		if str:sub(i,i) ~= "0" then
+			t[list[i]] = tonumber(str:sub(i,i))
+		end
+	end
+	return t, str:sub(#list+1)
 end
 
 function unpackChair(str)
-	local t = {}
-	for i=1, #str do
-		if str:sub(i,i) and str:sub(i,i) ~= "0" then
-			t[PACK.chairs[i]] = tonumber(str:sub(i,i))
-		end
-	end
-	return t
+	return unpackList(PACK.chairs, str)
 end
 
 function unpackRules(str)
-	local t = {}
-	for i=1, #str do
-		if str:sub(i,i) and str:sub(i,i) ~= "0" then
-			t[PACK.rules[i]] = tonumber(str:sub(i,i))
-		end
-	end
-	return t
+	return unpackList(PACK.rules, str)
 end
 
 function unpackTrophy(str)
-	local t = {}
-	for i=1, #str do
-		if str:sub(i,i) and str:sub(i,i) ~= "0" then
-			t[PACK.medals[i]] = tonumber(str:sub(i,i))
-		end
-	end
-	return t
+	return unpackList(PACK.medals, str)
 end
 
 function unpackFlag(str)
-	local t = {}
-	for i=1, #str do
-		if str:sub(i,i) and str:sub(i,i) ~= "0" then
-			t[PACK.panels[i]] = tonumber(str:sub(i,i))
-		end
-	end
-	return t
+	return unpackList(PACK.panels, str)
 end
 
 function unpackLight(str)
-	local t = {}
-	for i=1, #str do
-		if str:sub(i,i) and str:sub(i,i) ~= "0" then
-			t[PACK.lights[i]] = tonumber(str:sub(i,i))
-		end
-	end
-	return t
+	return unpackList(PACK.lights, str)
 end
 
 function unpackMap(str)
-	local t = {}
-	for i=1, #str do
-		if str:sub(i,i) and str:sub(i,i) ~= "0" then
-			t[PACK.maps[i]] = tonumber(str:sub(i,i))
-		end
-	end
-	return t
+	return unpackList(PACK.maps, str)
 end
 
 function saveData(p)
@@ -156,12 +133,13 @@ function saveData(p)
 			stats.lightWin = PLAYER[p].stats.victory.lightWin
 			stats.darkWin = PLAYER[p].stats.victory.darkWin
 			stats.mess = PLAYER[p].stats.victory.mess
-			stats.skin = packChair(PLAYER[p].skin)
-			stats.rules = packRules(PLAYER[p].rules)
-			stats.trophy = packTrophy(PLAYER[p].trophy)
-			stats.flags = packFlag(PLAYER[p].flags)
-			stats.lights = packLight(PLAYER[p].lights)
-			stats.maps = packMap(PLAYER[p].maps)
+			local tail = PLAYER[p].packTail or {}
+			stats.skin = packChair(PLAYER[p].skin, tail.skin)
+			stats.rules = packRules(PLAYER[p].rules, tail.rules)
+			stats.trophy = packTrophy(PLAYER[p].trophy, tail.trophy)
+			stats.flags = packFlag(PLAYER[p].flags, tail.flags)
+			stats.lights = packLight(PLAYER[p].lights, tail.lights)
+			stats.maps = packMap(PLAYER[p].maps, tail.maps)
 			stats.skinEquiped = PLAYER[p].skinEquiped
 			stats.trophyEquiped = PLAYER[p].trophyEquiped
 			stats.flagEquipped = PLAYER[p].flagEquipped
