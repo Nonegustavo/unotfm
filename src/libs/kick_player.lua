@@ -21,30 +21,15 @@ function kickPlayer(p, normal)
 					drawCardTracking(ROUND.turn, v.action.card[math.random(3)])
 				elseif v.action.name == "WISH" then
 					makeWish(ROUND.turn, v.action.card[math.random(3)])
-				elseif v.action.name == "TRADE" then
+				elseif v.action.name == "TRADE" or v.action.name == "GIFT" or v.action.name == "WEB" then
+					-- pick a random target among the ones the card offered
 					local pool = {}
-					for i, v in pairs(ROUND.v) do
-						if v.mode ~= "DELETED" and i~=ROUND.turn then
-							table.insert(pool, i)
-						end
+					for j in pairs(v.action.op or {}) do
+						table.insert(pool, j)
 					end
-					makeTrade(ROUND.turn, pool[math.random(#pool)])
-				elseif v.action.name == "GIFT" then
-					local pool = {}
-					for i, v in pairs(ROUND.v) do
-						if v.mode ~= "DELETED" and i~=ROUND.turn then
-							table.insert(pool, i)
-						end
+					if #pool > 0 then
+						v.action.func(ROUND.turn, pool[math.random(#pool)])
 					end
-					makeGift(ROUND.turn, pool[math.random(#pool)])
-				elseif v.action.name == "WEB" then
-					local pool = {}
-					for i, v in pairs(ROUND.v) do
-						if v.mode ~= "DELETED" and not v.action or i==ROUND.turn then
-							table.insert(pool, i)
-						end
-					end
-					makeWeb(ROUND.turn, pool[math.random(#pool)])
 				elseif v.action.name == "IMITATE" then
 					emoteVerify(true)
 				end
