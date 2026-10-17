@@ -817,7 +817,7 @@ SKIN = {
 		imgMini = "171b42a0d57.png",
 		name = "SKIN_KISS",
 		mission = "SKIN_KISS_MISSION",
-		author = "Matheus#5306"
+		author = "Snyxle#5306"
 	},
 	mountain = {
 		img = "171b414fc99.png",

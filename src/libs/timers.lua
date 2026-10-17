@@ -77,15 +77,17 @@ end
 
 function execFunctionTimer()
 	-- procura por funções para executar
-	local apagar={}
-	for i, v in pairs(TIMER.func) do
-		if v.time < GLOBAL_TIME then
-			v.exec(table.unpack(v.arg or {}))
-			table.insert(apagar, i)
-		end
+	-- separa as vencidas antes de executar: remover pelo índice durante o
+	-- laço deslocava a lista, perdendo timers e repetindo outros, e as
+	-- funções executadas podem agendar novos timers
+	local vencidas = {}
+	local pendentes = {}
+	for i, v in ipairs(TIMER.func) do
+		table.insert(v.time < GLOBAL_TIME and vencidas or pendentes, v)
 	end
-	for i=1, #apagar do
-		table.remove(TIMER.func, apagar[i])
+	TIMER.func = pendentes
+	for i, v in ipairs(vencidas) do
+		v.exec(table.unpack(v.arg or {}))
 	end
 end
 
