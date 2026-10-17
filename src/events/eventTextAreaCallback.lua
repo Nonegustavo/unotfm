@@ -170,8 +170,11 @@ onEvent("TextAreaCallback", function(id, p, callback, ever)
 		closeAll(p, "CHESS")
 		window.open(p, "CHESS")
 	elseif arg[1] == "house" then
-		closeAll(p, "HOUSE")
-		window.open(p, "HOUSE")
+		if window.isOpened(p, "SHOW_RULES") then
+			window.update(p, "SHOW_RULES", arg[2] and tonumber(arg[2]))
+		else
+			window.open(p, "SHOW_RULES", arg[2] and tonumber(arg[2]))
+		end
 	elseif arg[1] == "settings" then
 		closeAll(p, "SETTINGS2")
 		window.open(p, "SETTINGS2")

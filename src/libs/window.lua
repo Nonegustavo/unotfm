@@ -59,7 +59,7 @@ do
 	window.isOpened = function(p, id)
 		return w[id] and w[id].player[p] and w[id].player[p].opened
 	end
-	window.create = function(id, func, func2)
+	window.create = function(id, func, func2, notClose)
 		if w[id] then
 			for i, v in pairs(w[id].player) do
 				window.close(i, id)
@@ -69,7 +69,8 @@ do
 			w[id] = {
 				open = func,
 				update = func2,
-				player = {}
+				player = {},
+				fixed = notClose
 			}
 		end
 	end
@@ -78,7 +79,7 @@ do
 	end
 	closeAll = function(p, exception)
 		for i, v in pairs(w) do
-			if i~= exception then
+			if i~= exception and not v.fixed then
 				window.close(p, i)
 			end
 		end

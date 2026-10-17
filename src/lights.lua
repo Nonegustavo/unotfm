@@ -12,6 +12,7 @@ LIGHT = {
 		author = "Ninguem#0095",
 		img = "1729b79f378.png",
 		imgMini = "1799b44c2a7.png",
+		price = 450,
 	},
 	blue = {
 		name = "LIGHT_BLUE",
@@ -19,6 +20,7 @@ LIGHT = {
 		author = "Ninguem#0095",
 		img = "1729b789f27.png",
 		imgMini = "1799b5ca769.png",
+		price = 450,
 	},
 	red = {
 		name = "LIGHT_RED",
@@ -26,6 +28,7 @@ LIGHT = {
 		author = "Ninguem#0095",
 		img = "1729b7acf10.png",
 		imgMini = "1799b44c2a7.png",
+		price = 450,
 	},
 	white = {
 		name = "LIGHT_WHITE",
@@ -33,6 +36,7 @@ LIGHT = {
 		author = "Ninguem#0095",
 		img = "1729b787cc8.png",
 		imgMini = "1799b44c2a7.png",
+		price = 450,
 	},
 	pink = {
 		name = "LIGHT_PINK",
@@ -40,6 +44,7 @@ LIGHT = {
 		author = "Ninguem#0095",
 		img = "1729b787cc8.png",
 		imgMini = "1799b44c2a7.png",
+		price = 450,
 	},
 	orange = {
 		name = "LIGHT_ORANGE",
@@ -47,6 +52,7 @@ LIGHT = {
 		author = "Ninguem#0095",
 		img = "1729b787cc8.png",
 		imgMini = "1799b44c2a7.png",
+		price = 450,
 	},
 	shaman = {
 		name = "LIGHT_BLUE_SHAMAN",
@@ -54,6 +60,7 @@ LIGHT = {
 		author = "Ninguem#0095",
 		img = "1729b787cc8.png",
 		imgMini = "1799b44c2a7.png",
+		price = 750,
 	},
 	hard = {
 		name = "LIGHT_GOLD_SHAMAN",
@@ -61,6 +68,7 @@ LIGHT = {
 		author = "Ninguem#0095",
 		img = "1729b787cc8.png",
 		imgMini = "1799b44c2a7.png",
+		price = 750,
 	},
 	divine = {
 		name = "LIGHT_DIVINE_SHAMAN",
@@ -68,5 +76,6 @@ LIGHT = {
 		author = "Ninguem#0095",
 		img = "1729b787cc8.png",
 		imgMini = "1799b44c2a7.png",
+		price = 750,
 	},
 }

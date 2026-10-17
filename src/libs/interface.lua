@@ -561,7 +561,7 @@ function showRules(p)
 		end
 	end
 	ui.removeTextArea(27, p)
-	for i=10001, 10005 do
+	for i=10000, 10010 do
 		ui.removeTextArea(i, p)
 	end
 	local color = {
@@ -572,11 +572,13 @@ function showRules(p)
 		PUZZLE = "DCEDC8"
 	}
 	if #modes > 0 then
-		ui.addTextArea(27, "<b><font size='12px' color='#ffffff'><u><a href='event:house'>"..translate(p, "HOUSE_RULES"), p, 20, 190, 150, nil, 0, 0, 0, false)
+		ui.addTextArea(10000, "<b><font size='12px' color='#000000'><u>"..translate(p, "HOUSE_RULES"), p, 21, 191, 150, nil, 0, 0, 0, false)
+		ui.addTextArea(10001, "<b><font size='12px' color='#ffffff'><u><a href='event:house'>"..translate(p, "HOUSE_RULES"), p, 20, 190, 150, nil, 0, 0, 0, false)
 		if not (p == OWNER and ROUND.spectator) then
 			if #modes == 1 then
-				local txt = string.format("<font color='#%s'><b><a href='event:rule %s'>%s</a></b></font>\n<font size='9px'>%s", color[RULE[modes[1]].type], modes[1], translate(p, RULE[modes[1]].name), modes[1] == "custom" and RULE.custom.customDesc or translate(p, RULE[modes[1]].desc))
-				ui.addTextArea(10000+1, txt, p, 20, 180+1*30, 150, nil, 0, 0, 0, false)
+				local txt = string.format("<font color='#%s'><b><a href='event:rule %s'>%s</a></b></font>\n<font size='9px' color='#ffffff'>%s", color[RULE[modes[1]].type], modes[1], translate(p, RULE[modes[1]].name), modes[1] == "custom" and RULE.custom.customDesc or translate(p, RULE[modes[1]].desc))
+				ui.addTextArea(10000+2, string.format("<font color='#000000'><b>%s</b>\n<font size='9px'>%s", translate(p, RULE[modes[1]].name), modes[1] == "custom" and RULE.custom.customDesc or translate(p, RULE[modes[1]].desc)), p, 21, 181+1*30, 150, nil, 0, 0, 0, false)
+				ui.addTextArea(10000+3, txt, p, 20, 180+1*30, 150, nil, 0, 0, 0, false)
 				if RULE[modes[1]].img then
 					table.insert(ROUND.imgRule, tfm.exec.addImage(RULE[modes[1]].img, "!1000", 0, 178+1*30, p))
 				end
@@ -584,7 +586,8 @@ function showRules(p)
 				local cont = 0
 				for i, v in pairs(modes) do
 					local txt = string.format("<font color='#%s'><b><a href='event:rule %s'>%s</a></b></font>", color[RULE[v].type], v, translate(p, RULE[v].name))
-					ui.addTextArea(10000+i, txt, p, 20, 190+i*20, 150, nil, 0, 0, 0, false)
+					ui.addTextArea(10000+i*2, "<font color='#000000'><b>"..translate(p, RULE[v].name), p, 21, 191+i*20, 150, nil, 0, 0, 0, false)
+					ui.addTextArea(10001+i*2, txt, p, 20, 190+i*20, 150, nil, 0, 0, 0, false)
 					if RULE[modes[i]].img then
 						table.insert(ROUND.imgRule, tfm.exec.addImage(RULE[modes[i]].img, "!1000", 0, 188+i*20, p))
 					end
@@ -595,9 +598,27 @@ function showRules(p)
 				end
 				if #modes > 5 then
 					local txt = string.format("<font color='#%s'><b><a href='event:house'>+%s</a></b></font>", ROUND.color[2], #modes-4)
-					ui.addTextArea(10000+5, txt, p, 20, 190+5*20, 150, nil, 0, 0, 0, false)
+					ui.addTextArea(10010, txt, p, 20, 190+5*20, 150, nil, 0, 0, 0, false)
 				end
 				--tfm.exec.chatMessage("<bv>"..translate(p, "TIP_RULES"), p)
+			end
+		end
+	end
+end
+
+function showRules(p)
+	if p then
+		if window.isOpened(p, "SHOW_RULES") then
+			window.update(p, "SHOW_RULES", 1)
+		else
+			window.open(p, "SHOW_RULES", 1)
+		end
+	else
+		for i, v in pairs(tfm.get.room.playerList) do
+			if window.isOpened(i, "SHOW_RULES") then
+				window.update(i, "INVENTORY", 1)
+			else
+				window.open(i, "INVENTORY", 1)
 			end
 		end
 	end

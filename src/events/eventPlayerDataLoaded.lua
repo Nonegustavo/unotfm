@@ -66,6 +66,10 @@ onEvent("PlayerDataLoaded", function(p, data)
 			unlockRule(p, "custom", true)
 			unlockChair(p, "candy", true)
 		end
+		local cero = playerData.load(p, "cero")
+		if cero and cero.win and tonumber(cero.win) and tonumber(cero.win)>0 then
+			unlockChair(p, "otgw", true)
+		end
 		unlockRule(p, "elise", true)
 		unlockChair(p, "random", true)
 		PLAYER[p].loaded = true

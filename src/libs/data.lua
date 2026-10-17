@@ -1,11 +1,16 @@
 PACK = {
-	chairs = {"default","red","blue","yellow","green","white","fire","water","earth","air","rainbow","wood","stone","gold","diamond","king","luck","angel","junky","shaman","beach","cine","hell","cards","candy","cheese","fraise","illuminati","gift","bog","got","hamburguer","skull","school","time","pencil","chess","show","anvil","garden","falls","unicorn","psycho","television","radio","newspaper","cat","potato","rip","apple","heart","breakfast","bones","chocolate","marine","loot","random","astral","computer","elemental","guitar","popcorn","trash","wonderland","friend","football","cuphead","bootcamp","gaga","gothic","mecatopus","pumpkin","ufo","aquarium","help","font","chimney","circus","cisne","coffee","croissant","space","mermaid","phone","quartz","snowman","totoro","vangogh","chest","coca","flamingo","honey","old","pineapple","sack","smartphone","vampire","moon","max","bill","horn","toast","pizza","samson","fashion","undertale","forest","kiss","mountain","pikachu","simpsons","truelove","cyan","orange","pink","purple","black","toxic","thunder","crystal","dark","light","eclipse","toothless","lightfury","kratos","shenlong","spider"},
+	chairs = {"default","red","blue","yellow","green","white","fire","water","earth","air","rainbow","wood","stone","gold","diamond","king","luck","angel","junky","shaman","beach","cine","hell","cards","candy","cheese","fraise","illuminati","gift","bog","got","hamburguer","skull","school","time","pencil","chess","show","anvil","garden","falls","unicorn","psycho","television","radio","newspaper","cat","potato","rip","apple","heart","breakfast","bones","chocolate","marine","loot","random","astral","computer","elemental","guitar","popcorn","trash","wonderland","friend","football","cuphead","bootcamp","gaga","gothic","mecatopus","pumpkin","ufo","aquarium","help","font","chimney","circus","cisne","coffee","croissant","space","mermaid","phone","quartz","snowman","totoro","vangogh","chest","coca","flamingo","honey","old","pineapple","sack","smartphone","vampire","moon","max","bill","horn","toast","pizza","samson","fashion","undertale","forest","kiss","mountain","pikachu","simpsons","truelove","cyan","orange","pink","purple","black","toxic","thunder","crystal","dark","light","eclipse","toothless","lightfury","kratos","shenlong","spider","otgw"},
 
 	rules = {"nochallenge","mini","maxi","noaction","clean","nocombo","supercombo","hell","satisfaction","insatisfaction","camouflage","flash","limit","jumpin","black","revelation","stack","perfection","tracking","mulligan","overload","peace","death","gift","trade","carousel","chair","spy","rain","equality","imitate","meep","random","bomb","rule","chess","steal","fastdraw","hard","web","thunder","clone","sequence","luck","box","wish","ink","confuse","shiny","neighbor","team","batata","limbo","curse","magnet","portal","compass","mess","custom","tornado","theft","ban","simon","half","paradox","oddeven","mimic","mix","justice","bluegreen","elise","charlotte","elisah", "drekkemaus","buffy","jingle","papaille","snowy","icemice","key","share","nou"},
 
 	medals = {"none", "beta", "drekkemaus", "noel", "charlotte", "elisah", "buffy", "snowy"},
 
 	panels = {"default", "picnic", "metal", "paper", "carpet", "disco", "cloud", "circuit"},
+
+	lights = {"yellow", "green", "blue", "red", "white", "pink", "orange", "shaman", "hard", "divine"},
+
+	maps = {},
+
 }
 
 function packChair(t)
@@ -29,6 +34,24 @@ end
 function packTrophy(t)
 	local str = ""
 	for i, v in pairs(PACK.medals) do
+		t[v] = t[v] == true and "1" or t[v]
+		str = str .. (t and t[v] or "0")
+	end
+	return str
+end
+
+function packLight(t)
+	local str = ""
+	for i, v in pairs(PACK.lights) do
+		t[v] = t[v] == true and "1" or t[v]
+		str = str .. (t and t[v] or "0")
+	end
+	return str
+end
+
+function packMap(t)
+	local str = ""
+	for i, v in pairs(PACK.maps) do
 		t[v] = t[v] == true and "1" or t[v]
 		str = str .. (t and t[v] or "0")
 	end
@@ -84,6 +107,26 @@ function unpackFlag(str)
 	return t
 end
 
+function unpackLight(str)
+	local t = {}
+	for i=1, #str do
+		if str:sub(i,i) and str:sub(i,i) ~= "0" then
+			t[PACK.lights[i]] = tonumber(str:sub(i,i))
+		end
+	end
+	return t
+end
+
+function unpackMap(str)
+	local t = {}
+	for i=1, #str do
+		if str:sub(i,i) and str:sub(i,i) ~= "0" then
+			t[PACK.maps[i]] = tonumber(str:sub(i,i))
+		end
+	end
+	return t
+end
+
 function saveData(p)
 	if p:sub(1,1) ~= "*" and PLAYER[p] and PLAYER[p].loaded and not BOT[p] then
 		--PLAYER[p].rules.nochallenge = true
@@ -92,6 +135,8 @@ function saveData(p)
 		PLAYER[p].skinEquiped = PLAYER[p].skinEquiped or "default"
 		PLAYER[p].trophyEquiped = PLAYER[p].trophyEquiped or "none"
 		PLAYER[p].flagEquipped = PLAYER[p].flagEquipped or "default"
+		PLAYER[p].lightEquiped = PLAYER[p].lightEquiped or "yellow"
+		PLAYER[p].mapEquiped = PLAYER[p].mapEquiped or "classic"
 		local stats = playerData.load(p, "uno")
 		if stats then
 			stats.spectator = PLAYER[p].stats.spectator
@@ -115,9 +160,13 @@ function saveData(p)
 			stats.rules = packRules(PLAYER[p].rules)
 			stats.trophy = packTrophy(PLAYER[p].trophy)
 			stats.flags = packFlag(PLAYER[p].flags)
+			stats.lights = packLight(PLAYER[p].lights)
+			stats.maps = packMap(PLAYER[p].maps)
 			stats.skinEquiped = PLAYER[p].skinEquiped
 			stats.trophyEquiped = PLAYER[p].trophyEquiped
 			stats.flagEquipped = PLAYER[p].flagEquipped
+			stats.lightEquiped = PLAYER[p].lightEquiped
+			stats.mapEquiped = PLAYER[p].mapEquiped
 			stats.shadow = PLAYER[p].shadow and "1" or "0"
 			stats.challengePopup = PLAYER[p].challengePopup and "1" or "0"
 			stats.colorblind = PLAYER[p].colorBlind and "1" or "0"
@@ -146,12 +195,12 @@ function instanceData()
 		trophy = {none=1},
 		flags = {default=1},
 		lights = {yellow=true},
-		--maps = {none=true},
+		maps = {classic=true},
 		skinEquiped = "default",
 		trophyEquiped = "none",
 		flagEquipped = "default",
 		lightEquiped = "yellow",
-		--mapEquiped = "none",
+		mapEquiped = "classic",
 		shadow = true,
 		challengePopup = true,
 		colorBlind = false,
@@ -240,6 +289,8 @@ DATATYPE = {
 	rules = {type="table", default="0", func=unpackRules},
 	trophy = {type="number", default="1", func=unpackTrophy},
 	flags = {type="number", default="1", func=unpackFlag},
+	lights = {type="number", default="1", func=unpackLight},
+	maps = {type="number", default="1", func=unpackMap},
 	skinEquiped = {type="string", default="default"},
 	trophyEquiped = {type="number", default="none"},
 	flagEquipped = {type="number", default="default"},

@@ -50,6 +50,7 @@ onEvent("NewPlayer", function(p)
 			showDeck(p)
 			--drawTopCard(p)
 		end
+		showBackground(p)
 		giveTip(p)
 		tfm.exec.addPhysicObject(0, 400, 530, {height=10, width=3000})
 		tfm.exec.respawnPlayer(p)
