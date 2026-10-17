@@ -3,6 +3,7 @@ function chair(n)
 		ROUND.accumulated = nil
 		addBlockPoint(ROUND.chair[n].owner)
 	end
+
 	local chairs = {}
 	local pos = {}
 	local name = {}
@@ -23,19 +24,25 @@ function chair(n)
 	ROUND.team[3] = {}
 	ROUND.team[4] = {}
 	ROUND.team[5] = {}
+
+
 	local max = #pos
 	for i=1, max do
 		local rand = table.remove(pos, math.random(#pos))
 		ROUND.chair[rand[1]] = table.remove(chairs)
 		ROUND.chair[rand[1]].x = rand[2]
+
 		local c = ROUND.chair[rand[1]]
-		if c.owner ~= "" and PLAYER[c.owner] then
+
+		if c and c.owner ~= " " and PLAYER[c.owner] then
 			PLAYER[c.owner].chair = rand[1]
 		end
-		if #c.hand == 1 then
+
+		if c and type(c.hand) == "table" and #c.hand == 1 then
 			c.uno = "uno"
 		end
 	end
+
 	for i, v in pairs(ROUND.chair) do
 		if v.mode ~= "DELETED" and i ~= n then
 			if v.action and v.action.name == "SKIP" then
