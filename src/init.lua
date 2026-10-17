@@ -2,7 +2,7 @@ MAP = {"@7094274", "@7108608", "@6149054", "@7131131", "@7131143", "@7146157", "
 MUSIC = {"@7295158"}
 COMMAND = {"chair", "np", "random", "rule", "settings", "ban", "kick", "unban", "adm", "new", "map", "reset", "start", "pw", "p", "profile", "stats", "ranking", "boss", "power", "history", "fake", "color", "bell", "nolag", "shadow", "test", "custom", "givechair", "givebadge", "givescore", "giverule", "isranked", "rulenow", "limit", "spectator", "flag", "faustao", "rules"}
 
-VERSION = "v1.0.13 [17/10/26]"
+VERSION = "v1.0.14 [17/10/26]"
 
 -- progress
 OWNER = "Ninguem#0095"
