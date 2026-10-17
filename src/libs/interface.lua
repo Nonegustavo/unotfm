@@ -24,6 +24,16 @@ function loadImages(p)
 	end
 end
 
+function rip(n)
+	checkVars("eraseChair", { n }, { "number" })
+	for i, v in pairs(ROUND.chair[n].skin.img) do
+		tfm.exec.removeImage(v)
+	end
+	ROUND.chair[n].skin.img = {}
+	local chair = ROUND.chair[n]
+	table.insert(chair.skin.img, tfm.exec.addImage("17975c79412.png", "_1000", chair.x - 23, 70,nil,.7,.7,0,1))
+end
+
 function updateScore(n, p, color)
 	local nickname = nickMinifier(nickHashtag(ROUND.chair[n].owner))
 	if ROUND.chair[n].mode ~= "DELETED" then
@@ -87,6 +97,7 @@ function updateScore(n, p, color)
 			end
 		end
 	elseif ROUND.chair[n].owner ~= "" then
+		rip(n)
 		ui.addTextArea(1000+n, string.format("<b><font color='#000000'><p align='center'>%s<b>\n<font size='18px'>X", nickname), i, ROUND.chair[n].x-70, 115, 140, 60, 0, 0, 0, false)
 		ui.removeTextArea(1010+n, p)
 	else
