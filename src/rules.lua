@@ -768,12 +768,11 @@ RULE = {
 	draw99 = {
 		name = "HOUSE_PLUS99",
 		desc = "HOUSE_PLUS99_DESC",
-		mission = "BUY_RULE",
+		mission = "UNLOCK_RULE",
 		img = "1627e34cb06.png",
 		imgDesc = "1627e2b24a9.png",
 		conflict = {"noaction"},
 		card = {color={"black"}},
-		lock = "SHOP",
 		rulecard = true,
 		notMess = true,
 		type = "CARD",
