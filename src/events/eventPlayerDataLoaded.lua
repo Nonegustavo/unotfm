@@ -21,10 +21,11 @@ onEvent("PlayerDataLoaded", function(p, data)
 			PLAYER[p].stats.victory.mess = tonumber(stats.mess or "0")
 			PLAYER[p].stats.victory.lightWin = tonumber(stats.lightWin or "0")
 			PLAYER[p].stats.victory.darkWin = tonumber(stats.darkWin or "0")
-			PLAYER[p].skin = unpackChair(stats.skin)
-			PLAYER[p].rules = unpackRules(stats.rules)
-			PLAYER[p].trophy = unpackTrophy(stats.trophy)
-			PLAYER[p].flags = unpackFlag(stats.flags or "1")
+			PLAYER[p].packTail = {}
+			PLAYER[p].skin, PLAYER[p].packTail.skin = unpackChair(stats.skin)
+			PLAYER[p].rules, PLAYER[p].packTail.rules = unpackRules(stats.rules)
+			PLAYER[p].trophy, PLAYER[p].packTail.trophy = unpackTrophy(stats.trophy)
+			PLAYER[p].flags, PLAYER[p].packTail.flags = unpackFlag(stats.flags or "1")
 			PLAYER[p].skinEquiped = stats.skinEquiped
 			PLAYER[p].trophyEquiped = stats.trophyEquiped
 			PLAYER[p].flagEquipped = stats.flagEquipped or "default"
@@ -65,6 +66,10 @@ onEvent("PlayerDataLoaded", function(p, data)
 			system.giveEventGift(p, TITLE.foul_play)
 			unlockRule(p, "custom", true)
 			unlockChair(p, "candy", true)
+		end
+		local cero = playerData.load(p, "cero")
+		if cero and cero.win and tonumber(cero.win) and tonumber(cero.win)>0 then
+			unlockChair(p, "otgw", true)
 		end
 		unlockRule(p, "elise", true)
 		unlockChair(p, "random", true)

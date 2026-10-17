@@ -33,5 +33,5 @@ function useTotoro(p)
 end
 
 function isNaked(p)
-	return tfm.get.room.playerList[p] and tfm.get.room.playerList[p].look == "1;0,0,0,0,0,0,0,0,0"
+	return tfm.get.room.playerList[p] and tfm.get.room.playerList[p].look == "1;0,0,0,0,0,0,0,0,0,0,0,0"
 end

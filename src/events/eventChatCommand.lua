@@ -78,9 +78,6 @@ onEvent("ChatCommand", function(p, cmd)
 			ROUND.spectator = true
 			ui.removeTextArea(32, p)
 			ui.removeTextArea(33, p)
-			for i, v in pairs(ROUND.imgRule or {}) do
-				tfm.exec.removeImage(v)
-			end
 			for i, v in pairs(tfm.get.room.playerList) do
 				showRules(i)
 			end

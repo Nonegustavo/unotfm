@@ -87,9 +87,6 @@ function portal(n)
 		tfm.exec.removeObject(ROUND.cloud.obj)
 		ROUND.cloud.obj = false
 	end
-	for i, v in pairs(ROUND.imgRule) do
-		tfm.exec.removeImage(v)
-	end
 	for i, v in pairs(tfm.get.room.playerList) do
 		showRules(i)
 	end

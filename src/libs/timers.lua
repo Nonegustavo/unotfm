@@ -26,7 +26,7 @@ function delImagesTimer()
 	local apagar = {}
 	for i, v in pairs(TIMER.img) do
 		if v < os.time() then
-			tfm.exec.removeImage(i)
+			tfm.exec.removeImage(i, true)
 			table.insert(apagar, i)
 		end
 	end

@@ -279,3 +279,42 @@ function validRoom()
 		end
 	end
 end
+
+function getImages(xml)
+	local str = string.match(xml, 'img="(.-)"')
+	local str2 = string.match(xml, 'IMG="(.-)"')
+	if not (str or str2) then return end
+	local images = {background={}, foreground={}}
+	if str then
+		local list = split(str, ";")
+		for i, v in pairs(list) do
+			local arg = split(v, ",")
+			print(arg)
+			if #arg >= 3 and tonumber(arg[2]) and tonumber(arg[3]) then
+				table.insert(images.background, arg)
+			end
+		end
+	end
+	print(images.background)
+	if str2 then
+		local list = split(str2, ";")
+		for i, v in pairs(list) do
+			local arg = split(v, ",")
+			if #arg >= 3 and tonumber(arg[2]) and tonumber(arg[3]) then
+				table.insert(images.foreground, arg)
+			end
+		end
+	end
+	return images
+end
+
+function showBackground(p)
+	if ROUND and ROUND.images then
+		for i, v in pairs(ROUND.images.background) do
+			tfm.exec.addImage(v[1], "_1", v[2], v[3], p)
+		end
+		for i, v in pairs(ROUND.images.foreground) do
+			tfm.exec.addImage(v[1], "!1", v[2], v[3], p)
+		end
+	end
+end

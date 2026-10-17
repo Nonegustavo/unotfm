@@ -967,6 +967,13 @@ SKIN = {
 		mission = "SKIN_SPIDER_MISSION",
 		author = "Sulyvahn#1958"
 	},
+	otgw = {
+		img = "1842a9d3796.png",
+		imgMini = "1842a9cb680.png",
+		name = "SKIN_OTGW",
+		mission = "SKIN_OTGW_MISSION",
+		author = "White_pudim#0000"
+	},
 	
 	soon = {
 		img = "15b90ff3a79.png",

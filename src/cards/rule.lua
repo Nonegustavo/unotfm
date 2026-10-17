@@ -99,9 +99,6 @@ end
 
 function addRule(name)
 	ROUND.gameMode[name] = true
-	for i, v in pairs(ROUND.imgRule) do
-		tfm.exec.removeImage(v)
-	end
 	for i, v in pairs(tfm.get.room.playerList) do
 		showRules(i)
 		if window.isOpened(i, "TIP") then

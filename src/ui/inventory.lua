@@ -16,7 +16,7 @@ CHAIRLIST = {"random", "default", "red", "blue", "yellow", "green", "white", "cy
 	"flamingo", "honey", "old", "pineapple", "sack", "smartphone", "vampire", "moon", "max", 
 	"bill", "horn", "toast", "pizza", "samson", "fashion", "undertale", "forest", "kiss", 
 	"mountain", "pikachu", "simpsons", "truelove", "eclipse", "toothless", "lightfury", 
-	"kratos", "shenlong", "spider"}
+	"kratos", "shenlong", "spider", "otgw"}
 PANELLIST = {"default", "picnic", "metal", "paper", "carpet", "disco", "cloud", "circuit"}
 LIGHTLIST = {"yellow", "blue", "green", "red", "white", "pink", "orange", "shaman", "hard", "divine"}
 LIGHTLIST = {"yellow", "blue"}

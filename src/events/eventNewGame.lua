@@ -70,10 +70,11 @@ onEvent("NewGame", function()
 			flowLight = 1,
 			cloud = {},
 			arrowImg = {},
-			imgRule = {},
 		}
 		ROUND.chair = getChairs(tfm.get.room.xmlMapInfo.xml)
 		ROUND.color = getColor(tfm.get.room.xmlMapInfo.xml)
+		ROUND.images = getImages(tfm.get.room.xmlMapInfo.xml)
+		showBackground(p)
 		ROUND.cardSkin = getCardSkin(tfm.get.room.xmlMapInfo.xml)
 		local bots = getBot(tfm.get.room.xmlMapInfo.xml)
 		ROUND.bots = bots or {}
