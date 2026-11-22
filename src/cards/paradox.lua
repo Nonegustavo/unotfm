@@ -23,7 +23,7 @@ function paradox(n)
 	updateScore(n)
 	showCardsGainned(n, -1)
 	if #ROUND.chair[n].hand == 0 then
-		endGame(ROUND.chair[n].owner)
+		isEndGame()
 	else
 		passTurn()
 		ROUND.chair[n].confuse = false

@@ -38,7 +38,7 @@ function magnet(n)
 		unlockChair(ROUND.chair[n].owner, "mecatopus")
 	end
 	if #ROUND.chair[n].hand <= 0 then
-		endGame(ROUND.chair[n].owner, ROUND.topCard.card)
+		isEndGame("PLAY")
 	else
 		if #ROUND.chair[n].hand == 1 then
 			ROUND.chair[n].uno = "uno"
