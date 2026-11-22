@@ -7,6 +7,114 @@ function scoreHand(n)
 	return score
 end
 
+-- Counts the round for a seated player (rounds played, day streak and related chairs).
+function countRoundPlayed(i)
+	local v = ROUND.chair[i]
+	PLAYER[v.owner].stats.round = PLAYER[v.owner].stats.round + 1
+	if PLAYER[v.owner].stats.round >= 1000 then
+		unlockChair(v.owner, "stone")
+	elseif PLAYER[v.owner].stats.round >= 100 then
+		unlockChair(v.owner, "wood")
+	end
+	if PLAYER[v.owner].stats.round >= 2500 then
+		unlockChair(v.owner, "cat")
+	end
+	if PLAYER[v.owner].stats.round >= 5000 then
+		unlockChair(v.owner, "garden")
+	end
+	if PLAYER[v.owner].stats.round >= 7500 then
+		unlockChair(v.owner, "friend")
+	end
+	if PLAYER[v.owner].stats.round >= 10000 then
+		unlockChair(v.owner, "anvil")
+	end
+	if not v.playedChair then
+		unlockChair(v.owner, "bog")
+	end
+	if ROUND.chair[nextChair(i)].skin.id == "vampire" or ROUND.chair[previousChair(i)].skin.id == "vampire" then
+		unlockChair(v.owner, "vampire")
+	end
+	local today = math.floor(os.time() / 86400000)
+	if PLAYER[v.owner].lastDayPlayed and PLAYER[v.owner].lastDayPlayed ~= today then
+		if PLAYER[v.owner].lastDayPlayed + 1 == today then
+			PLAYER[v.owner].dayStreak = PLAYER[v.owner].dayStreak + 1
+		else
+			PLAYER[v.owner].dayStreak = 1
+		end
+		PLAYER[v.owner].lastDayPlayed = today
+		if PLAYER[v.owner].dayStreak >= 7 then
+			unlockChair(v.owner, "fashion")
+		end
+		if PLAYER[v.owner].dayStreak >= 15 then
+			unlockChair(v.owner, "undertale")
+		end
+	end
+end
+
+-- Counts the round for every spectator and saves everyone's data.
+function countRoundSpectated()
+	for i, v in pairs(PLAYER) do
+		if not BOT[i] and tfm.get.room.playerList[i] and i:sub(1,1) ~= "*" then
+			if not v.chair then
+				-- Safe access to v.stats
+				if v.stats then
+					v.stats.spectator = (v.stats.spectator or 0) + 1
+					if v.stats.spectator >= 1000 then
+						unlockChair(i, "cine")
+					elseif v.stats.spectator >= 100 then
+						unlockChair(i, "beach")
+					end
+					if v.stats.spectator >= 2500 then
+						unlockChair(i, "newspaper")
+					end
+					if v.stats.spectator >= 5000 then
+						unlockChair(i, "radio")
+					end
+					if v.stats.spectator >= 7500 then
+						unlockChair(i, "television")
+					end
+					if v.stats.spectator >= 10000 then
+						unlockChair(i, "computer")
+					end
+				end
+			end
+		end
+		saveData(i)
+	end
+end
+
+-- Adds a solo victory to the player and unlocks the chairs tied to the total.
+function countVictory(p)
+	if PLAYER[p] and PLAYER[p].stats and PLAYER[p].stats.victory then
+		PLAYER[p].stats.victory.all = (PLAYER[p].stats.victory.all or 0) + 1
+		if PLAYER[p].stats.victory.all >= 1000 then
+			unlockChair(p, "diamond")
+		elseif PLAYER[p].stats.victory.all >= 100 then
+			unlockChair(p, "gold")
+		end
+		if PLAYER[p].stats.victory.all >= 2000 then
+			unlockChair(p, "unicorn")
+		end
+		if PLAYER[p].stats.victory.all >= 3000 then
+			unlockChair(p, "cheese")
+			system.giveEventGift(p, TITLE.uno)
+		end
+	end
+end
+
+-- Adds a team victory to the player and unlocks the chairs tied to the total.
+function countTeamVictory(p)
+	if PLAYER[p] and PLAYER[p].stats and PLAYER[p].stats.victory then
+		PLAYER[p].stats.victory.team = (PLAYER[p].stats.victory.team or 0) + 1
+		if PLAYER[p].stats.victory.team >= 100 then unlockChair(p, "breakfast") end
+		if PLAYER[p].stats.victory.team >= 250 then unlockChair(p, "hamburguer") end
+		if PLAYER[p].stats.victory.team >= 487.5 then unlockChair(p, "croissant") end
+		if PLAYER[p].stats.victory.team >= 600 then unlockChair(p, "toast") end
+		if PLAYER[p].stats.victory.team >= 1000 then unlockChair(p, "pizza") end
+		if PLAYER[p].stats.victory.team >= 10 then unlockRule(p, "team", true) end
+	end
+end
+
 function endGame(p, card, winners, mode)
 	if ROUND.state == "FINISH" then
 		return false
@@ -103,45 +211,7 @@ function endGame(p, card, winners, mode)
 				end
 				if v.owner and v.owner ~= "" and PLAYER[v.owner] then
 					if (CONFIG.ranked and tfm.get.room.uniquePlayers >= 4) or RANKED then
-						PLAYER[v.owner].stats.round = PLAYER[v.owner].stats.round + 1
-						if PLAYER[v.owner].stats.round >= 1000 then
-							unlockChair(v.owner, "stone")
-						elseif PLAYER[v.owner].stats.round >= 100 then
-							unlockChair(v.owner, "wood")
-						end
-						if PLAYER[v.owner].stats.round >= 2500 then
-							unlockChair(v.owner, "cat")
-						end
-						if PLAYER[v.owner].stats.round >= 5000 then
-							unlockChair(v.owner, "garden")
-						end
-						if PLAYER[v.owner].stats.round >= 7500 then
-							unlockChair(v.owner, "friend")
-						end
-						if PLAYER[v.owner].stats.round >= 10000 then
-							unlockChair(v.owner, "anvil")
-						end
-						if not v.playedChair then
-							unlockChair(v.owner, "bog")
-						end
-						if ROUND.chair[nextChair(i)].skin.id == "vampire" or ROUND.chair[previousChair(i)].skin.id == "vampire" then
-							unlockChair(v.owner, "vampire")
-						end
-						local today = math.floor(os.time() / 86400000)
-						if PLAYER[v.owner].lastDayPlayed and PLAYER[v.owner].lastDayPlayed ~= today then
-							if PLAYER[v.owner].lastDayPlayed + 1 == today then
-								PLAYER[v.owner].dayStreak = PLAYER[v.owner].dayStreak + 1
-							else
-								PLAYER[v.owner].dayStreak = 1
-							end
-							PLAYER[v.owner].lastDayPlayed = today
-							if PLAYER[v.owner].dayStreak >= 7 then
-								unlockChair(v.owner, "fashion")
-							end
-							if PLAYER[v.owner].dayStreak >= 15 then
-								unlockChair(v.owner, "undertale")
-							end
-						end
+						countRoundPlayed(i)
 					end
 				else
 					CONFIG.chair[i] = nil
@@ -220,30 +290,8 @@ function endGame(p, card, winners, mode)
 		addFunctionTimer(function()
 			if (CONFIG.ranked and qtdPlayers >= 4 and tfm.get.room.uniquePlayers >= 4) or RANKED then
 				if pp then
-					-- Safe access to PLAYER[p] and PLAYER[pp] stats chains
-					if PLAYER[p] and PLAYER[p].stats and PLAYER[p].stats.victory then
-						PLAYER[p].stats.victory.team = (PLAYER[p].stats.victory.team or 0) + 1
-					end
-					if PLAYER[pp] and PLAYER[pp].stats and PLAYER[pp].stats.victory then
-						PLAYER[pp].stats.victory.team = (PLAYER[pp].stats.victory.team or 0) + 1
-					end
-
-					if PLAYER[p] and PLAYER[p].stats and PLAYER[p].stats.victory then
-						if PLAYER[p].stats.victory.team >= 100 then unlockChair(p, "breakfast") end
-						if PLAYER[p].stats.victory.team >= 250 then unlockChair(p, "hamburguer") end
-						if PLAYER[p].stats.victory.team >= 487.5 then unlockChair(p, "croissant") end
-						if PLAYER[p].stats.victory.team >= 600 then unlockChair(p, "toast") end
-						if PLAYER[p].stats.victory.team >= 1000 then unlockChair(p, "pizza") end
-						if PLAYER[p].stats.victory.team >= 10 then unlockRule(p, "team", true) end
-					end
-					if PLAYER[pp] and PLAYER[pp].stats and PLAYER[pp].stats.victory then
-						if PLAYER[pp].stats.victory.team >= 100 then unlockChair(pp, "breakfast") end
-						if PLAYER[pp].stats.victory.team >= 250 then unlockChair(pp, "hamburguer") end
-						if PLAYER[pp].stats.victory.team >= 487.5 then unlockChair(pp, "croissant") end
-						if PLAYER[pp].stats.victory.team >= 600 then unlockChair(pp, "toast") end
-						if PLAYER[pp].stats.victory.team >= 1000 then unlockChair(pp, "pizza") end
-						if PLAYER[pp].stats.victory.team >= 10 then unlockRule(pp, "team", true) end
-					end
+					countTeamVictory(p)
+					countTeamVictory(pp)
 
 					if p == "Elise" then
 						unlockChair(pp, "marine")
@@ -266,22 +314,7 @@ function endGame(p, card, winners, mode)
 					end
 
 				elseif not BOT[p] then
-					-- Safe access to PLAYER[p] stats chain
-					if PLAYER[p] and PLAYER[p].stats and PLAYER[p].stats.victory then
-						PLAYER[p].stats.victory.all = (PLAYER[p].stats.victory.all or 0) + 1
-						if PLAYER[p].stats.victory.all >= 1000 then
-							unlockChair(p, "diamond")
-						elseif PLAYER[p].stats.victory.all >= 100 then
-							unlockChair(p, "gold")
-						end
-						if PLAYER[p].stats.victory.all >= 2000 then
-							unlockChair(p, "unicorn")
-						end
-						if PLAYER[p].stats.victory.all >= 3000 then
-							unlockChair(p, "cheese")
-							system.giveEventGift(p, TITLE.uno)
-						end
-					end
+					countVictory(p)
 				end
 
 				-- Safe access to PLAYER[p] stats chain for color victories
@@ -465,34 +498,7 @@ function endGame(p, card, winners, mode)
 				if not BOT[p] and isNaked(p) then unlockChair(p, "simpsons") end
 
 				addFunctionTimer(function()
-					for i, v in pairs(PLAYER) do
-						if not BOT[i] and tfm.get.room.playerList[i] and i:sub(1,1) ~= "*" then
-							if not v.chair then
-								-- Safe access to v.stats
-								if v.stats then
-									v.stats.spectator = (v.stats.spectator or 0) + 1
-									if v.stats.spectator >= 1000 then
-										unlockChair(i, "cine")
-									elseif v.stats.spectator >= 100 then
-										unlockChair(i, "beach")
-									end
-									if v.stats.spectator >= 2500 then
-										unlockChair(i, "newspaper")
-									end
-									if v.stats.spectator >= 5000 then
-										unlockChair(i, "radio")
-									end
-									if v.stats.spectator >= 7500 then
-										unlockChair(i, "television")
-									end
-									if v.stats.spectator >= 10000 then
-										unlockChair(i, "computer")
-									end
-								end
-							end
-						end
-						saveData(i)
-					end
+					countRoundSpectated()
 				end, 500)
 			end
 		end, 500)
@@ -506,6 +512,44 @@ function endGame(p, card, winners, mode)
 			if not v.chair then
 				v.chairDelay = 0
 			end
+		end
+		-- tied players and their team partners
+		local tied = {}
+		for i, name in pairs(winners) do
+			local chair = PLAYER[name] and PLAYER[name].chair and ROUND.chair[PLAYER[name].chair]
+			tied[name] = chair and chair.team and true or false
+			if chair and chair.team and ROUND.team[chair.team] then
+				for c in pairs(ROUND.team[chair.team]) do
+					local owner = ROUND.chair[c] and ROUND.chair[c].owner
+					if owner and owner ~= "" and PLAYER[owner] then
+						tied[owner] = true -- partners are only added in team mode
+					end
+				end
+			end
+		end
+		for name in pairs(tied) do
+			if PLAYER[name] then
+				PLAYER[name].chairDelay = 0
+			end
+		end
+		for i, v in pairs(ROUND.chair) do
+			if v.owner and v.owner ~= "" and not BOT[v.owner] and PLAYER[v.owner] then
+				if (CONFIG.ranked and tfm.get.room.uniquePlayers >= 4) or RANKED then
+					countRoundPlayed(i)
+				end
+			end
+		end
+		if (CONFIG.ranked and qtdPlayers >= 4 and tfm.get.room.uniquePlayers >= 4) or RANKED then
+			for name, team in pairs(tied) do
+				if not BOT[name] then
+					if team then
+						countTeamVictory(name)
+					else
+						countVictory(name)
+					end
+				end
+			end
+			addFunctionTimer(countRoundSpectated, 500)
 		end
 	else
 		ui.addTextArea(13, "", nil, 0, 0, 800, 400, 1, 1, 0.2, false)

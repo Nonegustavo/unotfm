@@ -138,19 +138,32 @@ function isEndGame(form)
 				end
 			end
 		end
-		if #win == 1 then
+		-- winners all from the same team: that team wins instead of a tie
+		local sameTeam = #win > 1
+		local firstTeam = #win > 1 and ROUND.chair[PLAYER[win[1]].chair].team
+		for i, v in pairs(win) do
+			if not firstTeam or ROUND.chair[PLAYER[v].chair].team ~= firstTeam then
+				sameTeam = false
+				break
+			end
+		end
+		if #win == 1 or sameTeam then
 			endGame(win[1], card, nil, form)
 		elseif #win > 1 then
 			for i, v in pairs(win) do
 				unlockChair(v, "horn")
 			end
 			endGame(nil, nil, win, form)
-		elseif live == 1 then
+		elseif #live == 1 then
 			endGame(live[1], nil, nil, "ELIMINATION")
-		elseif live == 2 and ROUND.gameMode.team and ROUND.chair[live[1]].team == ROUND.chair[live[2]].team then
-			endGame(live[1], nil, nil, "ELIMINATION")
+		elseif #live == 2 and ROUND.gameMode.team then
+			local team1 = ROUND.chair[PLAYER[live[1]].chair].team
+			local team2 = ROUND.chair[PLAYER[live[2]].chair].team
+			if team1 and team1 == team2 then
+				endGame(live[1], nil, nil, "ELIMINATION")
+			end
 		end
-		return #win > 0
+		return ROUND.state == "FINISH"
 	end
 end
 
